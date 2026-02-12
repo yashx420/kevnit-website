@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #00e676;
+  --color-primary-dark: #00c853;
+  --color-secondary: #111111;
+  --color-accent: #2979ff;
+
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-pulse-glow: pulse-glow 3s infinite;
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  @keyframes pulse-glow {
+    0%,
+    100% {
+      box-shadow: 0 0 10px #00e676;
+    }
+    50% {
+      box-shadow:
+        0 0 20px #00e676,
+        0 0 10px #00e676;
+    }
+  }
+}
+
+/* Custom Utilities */
+.glass-card {
+  @apply backdrop-blur-md bg-white/5 border border-white/10;
+}
+
+.text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-emerald-400;
+}
+
+body {
+  @apply bg-[#0A0A0A] text-white;
+}
