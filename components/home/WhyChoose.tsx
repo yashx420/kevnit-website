@@ -119,8 +119,13 @@ export function WhyChoose() {
                     <CheckCircle2 className="text-[#6BC323] w-6 h-6" />
                   </motion.div>
                 ))}
+              </motion.div>
 
-                <div className="z-10 text-center">
+              <motion.div
+                style={{ scale, y }}
+                className="absolute inset-0 flex items-center justify-center pointer-events-none z-20"
+              >
+                <div className="text-center">
                   <span className="text-5xl font-bold text-white">100%</span>
                   <p className="text-[#6BC323] text-sm tracking-widest uppercase mt-1">
                     Satisfaction
