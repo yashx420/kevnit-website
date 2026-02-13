@@ -190,11 +190,11 @@ export default function ContactPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-gray-300">
-                      Name
+                      Company Name
                     </label>
                     <input
                       type="text"
-                      name="name"
+                      name="company"
                       required
                       className="w-full h-12 bg-black/40 border border-white/10 rounded-xl px-4 text-white focus:border-[#6BC323] focus:ring-1 focus:ring-[#6BC323] outline-none transition-all focus:bg-white/5"
                     />
