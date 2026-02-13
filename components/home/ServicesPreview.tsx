@@ -89,7 +89,7 @@ export function ServicesPreview() {
   });
 
   return (
-    <section id="expertise" className="relative mt-24" ref={container}>
+    <section id="expertise" className="bg-black relative mt-24" ref={container}>
       <div className="pt-12 pb-6 text-center sticky top-0 bg-black/80 backdrop-blur-md z-40 border-b border-white/5 mb-8">
         <Container>
           <motion.div
@@ -198,7 +198,7 @@ const Card = ({
           w-full md:w-[85vw] lg:w-[70vw] xl:w-[60vw] max-w-4xl 
           min-h-screen md:min-h-0 md:h-[55vh] lg:h-[60vh] xl:h-[60vh] 
           md:rounded-[2rem] overflow-hidden md:border border-white/10 origin-top shadow-[0_0_50px_rgba(0,0,0,0.5)] ${bg}
-          sticky top-0 md:static
+          sticky top-0 md:static no-cursor-effect
         `}
       >
         <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-20 pointer-events-none" />

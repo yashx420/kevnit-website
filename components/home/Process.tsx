@@ -112,7 +112,7 @@ export function Process() {
                         borderColor: "rgba(107, 195, 35, 0.5)",
                         boxShadow: "0 0 30px rgba(107, 195, 35, 0.2)",
                       }}
-                      className="group relative bg-[#111]/80 backdrop-blur-xl border border-white/10 p-8 rounded-3xl overflow-hidden hover:bg-[#151515] transition-all duration-500"
+                      className="group relative bg-[#111]/80 backdrop-blur-xl border border-white/10 p-8 rounded-3xl overflow-hidden hover:bg-[#151515] transition-all duration-500 no-cursor-effect"
                     >
                       {/* Holographic Sheen */}
                       <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent skew-x-12 translate-x-[-150%] group-hover:animate-shine pointer-events-none" />

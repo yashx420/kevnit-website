@@ -34,7 +34,7 @@ export function Testimonials() {
     );
 
   return (
-    <section className="py-24 relative">
+    <section className="py-24 bg-black relative">
       <Container>
         <div className="text-center mb-12">
           <motion.h2
@@ -64,7 +64,7 @@ export function Testimonials() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="bg-[#111] rounded-3xl p-8 md:p-12 border border-white/5 relative z-10 min-h-[400px] flex items-center justify-center cursor-grab active:cursor-grabbing"
+            className="bg-[#111] rounded-3xl p-8 md:p-12 border border-white/5 relative z-10 min-h-[400px] flex items-center justify-center cursor-grab active:cursor-grabbing no-cursor-effect"
           >
             <AnimatePresence mode="wait">
               <motion.div

@@ -3,81 +3,83 @@
 import { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-interface Particle {
+interface TrailPoint {
   id: number;
   x: number;
   y: number;
-  value: string;
+  char: string;
 }
 
 export function CursorMatrixEffect() {
-  const [particles, setParticles] = useState<Particle[]>([]);
-  const mousePosRef = useRef({ x: 0, y: 0 });
+  const [trail, setTrail] = useState<TrailPoint[]>([]);
+  const requestRef = useRef<number | null>(null);
+  const previousTimeRef = useRef<number | null>(null);
 
   useEffect(() => {
+    let count = 0;
+
     const handleMouseMove = (e: MouseEvent) => {
-      mousePosRef.current = { x: e.clientX, y: e.clientY };
+      // Check if hovering over a card or interactive element
+      const target = e.target as HTMLElement;
+      const isBlocked =
+        target.closest(".no-cursor-effect") ||
+        target.closest("button") ||
+        target.closest("a");
+
+      if (isBlocked) return;
+
+      count++;
+      // Limit spawn rate
+      if (count % 3 !== 0) return;
+
+      const chars = ["0", "1"];
+      const char = chars[Math.floor(Math.random() * chars.length)];
+
+      const newPoint: TrailPoint = {
+        id: Date.now() + Math.random(),
+        x: e.clientX,
+        y: e.clientY,
+        char,
+      };
+
+      setTrail((prev) => [...prev.slice(-15), newPoint]); // Keep trail short
     };
 
     window.addEventListener("mousemove", handleMouseMove);
-
-    // Spawn a new number every 800ms
-    const interval = setInterval(() => {
-      // Don't spawn if mouse hasn't moved / is at 0,0
-      if (mousePosRef.current.x === 0 && mousePosRef.current.y === 0) return;
-
-      addParticle(mousePosRef.current.x, mousePosRef.current.y);
-    }, 800);
-
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-      clearInterval(interval);
-    };
+    return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
-  const addParticle = (x: number, y: number) => {
-    const id = Date.now();
-    // Huge spread for "way more radius"
-    const offsetX = (Math.random() - 0.5) * 400;
-    const offsetY = (Math.random() - 0.5) * 400;
+  useEffect(() => {
+    // Cleanup old points
+    const interval = setInterval(() => {
+      setTrail((prev) => {
+        if (prev.length === 0) return prev;
+        return prev.slice(1);
+      });
+    }, 100);
 
-    const newParticle: Particle = {
-      id,
-      x: x + offsetX,
-      y: y + offsetY,
-      value: Math.random() > 0.5 ? "1" : "0",
-    };
-
-    // STRICTLY keep max 2 particles at any time
-    setParticles((prev) => [...prev, newParticle].slice(-2));
-  };
+    return () => clearInterval(interval);
+  }, []);
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-[1] overflow-hidden">
-      <AnimatePresence mode="popLayout">
-        {particles.map((particle) => (
-          <motion.div
-            key={particle.id}
-            initial={{ opacity: 0, scale: 0.8, x: particle.x, y: particle.y }}
-            animate={{
-              opacity: [0, 1, 0],
-              y: particle.y - 120, // Longer scroll UP
-              scale: 1,
-            }}
+    <div className="fixed inset-0 pointer-events-none z-[99999] overflow-hidden">
+      <AnimatePresence>
+        {trail.map((point) => (
+          <motion.span
+            key={point.id}
+            initial={{ opacity: 1, scale: 1 }}
+            animate={{ opacity: 0, scale: 0.5, y: 20 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 2.5, ease: "easeOut" }}
-            onAnimationComplete={() => {
-              setParticles((prev) => prev.filter((p) => p.id !== particle.id));
-            }}
-            // Font size sm, no shadow, clean green color
-            className="absolute text-[#6BC323] font-mono text-sm font-bold select-none"
+            transition={{ duration: 0.5, ease: "linear" }}
+            className="absolute text-[#6BC323] font-mono text-xs font-bold leading-none select-none"
             style={{
-              marginLeft: "12px", // Offset slightly from cursor center
-              marginTop: "12px",
+              left: point.x,
+              top: point.y,
+              textShadow: "0 0 5px #6BC323",
             }}
           >
-            {particle.value}
-          </motion.div>
+            {point.char}
+          </motion.span>
         ))}
       </AnimatePresence>
     </div>
