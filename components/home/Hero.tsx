@@ -64,7 +64,7 @@ export function Hero() {
   const layer2Y = useTransform(springY, (y) => y * 0.5);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0A0A0A] pb-32 perspective-1000">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0A0A0A] pb-32 md:pb-0 perspective-1000">
       {/* Dynamic Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Layer 1 - Moving against mouse & scroll */}
