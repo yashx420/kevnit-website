@@ -21,12 +21,11 @@ export function CursorMatrixEffect() {
 
     window.addEventListener("mousemove", handleMouseMove);
 
+    // Generate a particle every 500ms
     const interval = setInterval(() => {
-      // Don't spawn if mouse is at 0,0 (initial state)
       if (mousePosRef.current.x === 0 && mousePosRef.current.y === 0) return;
-
       addParticle(mousePosRef.current.x, mousePosRef.current.y);
-    }, 50);
+    }, 500);
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
@@ -36,9 +35,9 @@ export function CursorMatrixEffect() {
 
   const addParticle = (x: number, y: number) => {
     const id = Date.now() + Math.random();
-    // Random offset within a small radius
-    const offsetX = (Math.random() - 0.5) * 40; // 40px spread
-    const offsetY = (Math.random() - 0.5) * 40;
+    // Spawn around the cursor
+    const offsetX = (Math.random() - 0.5) * 60; // 60px width spread
+    const offsetY = (Math.random() - 0.5) * 60;
 
     const newParticle: Particle = {
       id,
@@ -47,7 +46,7 @@ export function CursorMatrixEffect() {
       value: Math.random() > 0.5 ? "1" : "0",
     };
 
-    setParticles((prev) => [...prev.slice(-30), newParticle]); // Limit particles
+    setParticles((prev) => [...prev.slice(-3), newParticle]); // Max 3 particles
   };
 
   return (
@@ -56,21 +55,18 @@ export function CursorMatrixEffect() {
         {particles.map((particle) => (
           <motion.div
             key={particle.id}
-            initial={{ opacity: 0, scale: 0.5, y: particle.y, x: particle.x }}
+            initial={{ opacity: 0, y: particle.y, x: particle.x, scale: 0.8 }}
             animate={{
               opacity: [0, 1, 0],
-              y: particle.y + 20, // Scroll down/fall effect
-              scale: 1,
+              y: particle.y - 30, // Scroll UP (like code scrolling)
+              scale: [0.8, 1.2, 0.8], // Pulse size
             }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 1, ease: "linear" }}
+            transition={{ duration: 2, ease: "easeInOut" }}
             onAnimationComplete={() => {
               setParticles((prev) => prev.filter((p) => p.id !== particle.id));
             }}
-            className="absolute text-[#6BC323] font-mono text-sm font-bold select-none"
-            style={{
-              textShadow: "0 0 4px rgba(107, 195, 35, 0.5)",
-            }}
+            className="absolute text-[#6BC323] font-mono text-xs font-bold select-none"
           >
             {particle.value}
           </motion.div>
