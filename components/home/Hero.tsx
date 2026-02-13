@@ -224,6 +224,5 @@ export function Hero() {
           </div>
         </motion.div>
       </Container>
-    </section>
   );
 }
