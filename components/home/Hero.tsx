@@ -55,6 +55,9 @@ export function Hero() {
     };
 
     window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, [mouseX, mouseY]);
+
   const layer1X = useTransform(springX, (x) => x * -1);
   const layer1Y = useTransform(springY, (y) => y * -1);
   const layer2X = useTransform(springX, (x) => x * 0.5);
@@ -203,6 +206,24 @@ export function Hero() {
             development, mobile apps, and data-driven marketing strategies.
           </p>
 
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link href="/contact">
+              <Button
+                size="lg"
+                className="min-w-[200px] text-lg h-14 shadow-[0_0_30px_rgba(107,195,35,0.3)] hover:shadow-[0_0_50px_rgba(107,195,35,0.5)] transition-shadow"
+              >
+                Get a Free Consultation
+              </Button>
+            </Link>
+            <Link href="/services">
+              <Button
+                variant="outline"
+                size="lg"
+                className="min-w-[200px] text-lg h-14 border-white/20 hover:bg-white/5"
+              >
+                View Our Services
+              </Button>
+            </Link>
           </div>
         </motion.div>
       </Container>
