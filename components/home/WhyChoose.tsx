@@ -60,7 +60,7 @@ export function WhyChoose() {
     offset: ["start end", "end start"],
   });
 
-  const rotate = useTransform(scrollYProgress, [0, 1], [0, 360]);
+  const rotate = useTransform(scrollYProgress, [0, 0.5, 1], [0, 0, 360]);
   const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 1.2, 0.8]);
   const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
 
@@ -119,17 +119,14 @@ export function WhyChoose() {
                     <CheckCircle2 className="text-[#6BC323] w-6 h-6" />
                   </motion.div>
                 ))}
-              </motion.div>
 
-              <motion.div
-                style={{ scale, y }}
-                className="absolute inset-0 flex items-center justify-center pointer-events-none z-20"
-              >
-                <div className="text-center">
-                  <span className="text-5xl font-bold text-white">100%</span>
-                  <p className="text-[#6BC323] text-sm tracking-widest uppercase mt-1">
-                    Satisfaction
-                  </p>
+                <div className="absolute inset-0 flex items-center justify-center z-20">
+                  <div className="text-center">
+                    <span className="text-5xl font-bold text-white">100%</span>
+                    <p className="text-[#6BC323] text-sm tracking-widest uppercase mt-1">
+                      Satisfaction
+                    </p>
+                  </div>
                 </div>
               </motion.div>
             </div>
