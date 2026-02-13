@@ -21,11 +21,11 @@ export function CursorMatrixEffect() {
 
     window.addEventListener("mousemove", handleMouseMove);
 
-    // Generate a particle every 500ms
+    // Generate a particle every 300ms
     const interval = setInterval(() => {
       if (mousePosRef.current.x === 0 && mousePosRef.current.y === 0) return;
       addParticle(mousePosRef.current.x, mousePosRef.current.y);
-    }, 500);
+    }, 300);
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
@@ -35,9 +35,9 @@ export function CursorMatrixEffect() {
 
   const addParticle = (x: number, y: number) => {
     const id = Date.now() + Math.random();
-    // Spawn around the cursor
-    const offsetX = (Math.random() - 0.5) * 60; // 60px width spread
-    const offsetY = (Math.random() - 0.5) * 60;
+    // Wider spread for atmospheric effect
+    const offsetX = (Math.random() - 0.5) * 250; // 250px width spread
+    const offsetY = (Math.random() - 0.5) * 250;
 
     const newParticle: Particle = {
       id,
@@ -46,7 +46,7 @@ export function CursorMatrixEffect() {
       value: Math.random() > 0.5 ? "1" : "0",
     };
 
-    setParticles((prev) => [...prev.slice(-3), newParticle]); // Max 3 particles
+    setParticles((prev) => [...prev.slice(-5), newParticle]); // Max 5 particles
   };
 
   return (
@@ -58,11 +58,11 @@ export function CursorMatrixEffect() {
             initial={{ opacity: 0, y: particle.y, x: particle.x, scale: 0.8 }}
             animate={{
               opacity: [0, 1, 0],
-              y: particle.y - 30, // Scroll UP (like code scrolling)
+              y: particle.y - 60, // Slower, longer scroll UP
               scale: [0.8, 1.2, 0.8], // Pulse size
             }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 2, ease: "easeInOut" }}
+            transition={{ duration: 3, ease: "easeInOut" }}
             onAnimationComplete={() => {
               setParticles((prev) => prev.filter((p) => p.id !== particle.id));
             }}
