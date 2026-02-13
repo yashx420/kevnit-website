@@ -1,0 +1,113 @@
+
+
+1 Introduction
+
+This Privacy and Data Protection Policy (“Policy”) specifies the Privacy Principles followed by Kevnit Digital Solutions Private Limited and its employees with regards to the collection, use, transfer, storage and destruction of personal information/personally identifiable information.
+
+Throughout this Policy, “Kevnit” refers to Kevnit Digital Solutions Private Limited (also referred to as “we”, “us”, or “our”).
+
+Kevnit’s commitment to these policy requirements reflects the value it places for complying with existing Data Protection regulations/legislations and simultaneously maintaining the trust of the employees, clients, business partners, and others whose personal information or other confidential information is shared with us in the course of our business operations. 
+
+ 
+
+2 Purpose
+
+This Policy aims to facilitate “Privacy-by-Design” principles in implementation of systems and processes by Kevnit.
+
+ 
+
+3 Scope
+
+This policy document applies to Kevnit’s a) Information, b) Information Systems, c) Employees and d) Third-Party Staff.
+
+This Policy applies to the collection, storage, processing, transfer, and use of personal information concerning its clients, business partners, employees, former employees, applicants for employment and may include other personal information not specifically listed here also. Personal information may be collected from individuals through a variety of means, including, for example, through websites, other ordering channels, and service or employment processes.
+
+ 
+
+4 Privacy and Data Protection Policy Requirements
+
+The collection, storage, processing, transfer, and use of personal information by Kevnit for its business operations shall be governed by the following security controls:
+
+ 
+
+4.1 Fair and Lawful Processing of Personal Information
+
+The following security controls shall apply to fair and lawful processing of personal information:
+
+Notice: Provide timely and appropriate notice to Data Subjects (Refers to any information relating to an identified or identifiable natural person) about its data processing practices as required by applicable laws and regulations or, from time to time as necessary.
+
+Choice: Not use personal information with third parties or provide personal information to third parties without giving the Data Subject(s) an opportunity to choose whether their information can be disclosed for such use, unless otherwise permitted or required by law or regulation.
+
+Consent: Process personal information only with an individual’s consent, which may be express or implied, depending on the sensitivity of the personal information and the individual’s reasonable expectations, unless otherwise permitted or required by law or regulation.
+
+ 
+
+4.2 Limitations on Collection, Use, and Disclosure of Personal Information
+
+The following security controls shall apply to purpose limitation on the collection, use and disclosure of personal information:
+
+Purpose
+
+    Collect personal information only for specific and legitimate business purposes.
+    The information collected will be relevant, adequate, and not excessive for the purposes for which it is collected.
+    Process personal information in a manner consistent with the purposes for which it was collected, unless otherwise permitted or required by law or regulation or the individual has subsequently consented to the new use of their personal information.
+    Will not sell, rent, or lease personal information collected from data subjects in the course of its business.
+
+Data Minimization
+
+    Take all legally required and commercially reasonable steps to ensure that personal information processed by Kevnit is adequate, relevant and limited to what is necessary in relation to the purposes for which information is processed.
+
+Onward Transfer
+
+    Take appropriate measures, by contract or otherwise, to provide adequate protection for personal information that is disclosed to a third party or transferred to or accessed from another country (includes internal transfers and transfers between business units and/or third parties).
+
+ 
+
+4.3 Management of Personal Information
+
+The following security controls shall apply to purpose limitation on the collection, use and disclosure of personal information:
+
+Accuracy/Integrity: Take all legally required and commercially reasonable steps to ensure that personal information(s) –
+
+    is reliable for its intended use, accurate, complete, and, where necessary, kept up to date; and
+    that are inaccurate/outdated are promptly either erased or rectified.
+
+Access: Maintain processes to give Data Subjects reasonable access to their personal information and, as appropriate, the ability to correct, delete, or update inaccurate or incomplete information.
+
+Security: Take all legally required and commercially reasonable measures proportional to the associated risk to protect personal information from loss, misuse, unauthorized access or disclosure, alteration and destruction. Additionally, ensuring appropriate levels for the protection of information considered to be sensitive personal information.
+
+Retention: Keep personal information in a form that permits identification of Data Subjects for no longer than is necessary for the purposes for which the personal information is processed. Personal information may be stored for longer periods and will be processed solely for archiving purposes in the public interest, or scientific, historical, or statistical purposes and subject to the implementation of appropriate safeguards.
+
+ 
+
+4.4 Accountability, Compliance, Exception and Violations
+
+The following security controls shall apply to accountability and enforcement of this policy and data protection regulations and legislations that governs the collection, use and disclosure of personal information:
+
+Accountability: Chief Operations Officer is responsible for and shall demonstrate compliance with this Policy requirements. Chief Operations Officer on a need basis shall designate individuals within the organization to be accountable for compliance with privacy and data protection laws and related policies.
+
+Data Subject Access Requests, Complaints, and Dispute Resolution: Chief Operations Officer shall provide points of contact and communication channels to raise access requests, to initiate data protection and privacy-related complaints, or to pursue dispute resolution, including a fair process to investigate and resolve requests and complaints and to communicate the progress and status of requests or complaints to Data Subjects.
+
+Education and Awareness: Kevnit on a need basis shall make available training and programs to educate and raise awareness among employees, regarding legal, regulatory, and contractual responsibilities concerning the processing of personal information.
+
+Compliance: Chief Operations Officer is charged with the responsibility to implement and enforce this policy, to promulgate additional privacy related policies as may be required, and to provide strategically coordinated privacy-related compliance, function as Data Protection Officer, as and when required. All covered under this policy shall ensure compliance and adherence of this Policy and controls stipulated therein. Any violation of the Policy may result in disciplinary action which may include suspension, restriction of access or more severe penalties up to and including termination of employment.
+
+ 
+
+Exception: Exceptions to this policy must be approved by the Chief Operations Officer.
+
+ 
+
+Violations: Any employee who knowingly violates or attempts to violate this policy shall be subject to disciplinary action, up to and including separation from Kevnit, subject to applicable local employment laws and regulations. Where illegal activities or an attempt to by-pass security control are suspected, Kevnit may report such event to the applicable local authorities.
+
+ 
+
+5 Waivers
+
+At the point of creating this Policy there are no authorized waivers or exceptions. All waiver and exception requests should be submitted to the Chief Operations Officer who will provide a decision and where necessary, instruct updates to the policy documentation.
+
+ 
+
+6 Grievance Redressal & Contact Info
+
+Any grievance, complaint query or comments, in relation to this Policy, should be sent to Kevnit in writing to the following contact email ID. Grievance and related queries shall be redressed as expeditiously as possible. The contact information: info@kevnit.com

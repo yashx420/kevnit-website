@@ -51,10 +51,26 @@ export function Footer() {
               strategies.
             </p>
             <div className="flex gap-4">
-              {[Linkedin, Instagram, Twitter, Facebook].map((Icon, i) => (
+              {[
+                {
+                  Icon: Linkedin,
+                  href: "https://www.linkedin.com/company/kevnit-information-technology-company?originalSubdomain=in",
+                },
+                {
+                  Icon: Instagram,
+                  href: "https://www.instagram.com/kevnitdigitalsolutions/?hl=en",
+                },
+                { Icon: Twitter, href: "https://x.com/kevnitdigital" },
+                {
+                  Icon: Facebook,
+                  href: "https://www.facebook.com/KevnitDigitalSolutions/",
+                },
+              ].map(({ Icon, href }, i) => (
                 <a
                   key={i}
-                  href="#"
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-[#6BC323] hover:text-black transition-all duration-300"
                 >
                   <Icon size={18} />
@@ -92,8 +108,6 @@ export function Footer() {
             <ul className="space-y-3">
               {[
                 { name: "About Us", href: "/about" },
-                { name: "Our Process", href: "#" },
-                { name: "Careers", href: "#" },
                 { name: "Contact Us", href: "/contact" },
                 { name: "Privacy Policy", href: "/privacy-policy" },
                 { name: "Terms of Use", href: "/terms-of-use" },

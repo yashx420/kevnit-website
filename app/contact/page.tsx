@@ -81,10 +81,7 @@ export default function ContactPage() {
                         Email Us
                       </h3>
                       <p className="text-gray-400 group-hover:text-white transition-colors">
-                        yash50sinha@gmail.com
-                      </p>
-                      <p className="text-gray-400 group-hover:text-white transition-colors">
-                        support@kevnit.com
+                        info@kevnit.com
                       </p>
                     </div>
                   </div>
@@ -99,9 +96,6 @@ export default function ContactPage() {
                       </h3>
                       <p className="text-gray-400 group-hover:text-white transition-colors">
                         +91 98765 43210
-                      </p>
-                      <p className="text-gray-400 group-hover:text-white transition-colors">
-                        +91 12345 67890
                       </p>
                     </div>
                   </div>
