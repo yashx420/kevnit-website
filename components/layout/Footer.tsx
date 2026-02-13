@@ -30,7 +30,7 @@ const companies = [
 
 export function Footer() {
   return (
-    <footer className="relative md:fixed bottom-0 left-0 w-full z-0 bg-[#050505] border-t border-white/10 pt-16 pb-8 md:h-[450px] flex flex-col justify-end">
+    <footer className="relative md:fixed bottom-0 left-0 w-full z-0 bg-[#050505] border-t border-white/10 pt-16 pb-8 md:h-[500px] flex flex-col justify-end">
       <Container>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           {/* Brand */}
@@ -96,6 +96,8 @@ export function Footer() {
                 { name: "Careers", href: "#" },
                 { name: "Contact Us", href: "/contact" },
                 { name: "Privacy Policy", href: "/privacy-policy" },
+                { name: "Terms of Use", href: "/terms-of-use" },
+                { name: "Data Policy", href: "/data-protection-policy" },
               ].map((item) => (
                 <li key={item.name}>
                   <Link
