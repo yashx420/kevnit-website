@@ -16,7 +16,7 @@ export default function ContactPage() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission to info@kevnit.com
+    // Simulate form submission to yash50sinha@gmail.com
     await new Promise((resolve) => setTimeout(resolve, 1500));
 
     setIsSubmitting(false);
@@ -62,7 +62,7 @@ export default function ContactPage() {
                         Email Us
                       </h3>
                       <p className="text-gray-400 group-hover:text-white transition-colors">
-                        info@kevnit.com
+                        yash50sinha@gmail.com
                       </p>
                       <p className="text-gray-400 group-hover:text-white transition-colors">
                         support@kevnit.com
@@ -148,7 +148,7 @@ export default function ContactPage() {
                     </h3>
                     <p className="text-gray-400">
                       Thank you for your enquiry. We'll get back to you at
-                      info@kevnit.com shortly.
+                      yash50sinha@gmail.com shortly.
                     </p>
                     <Button
                       variant="outline"
