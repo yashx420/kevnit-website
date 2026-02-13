@@ -147,7 +147,7 @@ function NavContent({
             "relative transition-all duration-500",
             isFloating
               ? "h-16 w-32 md:w-36 lg:w-40 opacity-100 scale-100"
-              : "w-0 opacity-0 scale-95 pointer-events-none hidden md:block",
+              : "h-16 w-32 md:w-36 lg:w-40 opacity-100 scale-100 hidden md:block",
           )}
         >
           <Image

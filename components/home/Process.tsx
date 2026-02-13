@@ -48,7 +48,7 @@ export function Process() {
   return (
     <section
       ref={container}
-      className="pt-32 pb-16 bg-[#050505] relative overflow-hidden min-h-[150vh]"
+      className="pt-32 pb-0 md:pb-16 bg-[#050505] relative overflow-hidden min-h-[150vh]"
     >
       {/* Chaotic Background Elements */}
       <div className="absolute inset-0 opacity-20 pointer-events-none">

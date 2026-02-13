@@ -123,7 +123,7 @@ export function Hero() {
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
-            className="flex justify-center mb-10 mt-16 md:mb-6 md:mt-12"
+            className="flex justify-center mb-10 mt-16 md:mb-6 md:mt-12 md:hidden"
           >
             <motion.div
               style={{ x: layer2X, y: layer1Y }} // Subtle parallax
@@ -155,7 +155,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.8, ease: "easeOut" }}
-              className="inline-block mb-2 md:mb-0"
+              className="inline-block mb-4 md:mb-0"
             >
               We Build
             </motion.span>{" "}
@@ -184,7 +184,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 0.8, ease: "easeOut" }}
-              className="inline-block mt-2 md:mt-0"
+              className="inline-block mt-4 md:mt-0"
             >
               That Drive Growth.
             </motion.span>
