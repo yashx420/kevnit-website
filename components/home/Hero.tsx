@@ -58,14 +58,14 @@ export function Hero() {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, [mouseX, mouseY]);
 
-  const layer1X = useTransform(springX, (x) => x * -1);
-  const layer1Y = useTransform(springY, (y) => y * -1);
-  const layer2X = useTransform(springX, (x) => x * 0.5);
-  const layer2Y = useTransform(springY, (y) => y * 0.5);
+  // 3D Tilt transforms
+  const rotateX = useTransform(springY, [-50, 50], [10, -10]);
+  const rotateY = useTransform(springX, [-50, 50], [-10, 10]);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0A0A0A] pb-32 md:pb-0 perspective-1000">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0A0A0A] pb-32 md:pb-0 [perspective:1000px]">
       {/* Dynamic Background Elements */}
+      {/* ... (rest of background code) */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Layer 1 - Moving against mouse & scroll */}
         <motion.div
@@ -113,10 +113,17 @@ export function Hero() {
 
       <Container className="relative z-10 text-center">
         <motion.div
-          style={{ y: textY, opacity }}
+          style={{
+            y: textY,
+            opacity,
+            rotateX,
+            rotateY,
+            transformStyle: "preserve-3d",
+          }}
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, ease: "easeOut" }}
+          className="will-change-transform"
         >
           {/* Large Hero Logo */}
           <motion.div
@@ -150,7 +157,7 @@ export function Hero() {
             🚀 Elevate Your Digital Presence
           </motion.span>
 
-          <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold font-heading text-white mb-10 md:mb-6 leading-tight tracking-tight px-4">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold font-heading text-white mb-10 md:mb-6 leading-tight tracking-tight px-4 [transform:translateZ(50px)]">
             <motion.span
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
