@@ -38,7 +38,7 @@ export function CustomCursor() {
 
   return (
     <motion.div
-      className="fixed top-0 left-0 w-6 h-6 rounded-full border-2 border-[#6BC323] pointer-events-none z-[9999] mix-blend-difference"
+      className="hidden md:block fixed top-0 left-0 w-6 h-6 rounded-full border-2 border-[#6BC323] pointer-events-none z-[9999] mix-blend-difference"
       style={{ x: cursorX, y: cursorY, scale: isHovered ? 2.5 : 1 }}
       animate={{
         backgroundColor: isHovered

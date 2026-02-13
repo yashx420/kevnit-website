@@ -85,28 +85,41 @@ export function Navbar() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: "-100%" }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 20 }}
-            className={cn(
-              "fixed z-40 bg-black/95 backdrop-blur-xl border border-white/10 rounded-2xl overflow-hidden w-[95%] max-w-5xl left-1/2 -translate-x-1/2 p-6 md:hidden",
-              isAtTop ? "top-24" : "bottom-24",
-            )}
+            exit={{ opacity: 0, y: "-100%" }}
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            className="fixed inset-0 z-40 bg-[#050505] flex flex-col items-center justify-center md:hidden"
           >
-            <div className="flex flex-col gap-4">
-              {navLinks.map((link) => (
-                <Link
+            <div className="flex flex-col gap-8 text-center">
+              {navLinks.map((link, i) => (
+                <motion.div
                   key={link.name}
-                  href={link.href}
-                  onClick={() => setIsOpen(false)}
-                  className="text-lg font-medium text-white/80 hover:text-[#6BC323] transition-colors"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 + i * 0.1, duration: 0.4 }}
                 >
-                  {link.name}
-                </Link>
+                  <Link
+                    href={link.href}
+                    onClick={() => setIsOpen(false)}
+                    className="text-4xl font-bold text-white hover:text-[#6BC323] transition-colors tracking-tight"
+                  >
+                    {link.name}
+                  </Link>
+                </motion.div>
               ))}
-              <Link href="/contact" onClick={() => setIsOpen(false)}>
-                <Button className="w-full">Get Quote</Button>
-              </Link>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5, duration: 0.4 }}
+                className="mt-8"
+              >
+                <Link href="/contact" onClick={() => setIsOpen(false)}>
+                  <Button className="px-8 py-6 text-lg rounded-full">
+                    Start a Project
+                  </Button>
+                </Link>
+              </motion.div>
             </div>
           </motion.div>
         )}
@@ -131,10 +144,10 @@ function NavContent({
       <Link href="/" className="flex items-center gap-2 group">
         <div
           className={cn(
-            "relative transition-transform duration-500 group-hover:scale-105",
+            "relative transition-all duration-500",
             isFloating
-              ? "h-16 w-32 md:w-36 lg:w-40"
-              : "h-16 w-40 md:w-48 lg:w-56",
+              ? "h-16 w-32 md:w-36 lg:w-40 opacity-100 scale-100"
+              : "w-0 opacity-0 scale-95 pointer-events-none hidden md:block",
           )}
         >
           <Image
@@ -180,11 +193,33 @@ function NavContent({
       </nav>
 
       <button
-        className="md:hidden text-white p-2"
+        className="md:hidden text-white p-2 z-50 relative"
         onClick={() => setIsOpen(!isOpen)}
         aria-label="Toggle menu"
       >
-        {isOpen ? <X /> : <Menu />}
+        <AnimatePresence mode="wait">
+          {isOpen ? (
+            <motion.div
+              key="close"
+              initial={{ rotate: -90, opacity: 0 }}
+              animate={{ rotate: 0, opacity: 1 }}
+              exit={{ rotate: 90, opacity: 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              <X className="w-8 h-8" />
+            </motion.div>
+          ) : (
+            <motion.div
+              key="menu"
+              initial={{ rotate: 90, opacity: 0 }}
+              animate={{ rotate: 0, opacity: 1 }}
+              exit={{ rotate: -90, opacity: 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              <Menu className="w-8 h-8" />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </button>
     </div>
   );
