@@ -218,10 +218,10 @@ const Card = ({
                 </span>
               </div>
 
-              <h3 className="text-3xl md:text-2xl lg:text-3xl font-bold font-heading text-white mb-4 leading-tight">
+              <h3 className="text-4xl md:text-3xl lg:text-4xl font-bold font-heading text-white mb-4 leading-tight">
                 {title}
               </h3>
-              <p className="text-lg md:text-base text-gray-400 leading-relaxed opacity-90">
+              <p className="text-xl md:text-lg text-gray-400 leading-relaxed opacity-90">
                 {desc}
               </p>
             </div>
