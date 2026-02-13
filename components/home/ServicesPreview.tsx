@@ -116,7 +116,7 @@ export function ServicesPreview() {
       </div>
 
       <Container>
-        <div className="flex flex-col items-center gap-y-20 pb-40">
+        <div className="flex flex-col items-center gap-y-32 pb-40">
           {services.map((service, index) => {
             // Target scale drops slightly for each subsequent card
             const targetScale = 1 - (services.length - index) * 0.05;
@@ -186,13 +186,13 @@ const Card = ({
       <motion.div
         style={{
           scale,
-          top: `calc(2vh + ${i * 15}px)`,
+          top: `calc(10vh + ${i * 40}px)`,
         }}
         initial={{ opacity: 0, scale: 0.8, y: 100 }}
         whileInView={{ opacity: 1, scale: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.8, type: "spring", bounce: 0.4 }}
-        className={`flex flex-col relative w-[95vw] md:w-[85vw] lg:w-[70vw] xl:w-[60vw] max-w-4xl h-[55vh] lg:h-[60vh] xl:h-[60vh] rounded-[2rem] overflow-hidden border border-white/10 origin-top shadow-[0_0_50px_rgba(0,0,0,0.5)] ${bg}`}
+        className={`flex flex-col relative w-[95vw] md:w-[85vw] lg:w-[70vw] xl:w-[60vw] max-w-4xl min-h-[60vh] md:h-[55vh] lg:h-[60vh] xl:h-[60vh] rounded-[2rem] overflow-hidden border border-white/10 origin-top shadow-[0_0_50px_rgba(0,0,0,0.5)] ${bg}`}
       >
         <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-20 pointer-events-none" />
 
@@ -206,15 +206,15 @@ const Card = ({
                 >
                   <Icon className="text-black" size={24} />
                 </div>
-                <span className="text-5xl font-bold text-white/5 font-heading">
+                <span className="text-6xl md:text-5xl font-bold text-white/5 font-heading">
                   0{i + 1}
                 </span>
               </div>
 
-              <h3 className="text-xl md:text-2xl lg:text-3xl font-bold font-heading text-white mb-3 leading-tight">
+              <h3 className="text-3xl md:text-2xl lg:text-3xl font-bold font-heading text-white mb-4 leading-tight">
                 {title}
               </h3>
-              <p className="text-sm md:text-base text-gray-400 leading-relaxed opacity-90">
+              <p className="text-lg md:text-base text-gray-400 leading-relaxed opacity-90">
                 {desc}
               </p>
             </div>
