@@ -25,7 +25,7 @@ export function BackgroundSpotlight() {
     <>
       {/* Heavy Interaction Layer (follows cursor with mix-blend) */}
       <motion.div
-        className="fixed inset-0 pointer-events-none z-[1]"
+        className="fixed inset-0 pointer-events-none z-[60]"
         style={{
           background: useTransform(
             [x, y],
@@ -38,7 +38,7 @@ export function BackgroundSpotlight() {
 
       {/* Primary Spotlight (Behind content) */}
       <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-[-10]"
+        className="fixed top-0 left-0 pointer-events-none z-[51]"
         style={{
           x,
           y,
@@ -62,7 +62,7 @@ export function BackgroundSpotlight() {
 
       {/* Secondary Orbiting Glow */}
       <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-0"
+        className="fixed top-0 left-0 pointer-events-none z-[52]"
         style={{
           x,
           y,
