@@ -181,7 +181,7 @@ const Card = ({
   return (
     <div
       ref={container}
-      className="h-[70vh] flex items-center justify-center sticky top-0 md:top-[calc(6rem+var(--offset))] perspective-1000"
+      className="h-[85vh] flex items-center justify-center sticky top-0 md:top-[calc(8rem+var(--offset))] perspective-1000"
       style={{ "--offset": `${i * 15}px` } as any}
     >
       <motion.div
