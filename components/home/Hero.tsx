@@ -203,26 +203,9 @@ export function Hero() {
             development, mobile apps, and data-driven marketing strategies.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link href="/contact">
-              <Button
-                size="lg"
-                className="min-w-[200px] text-lg h-14 shadow-[0_0_30px_rgba(107,195,35,0.3)] hover:shadow-[0_0_50px_rgba(107,195,35,0.5)] transition-shadow"
-              >
-                Get a Free Consultation
-              </Button>
-            </Link>
-            <Link href="/services">
-              <Button
-                variant="outline"
-                size="lg"
-                className="min-w-[200px] text-lg h-14 border-white/20 hover:bg-white/5"
-              >
-                View Our Services
-              </Button>
-            </Link>
           </div>
         </motion.div>
       </Container>
+    </section>
   );
 }
