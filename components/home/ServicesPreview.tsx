@@ -116,7 +116,7 @@ export function ServicesPreview() {
       </div>
 
       <Container>
-        <div className="flex flex-col items-center gap-y-32 pb-40">
+        <div className="flex flex-col items-center gap-y-[60vh] md:gap-y-32 pb-40">
           {services.map((service, index) => {
             // Target scale drops slightly for each subsequent card
             const targetScale = 1 - (services.length - index) * 0.05;
@@ -186,13 +186,19 @@ const Card = ({
       <motion.div
         style={{
           scale,
-          top: `calc(10vh + ${i * 40}px)`,
+          // Mobile: larger offset to spread them out. Desktop: tight stacking.
         }}
         initial={{ opacity: 0, scale: 0.8, y: 100 }}
         whileInView={{ opacity: 1, scale: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.8, type: "spring", bounce: 0.4 }}
-        className={`flex flex-col relative w-[95vw] md:w-[85vw] lg:w-[70vw] xl:w-[60vw] max-w-4xl min-h-[60vh] md:h-[55vh] lg:h-[60vh] xl:h-[60vh] rounded-[2rem] overflow-hidden border border-white/10 origin-top shadow-[0_0_50px_rgba(0,0,0,0.5)] ${bg}`}
+        className={`
+          flex flex-col relative 
+          w-[95vw] md:w-[85vw] lg:w-[70vw] xl:w-[60vw] max-w-4xl 
+          min-h-[60vh] md:min-h-0 md:h-[55vh] lg:h-[60vh] xl:h-[60vh] 
+          rounded-[2rem] overflow-hidden border border-white/10 origin-top shadow-[0_0_50px_rgba(0,0,0,0.5)] ${bg}
+          sticky top-[15vh] md:top-[calc(2vh+${i * 15}px)]
+        `}
       >
         <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-20 pointer-events-none" />
 

@@ -143,14 +143,14 @@ export function Hero() {
           </motion.div>
 
           <motion.span
-            className="inline-block py-1 px-3 rounded-full bg-white/5 border border-white/10 text-[#6BC323] text-sm font-medium mb-2 backdrop-blur-sm"
+            className="hidden md:inline-block py-1 px-3 rounded-full bg-white/5 border border-white/10 text-[#6BC323] text-sm font-medium mb-2 backdrop-blur-sm"
             animate={{ y: [0, -10, 0] }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
           >
             🚀 Elevate Your Digital Presence
           </motion.span>
 
-          <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold font-heading text-white mb-6 leading-tight tracking-tight">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold font-heading text-white mb-6 leading-tight tracking-tight">
             <motion.span
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -190,7 +190,7 @@ export function Hero() {
             </motion.span>
           </h1>
 
-          <p className="text-xl text-gray-400 mb-10 max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-gray-400 mb-6 md:mb-10 max-w-2xl mx-auto px-4 md:px-0">
             Kevnit Digital Solutions transforms businesses with cutting-edge web
             development, mobile apps, and data-driven marketing strategies.
           </p>
