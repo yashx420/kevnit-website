@@ -30,7 +30,7 @@ const companies = [
 
 export function Footer() {
   return (
-    <footer className="relative md:fixed bottom-0 left-0 w-full z-[-1] bg-[#050505] border-t border-white/10 pt-16 pb-8 md:h-[500px] flex flex-col justify-end">
+    <footer className="relative md:fixed bottom-0 left-0 w-full z-0 bg-[#050505] border-t border-white/10 pt-16 pb-8 md:h-[500px] flex flex-col justify-end">
       <Container>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           {/* Brand */}
