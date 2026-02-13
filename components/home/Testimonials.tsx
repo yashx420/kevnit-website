@@ -54,7 +54,7 @@ export function Testimonials() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="absolute top-0 left-0 -translate-x-4 -translate-y-4 text-white/5 pointer-events-none"
+            className="absolute top-0 left-0 -translate-x-4 -translate-y-4 text-white/5 pointer-events-none z-20"
           >
             <Quote size={120} />
           </motion.div>
