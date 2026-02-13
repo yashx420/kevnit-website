@@ -120,7 +120,9 @@ export function Process() {
                       <div
                         className={`flex flex-col ${index % 2 !== 0 ? "md:items-end" : "md:items-start"}`}
                       >
-                        <span className="text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-bold text-white/5 absolute -top-4 -right-4 md:-left-4 select-none group-hover:text-white/10 transition-colors">
+                        <span
+                          className={`text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-bold text-white/10 absolute top-4 select-none group-hover:text-white/20 transition-colors ${index % 2 === 0 ? "right-8" : "right-8 md:right-auto md:left-8"}`}
+                        >
                           {step.number}
                         </span>
 
