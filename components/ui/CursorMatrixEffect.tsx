@@ -71,7 +71,7 @@ export function CursorMatrixEffect() {
             animate={{ opacity: 0, scale: 0.5, y: 20 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5, ease: "linear" }}
-            className="absolute text-[#6BC323] font-mono text-xs font-bold leading-none select-none"
+            className="absolute text-[#6BC323] font-mono text-lg font-bold leading-none select-none"
             style={{
               left: point.x,
               top: point.y,
