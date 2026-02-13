@@ -5,6 +5,8 @@ import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { AnimatedWrapper } from "@/components/AnimatedWrapper";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { useState } from "react";
+import { motion } from "framer-motion";
 
 export default function ContactPage() {
   const handleSubmit = (e: React.FormEvent) => {
@@ -137,7 +139,6 @@ export default function ContactPage() {
                       type="text"
                       required
                       className="w-full h-12 bg-black/40 border border-white/10 rounded-xl px-4 text-white focus:border-[#6BC323] focus:ring-1 focus:ring-[#6BC323] outline-none transition-all focus:bg-white/5"
-                      placeholder="John Doe"
                     />
                   </div>
                   <div className="space-y-2">
@@ -148,7 +149,6 @@ export default function ContactPage() {
                       type="email"
                       required
                       className="w-full h-12 bg-black/40 border border-white/10 rounded-xl px-4 text-white focus:border-[#6BC323] focus:ring-1 focus:ring-[#6BC323] outline-none transition-all focus:bg-white/5"
-                      placeholder="john@example.com"
                     />
                   </div>
                 </div>
@@ -160,7 +160,6 @@ export default function ContactPage() {
                   <input
                     type="tel"
                     className="w-full h-12 bg-black/40 border border-white/10 rounded-xl px-4 text-white focus:border-[#6BC323] focus:ring-1 focus:ring-[#6BC323] outline-none transition-all focus:bg-white/5"
-                    placeholder="+1 (555) 000-0000"
                   />
                 </div>
 
@@ -168,18 +167,16 @@ export default function ContactPage() {
                   <label className="text-sm font-medium text-gray-300">
                     Service Interested In
                   </label>
-                  <div className="relative">
-                    <select className="w-full h-12 bg-black/40 border border-white/10 rounded-xl px-4 text-white focus:border-[#6BC323] focus:ring-1 focus:ring-[#6BC323] outline-none transition-all appearance-none cursor-pointer focus:bg-white/5">
-                      <option className="bg-[#111]">Website Development</option>
-                      <option className="bg-[#111]">App Development</option>
-                      <option className="bg-[#111]">SEO Optimization</option>
-                      <option className="bg-[#111]">Digital Marketing</option>
-                      <option className="bg-[#111]">Other</option>
-                    </select>
-                    <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-500">
-                      ▼
-                    </div>
-                  </div>
+                  <CustomSelect
+                    options={[
+                      "Website Development",
+                      "App Development",
+                      "SEO Optimization",
+                      "Digital Marketing",
+                      "Social Media Management",
+                      "Other",
+                    ]}
+                  />
                 </div>
 
                 <div className="space-y-2">
@@ -190,7 +187,6 @@ export default function ContactPage() {
                     required
                     rows={4}
                     className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-[#6BC323] focus:ring-1 focus:ring-[#6BC323] outline-none transition-all resize-none focus:bg-white/5"
-                    placeholder="Tell us about your project..."
                   />
                 </div>
 
@@ -207,5 +203,57 @@ export default function ContactPage() {
         </Container>
       </div>
     </main>
+  );
+}
+
+function CustomSelect({ options }: { options: string[] }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [selected, setSelected] = useState(options[0]);
+
+  return (
+    <div className="relative">
+      <div
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full h-12 bg-black/40 border border-white/10 rounded-xl px-4 text-white flex items-center justify-between cursor-pointer hover:bg-white/5 transition-all focus-within:border-[#6BC323]"
+      >
+        <span>{selected}</span>
+        <motion.div
+          animate={{ rotate: isOpen ? 180 : 0 }}
+          className="text-gray-500"
+        >
+          <Send size={16} className="rotate-90" />
+        </motion.div>
+      </div>
+
+      <motion.div
+        initial={false}
+        animate={
+          isOpen
+            ? { opacity: 1, y: 5, pointerEvents: "auto" }
+            : { opacity: 0, y: -10, pointerEvents: "none" }
+        }
+        className="absolute z-50 w-full bg-[#111] border border-white/10 rounded-xl mt-1 overflow-hidden shadow-2xl"
+      >
+        {options.map((option) => (
+          <div
+            key={option}
+            onClick={() => {
+              setSelected(option);
+              setIsOpen(false);
+            }}
+            className={`px-4 py-3 cursor-pointer transition-colors hover:bg-[#6BC323]/20 hover:text-white ${
+              selected === option
+                ? "bg-[#6BC323]/10 text-[#6BC323]"
+                : "text-gray-400"
+            }`}
+          >
+            {option}
+          </div>
+        ))}
+      </motion.div>
+
+      {/* Hidden input for form submission */}
+      <input type="hidden" name="service" value={selected} />
+    </div>
   );
 }
