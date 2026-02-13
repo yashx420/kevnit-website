@@ -181,7 +181,8 @@ const Card = ({
   return (
     <div
       ref={container}
-      className="h-screen flex items-center justify-center sticky top-12 perspective-1000"
+      className="h-screen flex items-center justify-center sticky top-0 md:top-[calc(6rem+var(--offset))] perspective-1000"
+      style={{ "--offset": `${i * 15}px` } as any}
     >
       <motion.div
         style={{
@@ -196,7 +197,7 @@ const Card = ({
           w-full md:w-[85vw] lg:w-[70vw] xl:w-[60vw] max-w-4xl 
           min-h-screen md:min-h-0 md:h-[55vh] lg:h-[60vh] xl:h-[60vh] 
           md:rounded-[2rem] overflow-hidden md:border border-white/10 origin-top shadow-[0_0_50px_rgba(0,0,0,0.5)] ${bg}
-          sticky top-0 md:top-[calc(2vh+${i * 15}px)]
+          sticky top-0 md:static
           z-[${10 + i}]
         `}
       >
