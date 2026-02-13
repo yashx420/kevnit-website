@@ -123,12 +123,12 @@ export function Hero() {
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
-            className="flex justify-center mb-4 mt-8 md:mb-6 md:mt-12"
+            className="flex justify-center mb-10 mt-16 md:mb-6 md:mt-12"
           >
             <motion.div
               style={{ x: layer2X, y: layer1Y }} // Subtle parallax
               whileHover={{ scale: 1.05, rotateY: 10, rotateX: -5 }}
-              className="relative h-16 w-40 md:h-28 md:w-64 lg:h-32 lg:w-72 xl:w-80 transform-style-3d cursor-default"
+              className="relative h-24 w-56 md:h-28 md:w-64 lg:h-32 lg:w-72 xl:w-80 transform-style-3d cursor-default"
             >
               <Image
                 src="/logo.png"
@@ -150,7 +150,7 @@ export function Hero() {
             🚀 Elevate Your Digital Presence
           </motion.span>
 
-          <h1 className="text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold font-heading text-white mb-4 md:mb-6 leading-tight tracking-tight">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold font-heading text-white mb-10 md:mb-6 leading-tight tracking-tight px-4">
             <motion.span
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
