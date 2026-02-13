@@ -82,9 +82,9 @@ export default function ContactPage() {
                         Visit Us
                       </h3>
                       <p className="text-gray-400 group-hover:text-white transition-colors">
-                        123 Tech Park, Innovation Street,
-                        <br />
-                        Digital City, India
+                        Kevnit, F1, Talankis. 929 4th A Cross, 9th Main
+                        Hongasandra GB Palya Rd, Vijaya Bank Layout, Bengaluru,
+                        Karnataka 560076
                       </p>
                     </div>
                   </div>
@@ -92,10 +92,18 @@ export default function ContactPage() {
 
                 {/* Map Placeholder */}
                 <div className="mt-12 w-full h-64 bg-white/5 rounded-2xl border border-white/10 flex items-center justify-center relative overflow-hidden group">
-                  <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] opacity-20" />
-                  <p className="text-gray-500 font-medium z-10 group-hover:text-[#6BC323] transition-colors">
-                    Google Map Integration
-                  </p>
+                  <iframe
+                    src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=Kevnit,+F1,+Talankis.+929+4th+A+Cross,+9th+Main+Hongasandra+GB+Palya+Rd,+Vijaya+Bank+Layout,+Bengaluru,+Karnataka+560076&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
+                    width="100%"
+                    height="100%"
+                    style={{
+                      border: 0,
+                      filter: "invert(90%) hue-rotate(180deg)",
+                    }}
+                    allowFullScreen
+                    loading="lazy"
+                    className="absolute inset-0 grayscale opacity-80 hover:opacity-100 transition-opacity duration-300"
+                  ></iframe>
                 </div>
               </div>
             </AnimatedWrapper>
