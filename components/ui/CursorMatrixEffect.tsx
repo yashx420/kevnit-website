@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface Particle {
@@ -12,27 +12,33 @@ interface Particle {
 
 export function CursorMatrixEffect() {
   const [particles, setParticles] = useState<Particle[]>([]);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const mousePosRef = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePos({ x: e.clientX, y: e.clientY });
-
-      // Throttle particle creation for performance
-      if (Math.random() > 0.8) {
-        addParticle(e.clientX, e.clientY);
-      }
+      mousePosRef.current = { x: e.clientX, y: e.clientY };
     };
 
     window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+
+    const interval = setInterval(() => {
+      // Don't spawn if mouse is at 0,0 (initial state)
+      if (mousePosRef.current.x === 0 && mousePosRef.current.y === 0) return;
+
+      addParticle(mousePosRef.current.x, mousePosRef.current.y);
+    }, 50);
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      clearInterval(interval);
+    };
   }, []);
 
   const addParticle = (x: number, y: number) => {
     const id = Date.now() + Math.random();
     // Random offset within a small radius
-    const offsetX = (Math.random() - 0.5) * 60; // 60px spread
-    const offsetY = (Math.random() - 0.5) * 60;
+    const offsetX = (Math.random() - 0.5) * 40; // 40px spread
+    const offsetY = (Math.random() - 0.5) * 40;
 
     const newParticle: Particle = {
       id,
@@ -41,7 +47,7 @@ export function CursorMatrixEffect() {
       value: Math.random() > 0.5 ? "1" : "0",
     };
 
-    setParticles((prev) => [...prev.slice(-20), newParticle]); // Keep max 20 particles
+    setParticles((prev) => [...prev.slice(-30), newParticle]); // Limit particles
   };
 
   return (
