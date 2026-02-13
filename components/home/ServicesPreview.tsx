@@ -89,7 +89,7 @@ export function ServicesPreview() {
   });
 
   return (
-    <section id="expertise" className="bg-black relative mt-24" ref={container}>
+    <section id="expertise" className="relative mt-24" ref={container}>
       <div className="pt-12 pb-6 text-center sticky top-0 bg-black/80 backdrop-blur-md z-40 border-b border-white/5 mb-8">
         <Container>
           <motion.div

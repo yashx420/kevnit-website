@@ -68,7 +68,7 @@ export function Hero() {
   const rotateY = useTransform(springX, [-50, 50], [-10, 10]);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0A0A0A] pb-32 md:pb-0 [perspective:1000px]">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pb-32 md:pb-0 [perspective:1000px]">
       {/* Dynamic Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Layer 1 - Moving against mouse & scroll */}

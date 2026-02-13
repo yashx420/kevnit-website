@@ -34,7 +34,7 @@ export function Testimonials() {
     );
 
   return (
-    <section className="py-24 bg-black relative">
+    <section className="py-24 relative">
       <Container>
         <div className="text-center mb-12">
           <motion.h2

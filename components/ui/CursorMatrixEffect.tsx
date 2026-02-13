@@ -45,7 +45,7 @@ export function CursorMatrixEffect() {
   };
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-[5] overflow-hidden">
+    <div className="fixed inset-0 pointer-events-none z-[1] overflow-hidden">
       <AnimatePresence>
         {particles.map((particle) => (
           <motion.div
