@@ -39,8 +39,8 @@ export default function RootLayout({
         <CustomCursor />
         <BackgroundSpotlight />
         <GrainNoise />
-        <div className="relative z-10 bg-black mb-0 md:mb-[500px] shadow-2xl min-h-screen">
-          {children}
+        <div className="relative z-10 bg-black mb-0 md:mb-[500px] shadow-2xl min-h-[100vh]">
+          <div className="bg-black relative z-10 w-full h-full">{children}</div>
         </div>
         <Footer />
       </body>

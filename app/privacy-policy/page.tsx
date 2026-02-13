@@ -85,7 +85,7 @@ const policySections = [
 
 export default function PrivacyPolicy() {
   return (
-    <main className="min-h-screen bg-black text-white selection:bg-[#6BC323] selection:text-black">
+    <main className="relative z-10 min-h-screen bg-black text-white selection:bg-[#6BC323] selection:text-black">
       <Navbar />
 
       {/* Hero Section */}
