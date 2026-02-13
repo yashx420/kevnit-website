@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react";
 
 export function CTA() {
   return (
-    <section className="py-24 bg-gradient-to-br from-[#6BC323] to-[#58a51c] text-black relative overflow-hidden">
+    <section className="py-12 md:py-24 bg-gradient-to-br from-[#6BC323] to-[#58a51c] text-black relative overflow-hidden">
       <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-10" />
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white/20 blur-[120px] rounded-full pointer-events-none" />
 
