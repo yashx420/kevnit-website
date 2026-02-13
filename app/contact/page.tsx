@@ -9,9 +9,21 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 
 export default function ContactPage() {
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    alert("Thank you for contacting us! We will get back to you shortly.");
+    setIsSubmitting(true);
+
+    // Simulate form submission to info@kevnit.com
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+
+    setIsSubmitting(false);
+    setShowSuccess(true);
+
+    // Reset form after 5 seconds
+    setTimeout(() => setShowSuccess(false), 5000);
   };
 
   return (
@@ -120,8 +132,34 @@ export default function ContactPage() {
             <AnimatedWrapper animation="slide-in-right" delay={0.2}>
               <form
                 onSubmit={handleSubmit}
-                className="bg-[#111] p-10 rounded-3xl border border-white/5 space-y-6 shadow-2xl shadow-black/50"
+                className="bg-[#111] p-10 rounded-3xl border border-white/5 space-y-6 shadow-2xl shadow-black/50 relative overflow-hidden"
               >
+                {showSuccess && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="absolute inset-0 z-20 bg-[#111] flex flex-col items-center justify-center text-center p-6"
+                  >
+                    <div className="w-20 h-20 rounded-full bg-[#6BC323]/20 flex items-center justify-center text-[#6BC323] mb-6">
+                      <Send size={40} />
+                    </div>
+                    <h3 className="text-2xl font-bold text-white mb-2">
+                      Message Sent!
+                    </h3>
+                    <p className="text-gray-400">
+                      Thank you for your enquiry. We'll get back to you at
+                      info@kevnit.com shortly.
+                    </p>
+                    <Button
+                      variant="outline"
+                      className="mt-8 border-[#6BC323]/30 text-[#6BC323] hover:bg-[#6BC323]/10"
+                      onClick={() => setShowSuccess(false)}
+                    >
+                      Send Another Message
+                    </Button>
+                  </motion.div>
+                )}
+
                 <h2 className="text-3xl font-bold mb-2 text-white">
                   Send a Message
                 </h2>
@@ -137,6 +175,7 @@ export default function ContactPage() {
                     </label>
                     <input
                       type="text"
+                      name="name"
                       required
                       className="w-full h-12 bg-black/40 border border-white/10 rounded-xl px-4 text-white focus:border-[#6BC323] focus:ring-1 focus:ring-[#6BC323] outline-none transition-all focus:bg-white/5"
                     />
@@ -147,6 +186,7 @@ export default function ContactPage() {
                     </label>
                     <input
                       type="email"
+                      name="email"
                       required
                       className="w-full h-12 bg-black/40 border border-white/10 rounded-xl px-4 text-white focus:border-[#6BC323] focus:ring-1 focus:ring-[#6BC323] outline-none transition-all focus:bg-white/5"
                     />
@@ -159,6 +199,7 @@ export default function ContactPage() {
                   </label>
                   <input
                     type="tel"
+                    name="phone"
                     className="w-full h-12 bg-black/40 border border-white/10 rounded-xl px-4 text-white focus:border-[#6BC323] focus:ring-1 focus:ring-[#6BC323] outline-none transition-all focus:bg-white/5"
                   />
                 </div>
@@ -184,6 +225,7 @@ export default function ContactPage() {
                     Message
                   </label>
                   <textarea
+                    name="message"
                     required
                     rows={4}
                     className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-[#6BC323] focus:ring-1 focus:ring-[#6BC323] outline-none transition-all resize-none focus:bg-white/5"
@@ -193,9 +235,24 @@ export default function ContactPage() {
                 <Button
                   type="submit"
                   size="lg"
-                  className="w-full text-lg mt-4 h-14 bg-[#6BC323] text-black hover:bg-[#58a51c] hover:shadow-[0_0_20px_rgba(107,195,35,0.4)] transition-all duration-300"
+                  disabled={isSubmitting}
+                  className="w-full text-lg mt-4 h-14 bg-[#6BC323] text-black hover:bg-[#58a51c] hover:shadow-[0_0_20px_rgba(107,195,35,0.4)] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Send Message <Send className="ml-2 w-5 h-5" />
+                  {isSubmitting ? (
+                    <motion.div
+                      animate={{ rotate: 360 }}
+                      transition={{
+                        duration: 1,
+                        repeat: Infinity,
+                        ease: "linear",
+                      }}
+                      className="w-6 h-6 border-2 border-black border-t-transparent rounded-full"
+                    />
+                  ) : (
+                    <>
+                      Send Message <Send className="ml-2 w-5 h-5" />
+                    </>
+                  )}
                 </Button>
               </form>
             </AnimatedWrapper>
