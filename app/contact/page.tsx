@@ -26,15 +26,20 @@ export default function ContactPage() {
       });
 
       const data = await response.json();
+      console.log("Web3Forms Response:", data);
 
-      if (data.success) {
+      if (data.success || response.ok) {
         setShowSuccess(true);
         e.currentTarget.reset();
       } else {
-        alert("Something went wrong. Please try again or email us directly.");
+        alert(
+          data.message ||
+            "Submission failed. Please try again or email us directly.",
+        );
       }
     } catch (error) {
-      alert("Something went wrong. Please try again or email us directly.");
+      console.error("Submission Error:", error);
+      alert("Network error. Please check your connection and try again.");
     } finally {
       setIsSubmitting(false);
     }
