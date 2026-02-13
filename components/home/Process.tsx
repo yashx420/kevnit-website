@@ -48,7 +48,7 @@ export function Process() {
   return (
     <section
       ref={container}
-      className="py-32 bg-[#050505] relative overflow-hidden min-h-[150vh]"
+      className="pt-32 pb-16 bg-[#050505] relative overflow-hidden min-h-[150vh]"
     >
       {/* Chaotic Background Elements */}
       <div className="absolute inset-0 opacity-20 pointer-events-none">
@@ -95,7 +95,7 @@ export function Process() {
 
                 {/* Content Card */}
                 <div
-                  className={`w-full md:w-1/2 ${index % 2 === 0 ? "pl-16 md:pl-16 md:pr-0" : "pl-16 md:pl-0 md:pr-16 text-right"}`}
+                  className={`w-full md:w-1/2 ${index % 2 === 0 ? "pl-16 md:pl-16 md:pr-0" : "pl-16 md:pl-0 md:pr-16 md:text-right"}`}
                 >
                   <AnimatedWrapper
                     animation={

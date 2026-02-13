@@ -155,7 +155,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.8, ease: "easeOut" }}
-              className="inline-block"
+              className="inline-block mb-2 md:mb-0"
             >
               We Build
             </motion.span>{" "}
@@ -184,7 +184,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 0.8, ease: "easeOut" }}
-              className="inline-block"
+              className="inline-block mt-2 md:mt-0"
             >
               That Drive Growth.
             </motion.span>
