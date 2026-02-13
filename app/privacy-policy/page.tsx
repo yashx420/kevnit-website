@@ -1,7 +1,6 @@
 "use client";
 
 import { Navbar } from "@/components/layout/Navbar";
-import { Navbar } from "@/components/layout/Navbar";
 import { Container } from "@/components/ui/Container";
 import { AnimatedWrapper } from "@/components/AnimatedWrapper";
 import { motion } from "framer-motion";
@@ -237,7 +236,6 @@ export default function PrivacyPolicy() {
           </AnimatedWrapper>
         </Container>
       </div>
-      </Container>
     </main>
   );
 }
