@@ -55,8 +55,10 @@ export function Hero() {
     };
 
     window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [mouseX, mouseY]);
+  const layer1X = useTransform(springX, (x) => x * -1);
+  const layer1Y = useTransform(springY, (y) => y * -1);
+  const layer2X = useTransform(springX, (x) => x * 0.5);
+  const layer2Y = useTransform(springY, (y) => y * 0.5);
 
   // 3D Tilt transforms
   const rotateX = useTransform(springY, [-50, 50], [10, -10]);
@@ -65,7 +67,6 @@ export function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0A0A0A] pb-32 md:pb-0 [perspective:1000px]">
       {/* Dynamic Background Elements */}
-      {/* ... (rest of background code) */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Layer 1 - Moving against mouse & scroll */}
         <motion.div
