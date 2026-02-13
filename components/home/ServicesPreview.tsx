@@ -198,8 +198,8 @@ const Card = ({
           min-h-screen md:min-h-0 md:h-[55vh] lg:h-[60vh] xl:h-[60vh] 
           md:rounded-[2rem] overflow-hidden md:border border-white/10 origin-top shadow-[0_0_50px_rgba(0,0,0,0.5)] ${bg}
           sticky top-0 md:static
-          z-[${10 + i}]
         `}
+        style={{ zIndex: 10 + i } as any}
       >
         <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-20 pointer-events-none" />
 

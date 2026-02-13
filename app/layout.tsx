@@ -39,10 +39,8 @@ export default function RootLayout({
         <CustomCursor />
         <BackgroundSpotlight />
         <GrainNoise />
-        <div className="relative z-50 bg-black mb-0 md:mb-[500px] shadow-[0_50px_100px_rgba(0,0,0,0.5)] min-h-screen overflow-x-hidden">
-          <div className="relative z-50 bg-black w-full min-h-screen">
-            {children}
-          </div>
+        <div className="relative z-50 bg-[#0A0A0A] mb-0 md:mb-[500px] shadow-[0_50px_100px_rgba(0,0,0,0.5)] min-h-screen">
+          {children}
         </div>
         <Footer />
       </body>
