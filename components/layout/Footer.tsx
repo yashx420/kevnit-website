@@ -146,15 +146,24 @@ export function Footer() {
             © {new Date().getFullYear()} Kevnit Digital Solutions. All rights
             reserved.
           </p>
-          <div className="flex gap-6 text-sm text-gray-500">
-            <Link href="#" className="hover:text-white transition-colors">
-              Terms of Service
+          <div className="flex flex-wrap gap-4 md:gap-6 text-sm text-gray-500">
+            <Link
+              href="/terms-of-use"
+              className="hover:text-white transition-colors"
+            >
+              Terms of Use
             </Link>
             <Link
               href="/privacy-policy"
               className="hover:text-white transition-colors"
             >
               Privacy Policy
+            </Link>
+            <Link
+              href="/data-protection-policy"
+              className="hover:text-white transition-colors"
+            >
+              Data Policy
             </Link>
           </div>
         </div>
