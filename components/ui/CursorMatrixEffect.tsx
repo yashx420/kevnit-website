@@ -7,7 +7,7 @@ interface Particle {
   id: number;
   x: number;
   y: number;
-  value: string; // "0" or "1"
+  value: string;
 }
 
 export function CursorMatrixEffect() {
@@ -21,11 +21,13 @@ export function CursorMatrixEffect() {
 
     window.addEventListener("mousemove", handleMouseMove);
 
-    // Generate a particle every 300ms
+    // Spawn a new number every 400ms
     const interval = setInterval(() => {
+      // Don't spawn if mouse hasn't moved / is at 0,0
       if (mousePosRef.current.x === 0 && mousePosRef.current.y === 0) return;
+
       addParticle(mousePosRef.current.x, mousePosRef.current.y);
-    }, 300);
+    }, 400);
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
@@ -34,39 +36,44 @@ export function CursorMatrixEffect() {
   }, []);
 
   const addParticle = (x: number, y: number) => {
-    const id = Date.now() + Math.random();
-    // Wider spread for atmospheric effect
-    const offsetX = (Math.random() - 0.5) * 250; // 250px width spread
-    const offsetY = (Math.random() - 0.5) * 250;
-
+    const id = Date.now();
     const newParticle: Particle = {
       id,
-      x: x + offsetX,
-      y: y + offsetY,
+      x,
+      y,
       value: Math.random() > 0.5 ? "1" : "0",
     };
 
-    setParticles((prev) => [...prev.slice(-5), newParticle]); // Max 5 particles
+    // STRICTLY keep only the last 5 particles to create a small trail,
+    // BUT ensure they are spaced out by the interval.
+    // If user wants LESS, we reduce this.
+    // Let's try max 3 active particles.
+    setParticles((prev) => [...prev.slice(-2), newParticle]);
   };
 
   return (
     <div className="fixed inset-0 pointer-events-none z-[1] overflow-hidden">
-      <AnimatePresence>
+      <AnimatePresence mode="popLayout">
         {particles.map((particle) => (
           <motion.div
             key={particle.id}
-            initial={{ opacity: 0, y: particle.y, x: particle.x, scale: 0.8 }}
+            initial={{ opacity: 0, scale: 0.8, x: particle.x, y: particle.y }}
             animate={{
               opacity: [0, 1, 0],
-              y: particle.y - 60, // Slower, longer scroll UP
-              scale: [0.8, 1.2, 0.8], // Pulse size
+              y: particle.y - 40, // Scroll UP
+              scale: 1,
             }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 3, ease: "easeInOut" }}
+            transition={{ duration: 1.5, ease: "easeOut" }}
             onAnimationComplete={() => {
               setParticles((prev) => prev.filter((p) => p.id !== particle.id));
             }}
-            className="absolute text-[#6BC323] font-mono text-xs font-bold select-none"
+            // Font size sm, no shadow, clean green color
+            className="absolute text-[#6BC323] font-mono text-sm font-bold select-none"
+            style={{
+              marginLeft: "12px", // Offset slightly from cursor center
+              marginTop: "12px",
+            }}
           >
             {particle.value}
           </motion.div>
