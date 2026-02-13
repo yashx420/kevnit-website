@@ -181,12 +181,13 @@ const Card = ({
   return (
     <div
       ref={container}
-      className="h-screen flex items-center justify-center sticky top-0 md:top-[calc(6rem+var(--offset))] perspective-1000"
+      className="h-[70vh] flex items-center justify-center sticky top-0 md:top-[calc(6rem+var(--offset))] perspective-1000"
       style={{ "--offset": `${i * 15}px` } as any}
     >
       <motion.div
         style={{
           scale,
+          zIndex: 10 + i,
         }}
         initial={{ opacity: 0, scale: 0.8, y: 100 }}
         whileInView={{ opacity: 1, scale: 1, y: 0 }}
@@ -199,7 +200,6 @@ const Card = ({
           md:rounded-[2rem] overflow-hidden md:border border-white/10 origin-top shadow-[0_0_50px_rgba(0,0,0,0.5)] ${bg}
           sticky top-0 md:static
         `}
-        style={{ zIndex: 10 + i } as any}
       >
         <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-20 pointer-events-none" />
 
