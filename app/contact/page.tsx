@@ -12,18 +12,32 @@ export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission to yash50sinha@gmail.com
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    const formData = new FormData(e.currentTarget);
+    formData.append("access_key", "927ec7aa-3d76-4be7-9c80-c639b6b40e36");
 
-    setIsSubmitting(false);
-    setShowSuccess(true);
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+      });
 
-    // Reset form after 5 seconds
-    setTimeout(() => setShowSuccess(false), 5000);
+      const data = await response.json();
+
+      if (data.success) {
+        setShowSuccess(true);
+        e.currentTarget.reset();
+      } else {
+        alert("Something went wrong. Please try again or email us directly.");
+      }
+    } catch (error) {
+      alert("Something went wrong. Please try again or email us directly.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
