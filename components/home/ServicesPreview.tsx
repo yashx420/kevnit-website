@@ -116,7 +116,7 @@ export function ServicesPreview() {
       </div>
 
       <Container>
-        <div className="flex flex-col items-center gap-y-[60vh] md:gap-y-32 pb-40">
+        <div className="flex flex-col items-center gap-y-[120vh] md:gap-y-32 pb-40">
           {services.map((service, index) => {
             // Target scale drops slightly for each subsequent card
             const targetScale = 1 - (services.length - index) * 0.05;
