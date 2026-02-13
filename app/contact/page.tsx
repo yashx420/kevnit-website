@@ -91,7 +91,12 @@ export default function ContactPage() {
                 </div>
 
                 {/* Map Placeholder */}
-                <div className="mt-12 w-full h-64 bg-white/5 rounded-2xl border border-white/10 flex items-center justify-center relative overflow-hidden group">
+                <a
+                  href="https://www.google.com/maps/dir//Kevnit,+F1,+Talankis.+929+4th+A+Cross,+9th+Main+Hongasandra+GB+Palya+Rd,+Vijaya+Bank+Layout,+Bengaluru,+Karnataka+560076/@12.8892884,77.6192442,15z/data=!3m1!4b1!4m8!4m7!1m0!1m5!1m1!1s0x3bae6adbdd5576ad:0xd306a7108fdbde84!2m2!1d77.6092019!2d12.8911666"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-12 w-full h-64 bg-white/5 rounded-2xl border border-white/10 flex items-center justify-center relative overflow-hidden group block"
+                >
                   <iframe
                     src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=Kevnit,+F1,+Talankis.+929+4th+A+Cross,+9th+Main+Hongasandra+GB+Palya+Rd,+Vijaya+Bank+Layout,+Bengaluru,+Karnataka+560076&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
                     width="100%"
@@ -99,12 +104,13 @@ export default function ContactPage() {
                     style={{
                       border: 0,
                       filter: "invert(90%) hue-rotate(180deg)",
+                      pointerEvents: "none",
                     }}
                     allowFullScreen
                     loading="lazy"
                     className="absolute inset-0 grayscale opacity-80 hover:opacity-100 transition-opacity duration-300"
                   ></iframe>
-                </div>
+                </a>
               </div>
             </AnimatedWrapper>
 

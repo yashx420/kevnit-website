@@ -64,7 +64,7 @@ export function Testimonials() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="bg-[#111] rounded-3xl p-8 md:p-12 border border-white/5 relative z-10 min-h-[300px] flex items-center justify-center cursor-grab active:cursor-grabbing"
+            className="bg-[#111] rounded-3xl p-8 md:p-12 border border-white/5 relative z-10 min-h-[400px] flex items-center justify-center cursor-grab active:cursor-grabbing"
           >
             <AnimatePresence mode="wait">
               <motion.div
@@ -73,11 +73,13 @@ export function Testimonials() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.3 }}
-                className="text-center"
+                className="text-center flex flex-col justify-between h-full"
               >
-                <p className="text-xl md:text-2xl text-gray-300 italic mb-8 leading-relaxed">
-                  "{testimonials[current].text}"
-                </p>
+                <div className="flex-grow flex items-center justify-center">
+                  <p className="text-xl md:text-2xl text-gray-300 italic mb-8 leading-relaxed max-w-2xl mx-auto">
+                    "{testimonials[current].text}"
+                  </p>
+                </div>
                 <div>
                   <h4 className="text-white font-bold text-lg">
                     {testimonials[current].name}
