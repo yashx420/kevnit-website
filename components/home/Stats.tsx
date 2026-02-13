@@ -20,10 +20,10 @@ function Counter({ value, label, suffix = "" }: CounterProps) {
         duration: 2.5,
         ease: "easeOut",
         onUpdate: (latest) => {
-           if (ref.current) {
-             ref.current.textContent = Math.round(latest).toString();
-           }
-        }
+          if (ref.current) {
+            ref.current.textContent = Math.round(latest).toString();
+          }
+        },
       });
       return () => controls.stop();
     }
@@ -31,10 +31,13 @@ function Counter({ value, label, suffix = "" }: CounterProps) {
 
   return (
     <div className="text-center">
-      <div className="text-4xl md:text-6xl font-bold text-white mb-2 font-heading">
-        <span ref={ref}>0</span>{suffix}
+      <div className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-white mb-2 font-heading">
+        <span ref={ref}>0</span>
+        {suffix}
       </div>
-      <div className="text-[#00E676] font-medium tracking-wide uppercase text-sm">{label}</div>
+      <div className="text-[#6BC323] font-medium tracking-wide uppercase text-sm">
+        {label}
+      </div>
     </div>
   );
 }

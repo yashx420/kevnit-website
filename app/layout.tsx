@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   title: "Kevnit Digital Solutions | Premium Digital Agency",
   description:
     "Top-tier IT & Digital Marketing Agency. Web Development, SEO, Branding, and more.",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 import { CustomCursor } from "@/components/ui/CustomCursor";
@@ -30,13 +33,13 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body
-        className={`${outfit.className} antialiased bg-[#0A0A0A] text-white selection:bg-[#00E676] selection:text-black cursor-none`}
+        className={`${outfit.className} antialiased bg-[#0A0A0A] text-white selection:bg-[#6BC323] selection:text-black cursor-none`}
       >
         <SmoothScroll />
         <CustomCursor />
         <BackgroundSpotlight />
         <GrainNoise />
-        <div className="relative z-10 bg-black mb-[600px] shadow-2xl min-h-screen">
+        <div className="relative z-10 bg-black mb-[450px] shadow-2xl min-h-screen">
           {children}
         </div>
         <Footer />

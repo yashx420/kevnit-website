@@ -1,6 +1,12 @@
 "use client";
 
-import { motion, useScroll, useTransform, useMotionValue, useSpring } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useMotionValue,
+  useSpring,
+} from "framer-motion";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
@@ -10,7 +16,7 @@ import Image from "next/image";
 export function Hero() {
   const { scrollY } = useScroll();
   const [particles, setParticles] = useState<any[]>([]);
-  
+
   // Scroll Parallax settings
   const y1 = useTransform(scrollY, [0, 500], [0, 200]);
   const y2 = useTransform(scrollY, [0, 500], [0, -150]);
@@ -58,16 +64,15 @@ export function Hero() {
   const layer2Y = useTransform(springY, (y) => y * 0.5);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0A0A0A] pt-20 perspective-1000">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0A0A0A] pb-32 perspective-1000">
       {/* Dynamic Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        
         {/* Layer 1 - Moving against mouse & scroll */}
         <motion.div
           style={{ x: layer1X, y: y1 }}
-          className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] rounded-full bg-[#00E676]/10 blur-[120px] mix-blend-screen"
+          className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] rounded-full bg-[#6BC323]/10 blur-[120px] mix-blend-screen"
         />
-        
+
         {/* Layer 2 - Moving with mouse & scroll */}
         <motion.div
           style={{ x: layer2X, y: y2 }}
@@ -76,31 +81,31 @@ export function Hero() {
 
         {/* Floating Particles */}
         {particles.map((p) => (
-           <motion.div
-             key={p.id}
-             className="absolute bg-white rounded-full"
-             initial={{ 
-               x: p.x, 
-               y: p.y,
-               opacity: p.opacity,
-               scale: p.scale
-             }}
-             animate={{
-               y: [null, p.moveY],
-               opacity: [null, 0],
-             }}
-             transition={{
-               duration: p.duration,
-               repeat: Infinity,
-               ease: "linear"
-             }}
-             style={{
-               width: p.width + "px",
-               height: p.height + "px",
-               left: "50%",
-               top: "50%",
-             }}
-           />
+          <motion.div
+            key={p.id}
+            className="absolute bg-white rounded-full"
+            initial={{
+              x: p.x,
+              y: p.y,
+              opacity: p.opacity,
+              scale: p.scale,
+            }}
+            animate={{
+              y: [null, p.moveY],
+              opacity: [null, 0],
+            }}
+            transition={{
+              duration: p.duration,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+            style={{
+              width: p.width + "px",
+              height: p.height + "px",
+              left: "50%",
+              top: "50%",
+            }}
+          />
         ))}
 
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
@@ -118,53 +123,46 @@ export function Hero() {
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
-            className="flex justify-center mb-12"
+            className="flex justify-center mb-6 mt-12"
           >
             <motion.div
               style={{ x: layer2X, y: layer1Y }} // Subtle parallax
-              animate={{ 
-                y: [0, -15, 0],
-              }}
-              transition={{
-                duration: 6,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
               whileHover={{ scale: 1.05, rotateY: 10, rotateX: -5 }}
-              className="relative h-24 w-80 md:h-32 md:w-[450px] transform-style-3d cursor-default"
+              className="relative h-24 w-56 md:h-28 md:w-64 lg:h-32 lg:w-72 xl:w-80 transform-style-3d cursor-default"
             >
-              <Image 
-                src="/logo.png" 
-                alt="Kevnit Digital Solutions" 
+              <Image
+                src="/logo.png"
+                alt="Kevnit Digital Solutions"
                 fill
-                className="object-contain drop-shadow-[0_0_30px_rgba(0,230,118,0.4)]"
+                className="object-contain drop-shadow-[0_0_30px_rgba(107,195,35,0.4)]"
                 priority
               />
               {/* Logo Glow Effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#00E676]/20 to-transparent blur-3xl opacity-50 animate-pulse" />
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#6BC323]/20 to-transparent blur-3xl opacity-50 animate-pulse" />
             </motion.div>
           </motion.div>
 
-          <motion.span 
-            className="inline-block py-1 px-3 rounded-full bg-white/5 border border-white/10 text-[#00E676] text-sm font-medium mb-6 backdrop-blur-sm"
+          <motion.span
+            className="inline-block py-1 px-3 rounded-full bg-white/5 border border-white/10 text-[#6BC323] text-sm font-medium mb-2 backdrop-blur-sm"
             animate={{ y: [0, -10, 0] }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
           >
             🚀 Elevate Your Digital Presence
           </motion.span>
-          
-          <h1 className="text-5xl md:text-8xl font-bold font-heading text-white mb-6 leading-tight tracking-tight">
-            <motion.span 
-              initial={{ opacity: 0, y: 20 }} 
-              animate={{ opacity: 1, y: 0 }} 
+
+          <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold font-heading text-white mb-6 leading-tight tracking-tight">
+            <motion.span
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.8, ease: "easeOut" }}
               className="inline-block"
             >
               We Build
-            </motion.span> <br />
+            </motion.span>{" "}
+            <br />
             <span className="relative inline-block">
-              <motion.span 
-                className="text-transparent bg-clip-text bg-gradient-to-r from-[#00E676] via-emerald-400 to-[#00E676] bg-[length:200%_auto] relative z-10"
+              <motion.span
+                className="text-transparent bg-clip-text bg-gradient-to-r from-[#6BC323] via-[#6BC323] to-[#6BC323] bg-[length:200%_auto] relative z-10"
                 animate={{ backgroundPosition: ["0% center", "200% center"] }}
                 transition={{ duration: 3, ease: "linear" }}
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -173,35 +171,47 @@ export function Hero() {
               >
                 Digital Experiences
               </motion.span>
-              <motion.div 
-                className="absolute -bottom-2 left-0 w-full h-[3px] bg-[#00E676] rounded-full"
+              <motion.div
+                className="absolute -bottom-2 left-0 w-full h-[3px] bg-[#6BC323] rounded-full"
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: 1 }}
                 transition={{ delay: 1.2, duration: 1, ease: "circOut" }}
                 style={{ originX: 0 }}
               />
             </span>
-            <br /> 
-            <motion.span 
-              initial={{ opacity: 0, y: 20 }} 
-              animate={{ opacity: 1, y: 0 }} 
+            <br />
+            <motion.span
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 0.8, ease: "easeOut" }}
               className="inline-block"
             >
               That Drive Growth.
             </motion.span>
           </h1>
-          
+
           <p className="text-xl text-gray-400 mb-10 max-w-2xl mx-auto">
-            Kevnit Digital Solutions transforms businesses with cutting-edge web development, mobile apps, and data-driven marketing strategies.
+            Kevnit Digital Solutions transforms businesses with cutting-edge web
+            development, mobile apps, and data-driven marketing strategies.
           </p>
-          
+
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link href="/contact">
-              <Button size="lg" className="min-w-[200px] text-lg h-14 shadow-[0_0_30px_rgba(0,230,118,0.3)] hover:shadow-[0_0_50px_rgba(0,230,118,0.5)] transition-shadow">Get a Free Consultation</Button>
+              <Button
+                size="lg"
+                className="min-w-[200px] text-lg h-14 shadow-[0_0_30px_rgba(107,195,35,0.3)] hover:shadow-[0_0_50px_rgba(107,195,35,0.5)] transition-shadow"
+              >
+                Get a Free Consultation
+              </Button>
             </Link>
             <Link href="/services">
-              <Button variant="outline" size="lg" className="min-w-[200px] text-lg h-14 border-white/20 hover:bg-white/5">View Our Services</Button>
+              <Button
+                variant="outline"
+                size="lg"
+                className="min-w-[200px] text-lg h-14 border-white/20 hover:bg-white/5"
+              >
+                View Our Services
+              </Button>
             </Link>
           </div>
         </motion.div>
@@ -209,4 +219,3 @@ export function Hero() {
     </section>
   );
 }
-

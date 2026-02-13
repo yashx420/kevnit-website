@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #00e676;
-  --color-primary-dark: #00c853;
+  --color-primary: #6bc323;
+  --color-primary-dark: #58a51c;
   --color-secondary: #111111;
   --color-accent: #2979ff;
 
@@ -22,12 +22,12 @@
   @keyframes pulse-glow {
     0%,
     100% {
-      box-shadow: 0 0 10px #00e676;
+      box-shadow: 0 0 10px #6bc323;
     }
     50% {
       box-shadow:
-        0 0 20px #00e676,
-        0 0 10px #00e676;
+        0 0 20px #6bc323,
+        0 0 10px #6bc323;
     }
   }
 }

@@ -19,7 +19,8 @@ export function CustomCursor() {
     };
 
     const handleMouseOver = (e: MouseEvent) => {
-      if ((e.target as HTMLElement).tagName === "BUTTON" || (e.target as HTMLElement).tagName === "A") {
+      const target = e.target as HTMLElement;
+      if (target.closest("button") || target.closest("a")) {
         setIsHovered(true);
       } else {
         setIsHovered(false);
@@ -37,10 +38,12 @@ export function CustomCursor() {
 
   return (
     <motion.div
-      className="fixed top-0 left-0 w-6 h-6 rounded-full border-2 border-[#00E676] pointer-events-none z-[9999] mix-blend-difference"
+      className="fixed top-0 left-0 w-6 h-6 rounded-full border-2 border-[#6BC323] pointer-events-none z-[9999] mix-blend-difference"
       style={{ x: cursorX, y: cursorY, scale: isHovered ? 2.5 : 1 }}
       animate={{
-        backgroundColor: isHovered ? "rgba(0, 230, 118, 1)" : "rgba(0, 0, 0, 0)",
+        backgroundColor: isHovered
+          ? "rgba(107, 195, 35, 1)"
+          : "rgba(0, 0, 0, 0)",
       }}
     />
   );

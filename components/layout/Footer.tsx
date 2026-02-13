@@ -1,7 +1,21 @@
 "use client";
 
 import Link from "next/link";
-import { Facebook, Instagram, Linkedin, Twitter, Mail, Phone, MapPin, Cloud, BarChart3, Share2, Workflow, Target, Activity } from "lucide-react";
+import {
+  Facebook,
+  Instagram,
+  Linkedin,
+  Twitter,
+  Mail,
+  Phone,
+  MapPin,
+  Cloud,
+  BarChart3,
+  Share2,
+  Workflow,
+  Target,
+  Activity,
+} from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import Image from "next/image";
 
@@ -16,30 +30,32 @@ const companies = [
 
 export function Footer() {
   return (
-    <footer className="relative md:fixed bottom-0 left-0 w-full z-0 bg-[#050505] border-t border-white/10 pt-16 pb-8 md:h-[600px] flex flex-col justify-end">
+    <footer className="relative md:fixed bottom-0 left-0 w-full z-0 bg-[#050505] border-t border-white/10 pt-16 pb-8 md:h-[450px] flex flex-col justify-end">
       <Container>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           {/* Brand */}
           <div>
             <Link href="/" className="flex items-center gap-2 mb-6 group">
-               <div className="relative h-12 w-40 transition-transform duration-300 group-hover:scale-105">
-                 <Image 
-                   src="/logo.png" 
-                   alt="Kevnit Digital Solutions" 
-                   fill
-                   className="object-contain object-left"
-                 />
-               </div>
+              <div className="relative h-16 w-52 transition-transform duration-300 group-hover:scale-105">
+                <Image
+                  src="/logo.png"
+                  alt="Kevnit Digital Solutions"
+                  fill
+                  className="object-contain object-left"
+                />
+              </div>
             </Link>
             <p className="text-gray-400 text-sm leading-relaxed mb-6">
-              Kevnit Digital Solutions is a premium digital agency transforming businesses with cutting-edge technology and innovative marketing strategies.
+              Kevnit Digital Solutions is a premium digital agency transforming
+              businesses with cutting-edge technology and innovative marketing
+              strategies.
             </p>
             <div className="flex gap-4">
               {[Linkedin, Instagram, Twitter, Facebook].map((Icon, i) => (
                 <a
                   key={i}
                   href="#"
-                  className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-[#00E676] hover:text-black transition-all duration-300"
+                  className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-[#6BC323] hover:text-black transition-all duration-300"
                 >
                   <Icon size={18} />
                 </a>
@@ -51,9 +67,18 @@ export function Footer() {
           <div>
             <h3 className="text-white font-bold mb-6">Services</h3>
             <ul className="space-y-3">
-              {["Web Development", "App Development", "E-Commerce", "Digital Marketing", "SEO Optimization"].map((item) => (
+              {[
+                "Web Development",
+                "App Development",
+                "E-Commerce",
+                "Digital Marketing",
+                "SEO Optimization",
+              ].map((item) => (
                 <li key={item}>
-                  <Link href="/services" className="text-gray-400 hover:text-[#00E676] text-sm transition-colors">
+                  <Link
+                    href="/services"
+                    className="text-gray-400 hover:text-[#6BC323] text-sm transition-colors"
+                  >
                     {item}
                   </Link>
                 </li>
@@ -65,9 +90,18 @@ export function Footer() {
           <div>
             <h3 className="text-white font-bold mb-6">Company</h3>
             <ul className="space-y-3">
-              {["About Us", "Our Process", "Careers", "Contact Us", "Privacy Policy"].map((item) => (
+              {[
+                "About Us",
+                "Our Process",
+                "Careers",
+                "Contact Us",
+                "Privacy Policy",
+              ].map((item) => (
                 <li key={item}>
-                  <Link href="/about" className="text-gray-400 hover:text-[#00E676] text-sm transition-colors">
+                  <Link
+                    href="/about"
+                    className="text-gray-400 hover:text-[#00E676] text-sm transition-colors"
+                  >
                     {item}
                   </Link>
                 </li>
@@ -80,15 +114,18 @@ export function Footer() {
             <h3 className="text-white font-bold mb-6">Contact</h3>
             <ul className="space-y-4">
               <li className="flex items-start gap-3 text-gray-400 text-sm">
-                <MapPin size={18} className="text-[#00E676] shrink-0 mt-0.5" />
-                <span>Kevnit, F1, Talankis. 929 4th A Cross, 9th Main Hongasandra GB Palya Rd, Vijaya Bank Layout, Bengaluru, Karnataka 560076</span>
+                <MapPin size={18} className="text-[#6BC323] shrink-0 mt-0.5" />
+                <span>
+                  Kevnit, F1, Talankis. 929 4th A Cross, 9th Main Hongasandra GB
+                  Palya Rd, Vijaya Bank Layout, Bengaluru, Karnataka 560076
+                </span>
               </li>
               <li className="flex items-center gap-3 text-gray-400 text-sm">
-                <Phone size={18} className="text-[#00E676] shrink-0" />
+                <Phone size={18} className="text-[#6BC323] shrink-0" />
                 <span>+91 80471 06668</span>
               </li>
               <li className="flex items-center gap-3 text-gray-400 text-sm">
-                <Mail size={18} className="text-[#00E676] shrink-0" />
+                <Mail size={18} className="text-[#6BC323] shrink-0" />
                 <span>info@kevnit.com</span>
               </li>
             </ul>
@@ -97,11 +134,16 @@ export function Footer() {
 
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-gray-500 text-sm">
-            © {new Date().getFullYear()} Kevnit Digital Solutions. All rights reserved.
+            © {new Date().getFullYear()} Kevnit Digital Solutions. All rights
+            reserved.
           </p>
           <div className="flex gap-6 text-sm text-gray-500">
-            <Link href="#" className="hover:text-white transition-colors">Terms of Service</Link>
-            <Link href="#" className="hover:text-white transition-colors">Privacy Policy</Link>
+            <Link href="#" className="hover:text-white transition-colors">
+              Terms of Service
+            </Link>
+            <Link href="#" className="hover:text-white transition-colors">
+              Privacy Policy
+            </Link>
           </div>
         </div>
       </Container>
