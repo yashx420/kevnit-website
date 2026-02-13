@@ -91,18 +91,18 @@ export function Footer() {
             <h3 className="text-white font-bold mb-6">Company</h3>
             <ul className="space-y-3">
               {[
-                "About Us",
-                "Our Process",
-                "Careers",
-                "Contact Us",
-                "Privacy Policy",
+                { name: "About Us", href: "/about" },
+                { name: "Our Process", href: "#" },
+                { name: "Careers", href: "#" },
+                { name: "Contact Us", href: "/contact" },
+                { name: "Privacy Policy", href: "/privacy-policy" },
               ].map((item) => (
-                <li key={item}>
+                <li key={item.name}>
                   <Link
-                    href="/about"
-                    className="text-gray-400 hover:text-[#00E676] text-sm transition-colors"
+                    href={item.href}
+                    className="text-gray-400 hover:text-[#6BC323] text-sm transition-colors"
                   >
-                    {item}
+                    {item.name}
                   </Link>
                 </li>
               ))}
@@ -148,7 +148,10 @@ export function Footer() {
             <Link href="#" className="hover:text-white transition-colors">
               Terms of Service
             </Link>
-            <Link href="#" className="hover:text-white transition-colors">
+            <Link
+              href="/privacy-policy"
+              className="hover:text-white transition-colors"
+            >
               Privacy Policy
             </Link>
           </div>
