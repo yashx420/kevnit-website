@@ -14,6 +14,7 @@ export const metadata: Metadata = {
 };
 
 import { CustomCursor } from "@/components/ui/CustomCursor";
+import { CursorMatrixEffect } from "@/components/ui/CursorMatrixEffect";
 import { GrainNoise } from "@/components/ui/GrainNoise";
 
 // ... (keep imports)
@@ -37,6 +38,7 @@ export default function RootLayout({
       >
         <SmoothScroll />
         <CustomCursor />
+        <CursorMatrixEffect />
         <BackgroundSpotlight />
         <GrainNoise />
         <div className="relative z-50 bg-[#0A0A0A] mb-0 md:mb-[500px] shadow-[0_50px_100px_rgba(0,0,0,0.5)] min-h-screen">
