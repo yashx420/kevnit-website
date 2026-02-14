@@ -4,13 +4,13 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
 const text =
-  "We believe in the UNTAMED power of digital chaos. We don't just build websites; we craft digital experiences that demand attention. Normal is boring. We are here to break the mold.";
+  "We don't follow trends. We set them ablaze. Normal is dead. Chaos is the new order.";
 
 export function Manifesto() {
   const container = useRef(null);
   const { scrollYProgress } = useScroll({
     target: container,
-    offset: ["start end", "center center"],
+    offset: ["start 0.9", "start 0.25"],
   });
 
   const words = text.split(" ");
