@@ -1,7 +1,7 @@
 "use client";
 
 import { Navbar } from "@/components/layout/Navbar";
-import { ServicesScroll } from "@/components/services/ServicesScroll";
+import { StickyServiceStack } from "@/components/services/StickyServiceStack";
 import { Container } from "@/components/ui/Container";
 
 import { useRef } from "react";
@@ -14,56 +14,69 @@ export default function ServicesPage() {
     offset: ["start end", "end start"],
   });
 
-  const titleScale = useTransform(scrollYProgress, [0, 0.5], [1, 2]);
-  const titleOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
+  const titleScale = useTransform(scrollYProgress, [0, 0.5], [1, 1.5]);
+  const titleOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
 
   return (
-    <main className="bg-black">
+    <main className="bg-[#050505] selection:bg-[#6BC323] selection:text-black min-h-screen">
       <Navbar />
 
       {/* Hero Section */}
       <section
         ref={targetRef}
-        className="relative h-[80vh] flex items-center justify-center overflow-hidden"
+        className="relative h-screen flex items-center justify-center overflow-hidden"
       >
         <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-20 pointer-events-none" />
-        <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-[#6BC323]/10 blur-[150px] pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#6BC323]/5 blur-[120px] rounded-full pointer-events-none animate-pulse-slow" />
 
-        <Container className="text-center relative z-10">
-          <motion.h1
-            style={{ scale: titleScale, opacity: titleOpacity }}
-            className="text-6xl md:text-9xl font-bold font-heading mb-6 tracking-tighter"
-          >
-            OUR{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#6BC323] to-emerald-500">
-              SERVICES
-            </span>
-          </motion.h1>
+        <Container className="text-center relative z-10 px-4">
+          <motion.div style={{ scale: titleScale, opacity: titleOpacity }}>
+            <h1 className="text-6xl md:text-[10rem] font-bold font-heading mb-6 tracking-tighter leading-none">
+              OUR
+              <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-b from-white to-white/20">
+                SERVICES
+              </span>
+            </h1>
+          </motion.div>
+
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}
-            className="text-xl md:text-2xl text-gray-400 max-w-2xl mx-auto"
+            className="text-xl md:text-2xl text-gray-400 max-w-2xl mx-auto mt-12"
           >
-            Scroll down to explore how we transform businesses through digital
-            innovation.
+            Digital craftsmanship for the bold.
           </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1, duration: 1 }}
+            className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/30"
+          >
+            <span className="text-sm uppercase tracking-widest">Scroll</span>
+            <div className="w-[1px] h-12 bg-gradient-to-b from-white/0 via-white/50 to-white/0" />
+          </motion.div>
         </Container>
       </section>
 
-      {/* Horizontal Scroll Showcase */}
-      <ServicesScroll />
+      {/* Stacked Services Showcase */}
+      <section className="relative pb-40">
+        <div className="w-full flex justify-center">
+          <StickyServiceStack />
+        </div>
+      </section>
 
       {/* Footer Call to Action Area */}
-      <section className="h-screen bg-black flex items-center justify-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,#6BC323_0%,transparent_50%)] opacity-5 blur-[100px]" />
+      <section className="h-[80vh] bg-black flex items-center justify-center relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,#6BC323_0%,transparent_70%)] opacity-10 blur-[100px]" />
         <Container className="text-center relative z-10">
-          <h2 className="text-5xl md:text-7xl font-bold mb-8">
+          <h2 className="text-5xl md:text-8xl font-bold mb-8 tracking-tight">
             Ready to <span className="text-[#6BC323]">Scale?</span>
           </h2>
           <p className="text-xl text-gray-400 mb-12 max-w-2xl mx-auto">
-            Our team is ready to turn your vision into a digital reality. Let's
-            build something extraordinary together.
+            Let's build the future of your brand.
           </p>
         </Container>
       </section>
