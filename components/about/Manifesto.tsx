@@ -40,11 +40,11 @@ export function Manifesto() {
 const Word = ({ children, range, progress }: any) => {
   const opacity = useTransform(progress, range, [0.1, 1]);
   return (
-    <span className="relative">
-      <span className="absolute opacity-10">{children}</span>
-      <motion.span style={{ opacity }} className="text-white">
-        {children}
-      </motion.span>
-    </span>
+    <motion.span
+      style={{ opacity }}
+      className="text-white inline-block mr-[0.2em]"
+    >
+      {children}
+    </motion.span>
   );
 };
