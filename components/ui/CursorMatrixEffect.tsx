@@ -37,7 +37,7 @@ export function CursorMatrixEffect() {
         char,
       };
 
-      setTrail((prev) => [...prev.slice(-40), newPoint]); // Increased trail length
+      setTrail((prev) => [...prev.slice(-20), newPoint]); // Decreased trail length
     };
 
     const processMovement = (x: number, y: number, target: HTMLElement) => {
@@ -62,8 +62,8 @@ export function CursorMatrixEffect() {
       const dist = Math.hypot(dx, dy);
 
       // Interpolation Step (Spatial Throttling)
-      // Ensure we have a point every ~15px
-      const step = 15;
+      // Ensure we have a point every ~40px
+      const step = 40;
 
       if (dist > step) {
         const steps = Math.floor(dist / step);
