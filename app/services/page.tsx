@@ -14,8 +14,8 @@ export default function ServicesPage() {
     offset: ["start end", "end start"],
   });
 
-  const titleScale = useTransform(scrollYProgress, [0, 0.5], [1, 1.5]);
-  const titleOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
+  const titleScale = useTransform(scrollYProgress, [0, 0.5], [1, 1.2]);
+  const titleOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   return (
     <main className="bg-[#050505] selection:bg-[#6BC323] selection:text-black min-h-screen">

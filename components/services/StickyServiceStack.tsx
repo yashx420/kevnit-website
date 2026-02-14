@@ -133,11 +133,11 @@ const Card = ({
           scale,
           top: `calc(-5vh + ${i * 25}px)`,
         }}
-        className="flex flex-col relative -top-[25%] h-[500px] w-[90vw] md:w-[1000px] rounded-3xl p-10 border border-white/10 bg-[#0A0A0A] overflow-hidden origin-top shadow-2xl"
+        className="flex flex-col relative -top-[25%] min-h-[600px] md:h-[70vh] w-[95vw] md:w-[90vw] max-w-7xl rounded-3xl p-8 md:p-14 border border-white/10 bg-[#0A0A0A] overflow-hidden origin-top shadow-2xl"
       >
         {/* Dynamic Background Glow */}
         <div
-          className="absolute top-0 right-0 w-[500px] h-[500px] opacity-20 blur-[100px] pointer-events-none transition-all duration-700"
+          className="absolute top-0 right-0 w-[600px] h-[600px] opacity-20 blur-[120px] pointer-events-none transition-all duration-700"
           style={{
             background: `radial-gradient(circle, ${color}, transparent)`,
           }}
@@ -153,17 +153,19 @@ const Card = ({
               <span className="text-2xl font-mono text-white/30">0{i + 1}</span>
             </div>
 
-            <h2 className="text-4xl md:text-6xl font-bold font-heading text-white mb-6 uppercase tracking-tight">
+            <h2 className="text-4xl md:text-7xl font-bold font-heading text-white mb-6 uppercase tracking-tight leading-none">
               {title}
             </h2>
 
-            <p className="text-xl text-gray-400 mb-8 leading-relaxed">{desc}</p>
+            <p className="text-xl md:text-2xl text-gray-400 mb-10 leading-relaxed max-w-xl">
+              {desc}
+            </p>
 
-            <div className="flex flex-wrap gap-3 mb-8">
+            <div className="flex flex-wrap gap-3 mb-10">
               {tags.map((tag: string, idx: number) => (
                 <span
                   key={idx}
-                  className="px-4 py-2 rounded-full border border-white/10 text-sm text-gray-300 bg-white/5"
+                  className="px-5 py-2.5 rounded-full border border-white/10 text-base text-gray-300 bg-white/5"
                 >
                   #{tag}
                 </span>
@@ -172,11 +174,12 @@ const Card = ({
 
             <Link href="/contact">
               <Button
+                size="lg"
                 variant="outline"
-                className="group w-fit border-white/20 hover:border-white text-white hover:bg-white hover:text-black transition-all duration-300"
+                className="group w-fit border-white/20 hover:border-white text-white hover:bg-white hover:text-black transition-all duration-300 text-lg px-8 py-6 h-auto"
               >
-                Get Started{" "}
-                <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                Get Quote{" "}
+                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
           </div>
