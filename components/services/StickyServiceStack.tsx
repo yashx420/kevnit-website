@@ -31,13 +31,6 @@ const services = [
     color: "#6BC323",
   },
   {
-    title: "Web App Development",
-    icon: Monitor,
-    desc: "Scalable and secure web apps built with modern frameworks.",
-    tags: ["Next.js", "React", "Cloud"],
-    color: "#3B82F6",
-  },
-  {
     title: "Mobile App Development",
     icon: Smartphone,
     desc: "Native and cross-platform mobile apps for iOS and Android.",
@@ -126,14 +119,14 @@ const Card = ({
   return (
     <div
       ref={container}
-      className="h-screen flex items-center justify-center sticky top-0"
+      className="h-screen flex items-center justify-center sticky top-24 md:top-28"
     >
       <motion.div
         style={{
           scale,
-          top: `calc(-5vh + ${i * 25}px)`,
+          marginTop: i * 25,
         }}
-        className="flex flex-col relative -top-[25%] h-[80vh] w-[95vw] md:h-[70vh] md:w-[90vw] max-w-7xl rounded-3xl p-6 md:p-14 border border-white/10 bg-[#0A0A0A] overflow-hidden origin-top shadow-2xl"
+        className="flex flex-col h-[75vh] w-[95vw] md:h-[70vh] md:w-[90vw] max-w-7xl rounded-3xl p-6 md:p-14 border border-white/10 bg-[#0A0A0A] overflow-hidden origin-top shadow-2xl"
       >
         {/* Dynamic Background Glow */}
         <div

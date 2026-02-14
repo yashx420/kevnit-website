@@ -12,7 +12,7 @@ const stats = [
 
 export function StatsCounter() {
   return (
-    <div className="py-20 bg-black border-y border-white/10">
+    <div className="py-32 bg-black border-y border-white/10">
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-12">
         {stats.map((stat, i) => (
           <StatItem key={i} {...stat} delay={i * 0.1} />
