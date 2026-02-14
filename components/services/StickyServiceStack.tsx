@@ -119,14 +119,14 @@ const Card = ({
   return (
     <div
       ref={container}
-      className="h-screen flex flex-col items-center justify-start sticky top-28 md:top-32"
+      className="h-screen flex flex-col items-center justify-start sticky top-32 md:top-36"
     >
       <motion.div
         style={{
           scale,
           marginTop: i * 20,
         }}
-        className="flex flex-col h-[60vh] md:h-[70vh] lg:h-[80vh] w-[95vw] md:w-[90vw] max-w-7xl rounded-3xl p-6 md:p-12 border border-white/10 bg-[#0A0A0A] overflow-hidden origin-top shadow-2xl"
+        className="flex flex-col h-[65vh] md:h-[70vh] lg:h-[80vh] w-[95vw] md:w-[90vw] max-w-7xl rounded-3xl p-6 md:p-12 border border-white/10 bg-[#0A0A0A] overflow-hidden origin-top shadow-2xl"
       >
         {/* Dynamic Background Glow */}
         <div
@@ -136,10 +136,10 @@ const Card = ({
           }}
         />
 
-        <div className="relative z-10 flex flex-col md:flex-row gap-12 h-full items-center">
+        <div className="relative z-10 flex flex-col md:flex-row gap-6 md:gap-12 h-full items-center">
           {/* Left Content */}
-          <div className="w-full md:w-[60%] flex flex-col justify-center">
-            <div className="flex items-center gap-4 mb-6">
+          <div className="w-full md:w-[60%] flex flex-col justify-center h-full">
+            <div className="flex items-center gap-4 mb-4 md:mb-6">
               <div className="p-3 rounded-xl bg-white/5 border border-white/10 text-white">
                 <Icon size={32} style={{ color }} />
               </div>
