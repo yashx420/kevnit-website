@@ -22,7 +22,10 @@ export default function ServicesPage() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative h-[80vh] flex items-center justify-center overflow-hidden">
+      <section
+        ref={targetRef}
+        className="relative h-[80vh] flex items-center justify-center overflow-hidden"
+      >
         <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-20 pointer-events-none" />
         <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-[#6BC323]/10 blur-[150px] pointer-events-none" />
 
