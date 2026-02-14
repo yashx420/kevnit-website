@@ -1,54 +1,52 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 
 const text =
   "We don't follow trends. We set them ablaze. Normal is dead. Chaos is the new order.";
 
 export function Manifesto() {
+  const container = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: container,
+    offset: ["start 0.8", "end 0.5"],
+  });
+
   const words = text.split(" ");
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.08,
-      },
-    },
-  };
-
-  const wordVariants = {
-    hidden: { opacity: 0.2 },
-    visible: {
-      opacity: 1,
-      transition: {
-        duration: 0.3,
-      },
-    },
-  };
 
   return (
     <div className="py-48 md:py-60 bg-black min-h-screen flex flex-col items-center justify-start relative z-10 w-full overflow-hidden">
       <div className="max-w-6xl mx-auto px-6">
-        <motion.p
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: false, margin: "-20%" }}
-          className="flex flex-wrap gap-x-4 gap-y-2 text-5xl md:text-6xl font-bold leading-tight relative"
+        <p
+          ref={container}
+          className="flex flex-wrap gap-x-4 gap-y-2 text-5xl md:text-6xl font-bold leading-tight relative text-center justify-center"
         >
-          {words.map((word, i) => (
-            <motion.span
-              key={i}
-              variants={wordVariants}
-              className="text-white inline-block mr-[0.2em] relative z-20"
-            >
-              {word}
-            </motion.span>
-          ))}
-        </motion.p>
+          {words.map((word, i) => {
+            const start = i / words.length;
+            const end = start + 1 / words.length;
+            return (
+              <Word key={i} progress={scrollYProgress} range={[start, end]}>
+                {word}
+              </Word>
+            );
+          })}
+        </p>
       </div>
     </div>
   );
 }
+
+const Word = ({ children, progress, range }: any) => {
+  const opacity = useTransform(progress, range, [0.1, 1]);
+  const color = useTransform(progress, range, ["#808080", "#ffffff"]);
+
+  return (
+    <motion.span
+      style={{ opacity, color }}
+      className="inline-block mr-[0.2em] relative z-20"
+    >
+      {children}
+    </motion.span>
+  );
+};
