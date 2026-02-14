@@ -18,7 +18,7 @@ export function Manifesto() {
   return (
     <div
       ref={container}
-      className="py-48 md:py-60 bg-black min-h-screen flex items-center justify-center"
+      className="py-48 md:py-60 bg-black min-h-screen flex flex-col items-center justify-center"
     >
       <div className="max-w-4xl mx-auto px-6">
         <p className="flex flex-wrap gap-x-4 gap-y-2 text-4xl md:text-6xl font-bold leading-tight">

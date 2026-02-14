@@ -181,7 +181,7 @@ const Card = ({
   return (
     <div
       ref={container}
-      className="h-[85vh] flex items-center justify-center sticky top-0 md:top-[calc(8rem+var(--offset))] perspective-1000"
+      className="h-[85vh] flex items-center justify-center sticky top-24 md:top-[calc(8rem+var(--offset))] perspective-1000"
       style={{ "--offset": `${i * 15}px` } as any}
     >
       <motion.div
@@ -198,7 +198,7 @@ const Card = ({
           w-full md:w-[85vw] lg:w-[70vw] xl:w-[60vw] max-w-4xl 
           min-h-screen md:min-h-0 md:h-[55vh] lg:h-[60vh] xl:h-[60vh] 
           md:rounded-[2rem] overflow-hidden md:border border-white/10 origin-top shadow-[0_0_50px_rgba(0,0,0,0.5)] ${bg}
-          sticky top-0 md:static no-cursor-effect
+          sticky top-24 md:static no-cursor-effect
         `}
       >
         <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-20 pointer-events-none" />
