@@ -47,7 +47,7 @@ export function ValuesList() {
   const [hovered, setHovered] = useState<number | null>(null);
 
   return (
-    <div className="py-40 bg-black px-6">
+    <div className="pt-48 pb-20 bg-black px-6">
       <div className="max-w-5xl mx-auto">
         <h2 className="text-4xl font-bold mb-16 text-center">
           CORE <span className="text-[#6BC323]">DNA</span>
@@ -60,7 +60,7 @@ export function ValuesList() {
               onHoverStart={() => setHovered(i)}
               onHoverEnd={() => setHovered(null)}
               animate={{
-                height: hovered === i ? 200 : 80,
+                height: hovered === i ? 220 : 100,
                 opacity: hovered !== null && hovered !== i ? 0.3 : 1,
               }}
               className="relative overflow-hidden rounded-3xl border border-white/10 bg-[#111] px-8 flex flex-col justify-center cursor-pointer group"
