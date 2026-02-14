@@ -4,13 +4,13 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
 const text =
-  "We believe in the power of digital chaos. We don't just build websites; we craft digital experiences that demand attention. Normal is boring. We are here to break the mold.";
+  "We believe in the UNTAMED power of digital chaos. We don't just build websites; we craft digital experiences that demand attention. Normal is boring. We are here to break the mold.";
 
 export function Manifesto() {
   const container = useRef(null);
   const { scrollYProgress } = useScroll({
     target: container,
-    offset: ["start 0.9", "start 0.25"],
+    offset: ["start end", "center center"],
   });
 
   const words = text.split(" ");
@@ -38,7 +38,7 @@ export function Manifesto() {
 }
 
 const Word = ({ children, range, progress }: any) => {
-  const opacity = useTransform(progress, range, [0.1, 1]);
+  const opacity = useTransform(progress, range, [0.2, 1]);
   return (
     <motion.span
       style={{ opacity }}
