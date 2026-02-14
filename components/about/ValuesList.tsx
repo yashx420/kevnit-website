@@ -60,7 +60,7 @@ export function ValuesList() {
               onHoverStart={() => setHovered(i)}
               onHoverEnd={() => setHovered(null)}
               animate={{
-                height: hovered === i ? 240 : 100,
+                height: hovered === i ? 400 : 180,
                 opacity: hovered !== null && hovered !== i ? 0.3 : 1,
               }}
               className="relative overflow-hidden rounded-3xl border border-white/10 bg-[#111] px-8 flex flex-col justify-center cursor-pointer group transition-all duration-300"
