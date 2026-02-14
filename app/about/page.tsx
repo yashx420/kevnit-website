@@ -90,7 +90,7 @@ const MarqueeItem = () => (
       (text, i) => (
         <span
           key={i}
-          className="text-[150px] font-bold font-heading text-transparent stroke-text opacity-20 hover:opacity-100 hover:text-[#6BC323] transition-all duration-300 cursor-default"
+          className="text-[150px] font-bold font-heading text-transparent stroke-text hover:text-[#6BC323] transition-all duration-300 cursor-default"
         >
           {text}
         </span>
