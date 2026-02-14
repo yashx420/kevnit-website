@@ -8,24 +8,17 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 export default function ServicesPage() {
-  const targetRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: targetRef,
-    offset: ["start start", "end start"],
-  });
+  const { scrollY } = useScroll();
 
-  const titleScale = useTransform(scrollYProgress, [0, 0.5], [1, 1.2]);
-  const titleOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+  const titleScale = useTransform(scrollY, [0, 500], [1, 1.5]);
+  const titleOpacity = useTransform(scrollY, [0, 300], [1, 0]);
 
   return (
     <main className="bg-[#050505] selection:bg-[#6BC323] selection:text-black min-h-screen">
       <Navbar />
 
       {/* Hero Section */}
-      <section
-        ref={targetRef}
-        className="relative h-screen flex items-center justify-center overflow-hidden"
-      >
+      <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-20 pointer-events-none" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#6BC323]/5 blur-[120px] rounded-full pointer-events-none animate-pulse-slow" />
 
