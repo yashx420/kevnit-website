@@ -68,7 +68,7 @@ export default function AboutPage() {
       <ValuesList />
 
       {/* Team/Culture Marquee */}
-      <section className="py-20 bg-black overflow-hidden border-t border-white/5">
+      <section className="py-10 md:py-20 bg-black overflow-hidden border-t border-white/5">
         <div className="flex whitespace-nowrap">
           <MarqueeItem />
           <MarqueeItem />

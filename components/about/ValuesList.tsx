@@ -47,7 +47,7 @@ export function ValuesList() {
   const [hovered, setHovered] = useState<number | null>(null);
 
   return (
-    <div className="pt-48 pb-20 bg-black px-6">
+    <div className="pt-24 md:pt-48 pb-10 md:pb-20 bg-black px-6">
       <div className="max-w-5xl mx-auto">
         <h2 className="text-4xl font-bold mb-16 text-center">
           CORE <span className="text-[#6BC323]">DNA</span>

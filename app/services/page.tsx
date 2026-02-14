@@ -37,7 +37,7 @@ export default function ServicesPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}
-            className="text-xl md:text-2xl text-gray-400 max-w-2xl mx-auto mt-40"
+            className="text-xl md:text-2xl text-gray-400 max-w-2xl mx-auto mt-20 md:mt-40"
           >
             Digital craftsmanship for the bold.
           </motion.p>
@@ -55,7 +55,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Stacked Services Showcase */}
-      <section className="relative pb-40">
+      <section className="relative pb-20 md:pb-40">
         <div className="w-full flex justify-center">
           <StickyServiceStack />
         </div>
