@@ -60,7 +60,7 @@ export function ValuesList() {
               onHoverStart={() => setHovered(i)}
               onHoverEnd={() => setHovered(null)}
               animate={{
-                height: hovered === i ? 400 : 180,
+                height: hovered === i ? 250 : 100,
                 opacity: hovered !== null && hovered !== i ? 0.3 : 1,
               }}
               className="relative overflow-hidden rounded-3xl border border-white/10 bg-[#111] px-8 flex flex-col justify-center cursor-pointer group transition-all duration-300"
@@ -89,9 +89,13 @@ export function ValuesList() {
               </div>
 
               <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: hovered === i ? 1 : 0 }}
-                className="pt-4 pl-12 max-w-2xl text-gray-400 text-lg"
+                initial={{ height: 0, opacity: 0, marginTop: 0 }}
+                animate={{
+                  height: hovered === i ? "auto" : 0,
+                  opacity: hovered === i ? 1 : 0,
+                  marginTop: hovered === i ? 16 : 0,
+                }}
+                className="pl-12 max-w-2xl text-gray-400 text-lg overflow-hidden"
               >
                 {item.desc}
               </motion.div>
