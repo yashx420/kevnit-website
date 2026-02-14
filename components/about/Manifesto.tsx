@@ -1,3 +1,7 @@
+"use client";
+
+import { motion } from "framer-motion";
+
 const text =
   "We don't follow trends. We set them ablaze. Normal is dead. Chaos is the new order.";
 
