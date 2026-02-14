@@ -32,23 +32,15 @@ export function CursorMatrixEffect() {
       setTrail((prev) => [...prev.slice(-40), newPoint]); // Increased trail length
     };
 
-    const processMovement = (
-      x: number,
-      y: number,
-      target: HTMLElement,
-      isTouch: boolean,
-    ) => {
-      // Blocking logic: Only apply to Mouse. Touch ignores blocking.
-      if (!isTouch) {
-        const isBlocked =
-          target.closest(".no-cursor-effect") ||
-          target.closest("button") ||
-          target.closest("a");
+    const processMovement = (x: number, y: number, target: HTMLElement) => {
+      const isBlocked =
+        target.closest(".no-cursor-effect") ||
+        target.closest("button") ||
+        target.closest("a");
 
-        if (isBlocked) {
-          lastPos.current = null;
-          return;
-        }
+      if (isBlocked) {
+        lastPos.current = null;
+        return;
       }
 
       if (!lastPos.current) {
@@ -80,33 +72,13 @@ export function CursorMatrixEffect() {
     };
 
     const handleMouseMove = (e: MouseEvent) => {
-      processMovement(e.clientX, e.clientY, e.target as HTMLElement, false);
-    };
-
-    const handleTouchMove = (e: TouchEvent) => {
-      const touch = e.touches[0];
-      processMovement(
-        touch.clientX,
-        touch.clientY,
-        e.target as HTMLElement,
-        true,
-      );
-    };
-
-    const handleTouchStart = (e: TouchEvent) => {
-      const touch = e.touches[0];
-      lastPos.current = { x: touch.clientX, y: touch.clientY };
-      addPoint(touch.clientX, touch.clientY);
+      processMovement(e.clientX, e.clientY, e.target as HTMLElement);
     };
 
     window.addEventListener("mousemove", handleMouseMove);
-    window.addEventListener("touchmove", handleTouchMove, { passive: true });
-    window.addEventListener("touchstart", handleTouchStart, { passive: true });
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("touchmove", handleTouchMove);
-      window.removeEventListener("touchstart", handleTouchStart);
     };
   }, []);
 
