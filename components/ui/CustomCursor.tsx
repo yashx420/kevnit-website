@@ -8,14 +8,14 @@ export function CustomCursor() {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  const springConfig = { damping: 25, stiffness: 400 };
+  const springConfig = { damping: 40, stiffness: 800 };
   const cursorX = useSpring(mouseX, springConfig);
   const cursorY = useSpring(mouseY, springConfig);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      mouseX.set(e.clientX - 10);
-      mouseY.set(e.clientY - 10);
+      mouseX.set(e.clientX - 12);
+      mouseY.set(e.clientY - 12);
     };
 
     const handleMouseOver = (e: MouseEvent) => {

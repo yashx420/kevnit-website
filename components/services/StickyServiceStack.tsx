@@ -126,7 +126,7 @@ const Card = ({
           scale,
           marginTop: i * 20,
         }}
-        className="flex flex-col h-[60vh] md:h-[70vh] lg:h-[80vh] w-[95vw] md:w-[90vw] max-w-7xl rounded-3xl p-6 md:p-12 border border-white/10 bg-[#0A0A0A] overflow-hidden origin-top shadow-2xl"
+        className="flex flex-col h-[60vh] md:h-[70vh] lg:h-[80vh] w-[95vw] md:w-[90vw] max-w-7xl rounded-3xl p-6 md:p-12 border border-white/10 bg-[#0A0A0A] overflow-hidden origin-top shadow-2xl will-change-transform transform-gpu"
       >
         {/* Dynamic Background Glow */}
         <div
@@ -186,7 +186,7 @@ const Card = ({
                 size={180}
                 strokeWidth={0.5}
                 style={{ color }}
-                className="opacity-80 drop-shadow-[0_0_30px_rgba(255,255,255,0.2)]"
+                className="opacity-80"
               />
             </motion.div>
 

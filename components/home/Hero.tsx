@@ -74,13 +74,13 @@ export function Hero() {
         {/* Layer 1 - Moving against mouse & scroll */}
         <motion.div
           style={{ x: layer1X, y: y1 }}
-          className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] rounded-full bg-[#6BC323]/10 blur-[120px] mix-blend-screen opacity-30 md:opacity-100"
+          className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] rounded-full bg-[#6BC323]/10 blur-[120px] mix-blend-screen opacity-30 md:opacity-100 will-change-transform transform-gpu"
         />
 
         {/* Layer 2 - Moving with mouse & scroll */}
         <motion.div
           style={{ x: layer2X, y: y2 }}
-          className="absolute bottom-[-10%] left-[-10%] w-[700px] h-[700px] rounded-full bg-blue-500/10 blur-[150px] mix-blend-screen opacity-30 md:opacity-100"
+          className="absolute bottom-[-10%] left-[-10%] w-[700px] h-[700px] rounded-full bg-blue-500/10 blur-[150px] mix-blend-screen opacity-30 md:opacity-100 will-change-transform transform-gpu"
         />
 
         {/* Floating Particles */}
@@ -127,7 +127,7 @@ export function Hero() {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, ease: "easeOut" }}
-          className="will-change-transform"
+          className="will-change-transform transform-gpu"
         >
           {/* Large Hero Logo */}
           <motion.div
