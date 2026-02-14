@@ -1,151 +1,100 @@
+"use client";
+
 import { Navbar } from "@/components/layout/Navbar";
 import { Container } from "@/components/ui/Container";
-import { Button } from "@/components/ui/Button";
-import { AnimatedWrapper } from "@/components/AnimatedWrapper";
-import { Target, Lightbulb, Users, Zap, Shield, Rocket } from "lucide-react";
-import Link from "next/link";
 import { CTA } from "@/components/home/CTA";
-
-const values = [
-  {
-    icon: Lightbulb,
-    title: "Innovation",
-    desc: "We constantly explore new technologies to deliver cutting-edge solutions.",
-  },
-  {
-    icon: Shield,
-    title: "Reliability",
-    desc: "We build robust, secure systems you can count on 24/7.",
-  },
-  {
-    icon: Star,
-    title: "Quality",
-    desc: "We never compromise on code quality or user experience.",
-  },
-  {
-    icon: Zap,
-    title: "Speed",
-    desc: "We deliver optimized performance and fast turnaround times.",
-  },
-  {
-    icon: Rocket,
-    title: "Growth",
-    desc: "Your tailored success is our ultimate metric.",
-  },
-  {
-    icon: Users,
-    title: "Collaboration",
-    desc: "We work closely with you as an extension of your team.",
-  },
-];
-
-import { Star } from "lucide-react";
+import { Manifesto } from "@/components/about/Manifesto";
+import { StatsCounter } from "@/components/about/StatsCounter";
+import { ValuesList } from "@/components/about/ValuesList";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 
 export default function AboutPage() {
+  const container = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: container,
+    offset: ["start start", "end end"],
+  });
+
+  const heroScale = useTransform(scrollYProgress, [0, 0.2], [1, 1.5]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
+
   return (
-    <main className="min-h-screen bg-black text-white selection:bg-[#6BC323] selection:text-black">
+    <main
+      ref={container}
+      className="bg-black text-white selection:bg-[#6BC323] selection:text-black"
+    >
       <Navbar />
 
-      {/* Hero */}
-      <section className="pt-32 pb-20 relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-[500px] bg-gradient-to-b from-[#111] to-black -z-10" />
-        <Container>
-          <AnimatedWrapper className="text-center max-w-4xl mx-auto">
-            <h1 className="text-5xl md:text-7xl font-bold font-heading mb-8">
-              Driving Digital{" "}
-              <span className="text-[#6BC323]">Transformation</span>
+      {/* Hero Section */}
+      <section className="h-screen relative flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 bg-[url('/noise.png')] opacity-20 pointer-events-none mix-blend-overlay" />
+
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#6BC323]/10 blur-[150px] rounded-full pointer-events-none" />
+
+        <Container className="text-center relative z-10">
+          <motion.div style={{ scale: heroScale, opacity: heroOpacity }}>
+            <h1 className="text-[12vw] font-bold font-heading leading-[0.8] tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white to-white/20">
+              WE ARE
+              <br />
+              <span className="text-[#6BC323]">KEVNIT</span>
             </h1>
-            <p className="text-xl text-gray-400 leading-relaxed">
-              Kevnit Digital Solutions is a premier IT and Digital Marketing
-              agency dedicated to helping businesses thrive in the digital age.
-              We combine technical expertise with creative strategy to build
-              digital products that matter.
+            <p className="mt-8 text-xl md:text-2xl text-gray-400 max-w-2xl mx-auto tracking-wide uppercase">
+              Architects of the Digital Future
             </p>
-          </AnimatedWrapper>
+          </motion.div>
         </Container>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1, duration: 1 }}
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/30"
+        >
+          <span className="text-sm uppercase tracking-widest">
+            Scroll to Discover
+          </span>
+          <div className="w-[1px] h-12 bg-gradient-to-b from-white/0 via-white/50 to-white/0" />
+        </motion.div>
       </section>
 
-      {/* Mission & Vision */}
-      <section className="py-20 bg-[#0A0A0A] border-y border-white/5">
-        <Container>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <AnimatedWrapper
-              animation="slide-in-left"
-              className="bg-[#111] p-10 rounded-3xl border border-white/5 relative overflow-hidden group"
-            >
-              <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
-                <Target size={120} />
-              </div>
-              <div className="relative z-10">
-                <h2 className="text-3xl font-bold mb-4 text-white">
-                  Our Mission
-                </h2>
-                <p className="text-gray-400 text-lg leading-relaxed">
-                  To empower businesses with innovative digital solutions that
-                  drive growth, efficiency, and competitive advantage in a
-                  rapidly evolving market.
-                </p>
-              </div>
-            </AnimatedWrapper>
+      {/* The Manifesto (Scroll Reveal) */}
+      <Manifesto />
 
-            <AnimatedWrapper
-              animation="slide-in-right"
-              delay={0.2}
-              className="bg-[#111] p-10 rounded-3xl border border-white/5 relative overflow-hidden group"
-            >
-              <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
-                <Lightbulb size={120} />
-              </div>
-              <div className="relative z-10">
-                <h2 className="text-3xl font-bold mb-4 text-white">
-                  Our Vision
-                </h2>
-                <p className="text-gray-400 text-lg leading-relaxed">
-                  To be the global partner of choice for comprehensive digital
-                  services, known for excellence, integrity, and measurable
-                  results.
-                </p>
-              </div>
-            </AnimatedWrapper>
-          </div>
-        </Container>
-      </section>
+      {/* Stats Row */}
+      <StatsCounter />
 
-      {/* Values */}
-      <section className="py-24 bg-black">
-        <Container>
-          <AnimatedWrapper className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Our Core Values
-            </h2>
-            <p className="text-gray-400">
-              The principles that guide everything we do.
-            </p>
-          </AnimatedWrapper>
+      {/* Core Values (Interactive) */}
+      <ValuesList />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {values.map((val, index) => (
-              <AnimatedWrapper
-                key={index}
-                animation="fade-up"
-                delay={index * 0.1}
-              >
-                <div className="p-8 rounded-2xl bg-white/5 border border-white/10 hover:border-[#6BC323]/50 transition-colors group">
-                  <div className="w-12 h-12 rounded-full bg-[#6BC323]/10 flex items-center justify-center text-[#6BC323] mb-6 group-hover:scale-110 transition-transform">
-                    <val.icon size={24} />
-                  </div>
-                  <h3 className="text-xl font-bold mb-3 text-white">
-                    {val.title}
-                  </h3>
-                  <p className="text-gray-400">{val.desc}</p>
-                </div>
-              </AnimatedWrapper>
-            ))}
-          </div>
-        </Container>
+      {/* Team/Culture Marquee */}
+      <section className="py-20 bg-black overflow-hidden border-t border-white/5">
+        <div className="flex whitespace-nowrap">
+          <MarqueeItem />
+          <MarqueeItem />
+        </div>
       </section>
 
       <CTA />
     </main>
   );
 }
+
+const MarqueeItem = () => (
+  <motion.div
+    animate={{ x: "-100%" }}
+    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+    className="flex gap-20 pr-20"
+  >
+    {["CULTURE", "PASSION", "CODE", "DESIGN", "FUTURE", "KEVNIT"].map(
+      (text, i) => (
+        <span
+          key={i}
+          className="text-[150px] font-bold font-heading text-transparent stroke-text opacity-20 hover:opacity-100 hover:text-[#6BC323] transition-all duration-300 cursor-default"
+        >
+          {text}
+        </span>
+      ),
+    )}
+  </motion.div>
+);

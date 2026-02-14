@@ -133,7 +133,7 @@ const Card = ({
           scale,
           top: `calc(-5vh + ${i * 25}px)`,
         }}
-        className="flex flex-col relative -top-[25%] min-h-[600px] md:h-[70vh] w-[95vw] md:w-[90vw] max-w-7xl rounded-3xl p-8 md:p-14 border border-white/10 bg-[#0A0A0A] overflow-hidden origin-top shadow-2xl"
+        className="flex flex-col relative -top-[25%] h-[80vh] w-[95vw] md:h-[70vh] md:w-[90vw] max-w-7xl rounded-3xl p-6 md:p-14 border border-white/10 bg-[#0A0A0A] overflow-hidden origin-top shadow-2xl"
       >
         {/* Dynamic Background Glow */}
         <div

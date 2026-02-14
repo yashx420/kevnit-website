@@ -44,3 +44,7 @@
 body {
   @apply bg-[#0A0A0A] text-white;
 }
+.stroke-text {
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
+  color: transparent;
+}
