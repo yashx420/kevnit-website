@@ -59,6 +59,7 @@ export function ValuesList() {
               key={i}
               onHoverStart={() => setHovered(i)}
               onHoverEnd={() => setHovered(null)}
+              onClick={() => setHovered(hovered === i ? null : i)}
               animate={{
                 height: hovered === i ? 250 : 100,
                 opacity: hovered !== null && hovered !== i ? 0.3 : 1,
