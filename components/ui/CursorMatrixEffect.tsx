@@ -12,34 +12,13 @@ interface TrailPoint {
 
 export function CursorMatrixEffect() {
   const [trail, setTrail] = useState<TrailPoint[]>([]);
+  const lastPos = useRef<{ x: number; y: number } | null>(null);
+  // requestRef and previousTimeRef are no longer used with the new logic, but keeping them as they were not explicitly removed.
   const requestRef = useRef<number | null>(null);
   const previousTimeRef = useRef<number | null>(null);
 
   useEffect(() => {
-    let count = 0;
-
-    const spawnTrail = (
-      x: number,
-      y: number,
-      target: HTMLElement,
-      throttle: boolean = true,
-      ignoreBlocking: boolean = false,
-    ) => {
-      // Logic for blocking hover effects on interactive elements
-      // Only check this if ignoreBlocking is false (mouse behavior)
-      if (!ignoreBlocking) {
-        const isBlocked =
-          target.closest(".no-cursor-effect") ||
-          target.closest("button") ||
-          target.closest("a");
-
-        if (isBlocked) return;
-      }
-
-      count++;
-      // THROTTLE: Only limit spawn rate if requested (mouse)
-      if (throttle && count % 3 !== 0) return;
-
+    const addPoint = (x: number, y: number) => {
       const chars = ["0", "1"];
       const char = chars[Math.floor(Math.random() * chars.length)];
 
@@ -50,32 +29,84 @@ export function CursorMatrixEffect() {
         char,
       };
 
-      setTrail((prev) => [...prev.slice(-15), newPoint]);
+      setTrail((prev) => [...prev.slice(-40), newPoint]); // Increased trail length
+    };
+
+    const processMovement = (
+      x: number,
+      y: number,
+      target: HTMLElement,
+      isTouch: boolean,
+    ) => {
+      // Blocking logic: Only apply to Mouse. Touch ignores blocking.
+      if (!isTouch) {
+        const isBlocked =
+          target.closest(".no-cursor-effect") ||
+          target.closest("button") ||
+          target.closest("a");
+
+        if (isBlocked) {
+          lastPos.current = null;
+          return;
+        }
+      }
+
+      if (!lastPos.current) {
+        addPoint(x, y);
+        lastPos.current = { x, y };
+        return;
+      }
+
+      const dx = x - lastPos.current.x;
+      const dy = y - lastPos.current.y;
+      const dist = Math.hypot(dx, dy);
+
+      // Interpolation Step (Spatial Throttling)
+      // Ensure we have a point every ~15px
+      const step = 15;
+
+      if (dist > step) {
+        const steps = Math.floor(dist / step);
+        // Limit max steps to prevent freezing on huge jumps
+        const safeSteps = Math.min(steps, 20);
+
+        for (let i = 1; i <= safeSteps; i++) {
+          const tx = lastPos.current.x + (dx / steps) * i;
+          const ty = lastPos.current.y + (dy / steps) * i;
+          addPoint(tx, ty);
+        }
+        lastPos.current = { x, y };
+      }
     };
 
     const handleMouseMove = (e: MouseEvent) => {
-      spawnTrail(e.clientX, e.clientY, e.target as HTMLElement, true, false);
+      processMovement(e.clientX, e.clientY, e.target as HTMLElement, false);
     };
 
     const handleTouchMove = (e: TouchEvent) => {
       const touch = e.touches[0];
-      // No throttle and ignore blocking for touch to ensure smooth trail during scroll dragging
-      // because touch targets are sticky to the element touched first (which might be a button/link)
-      spawnTrail(
+      processMovement(
         touch.clientX,
         touch.clientY,
         e.target as HTMLElement,
-        false,
         true,
       );
     };
 
-    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    const handleTouchStart = (e: TouchEvent) => {
+      const touch = e.touches[0];
+      lastPos.current = { x: touch.clientX, y: touch.clientY };
+      addPoint(touch.clientX, touch.clientY);
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("touchmove", handleTouchMove, { passive: true });
+    window.addEventListener("touchstart", handleTouchStart, { passive: true });
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("touchmove", handleTouchMove);
+      window.removeEventListener("touchstart", handleTouchStart);
     };
   }, []);
 
