@@ -10,7 +10,7 @@ export function Manifesto() {
   const container = useRef(null);
   const { scrollYProgress } = useScroll({
     target: container,
-    offset: ["start 0.9", "start 0.5"],
+    offset: ["start 0.9", "center center"],
   });
 
   const words = text.split(" ");
@@ -23,8 +23,10 @@ export function Manifesto() {
           className="flex flex-wrap gap-x-4 gap-y-2 text-6xl md:text-9xl font-bold leading-tight relative text-center justify-center"
         >
           {words.map((word, i) => {
-            const start = i / words.length;
-            const end = start + 1 / words.length;
+            // Compress the animation to finish within the first 25% of the scroll range
+            const step = 0.25 / words.length;
+            const start = i * step;
+            const end = start + step;
             return (
               <Word key={i} progress={scrollYProgress} range={[start, end]}>
                 {word}
