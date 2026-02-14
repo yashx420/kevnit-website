@@ -16,11 +16,11 @@ export function Manifesto() {
   const words = text.split(" ");
 
   return (
-    <div className="py-32 md:py-60 bg-black min-h-screen flex flex-col items-center justify-start relative z-10 w-full overflow-hidden">
+    <div className="py-48 md:py-60 bg-black min-h-screen flex flex-col items-center justify-start relative z-10 w-full overflow-hidden">
       <div className="max-w-6xl mx-auto px-6">
         <p
           ref={container}
-          className="flex flex-wrap gap-x-4 gap-y-2 text-4xl md:text-7xl font-bold leading-tight relative text-center justify-center"
+          className="flex flex-wrap gap-x-4 gap-y-2 text-5xl md:text-7xl font-bold leading-tight relative text-center justify-center"
         >
           {words.map((word, i) => {
             const step = 0.2 / words.length;

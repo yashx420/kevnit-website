@@ -67,7 +67,7 @@ export function WhyChoose() {
   return (
     <section
       ref={container}
-      className="py-24 bg-black relative overflow-hidden perspective-1000"
+      className="py-12 md:py-24 bg-black relative overflow-hidden perspective-1000"
     >
       <div className="absolute top-0 right-0 w-1/3 h-full bg-[#6BC323]/5 blur-[100px] pointer-events-none" />
 
