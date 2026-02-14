@@ -16,7 +16,7 @@ export function Manifesto() {
   const words = text.split(" ");
 
   return (
-    <div className="py-12 md:py-60 bg-black min-h-[50vh] md:min-h-screen flex flex-col items-center justify-start relative z-10 w-full overflow-hidden">
+    <div className="py-12 md:py-60 bg-black min-h-0 md:min-h-screen flex flex-col items-center justify-start relative z-10 w-full overflow-hidden">
       <div className="max-w-6xl mx-auto px-6">
         <p
           ref={container}

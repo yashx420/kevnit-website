@@ -18,9 +18,13 @@ export function CursorMatrixEffect() {
   useEffect(() => {
     let count = 0;
 
-    const handlePointerMove = (e: PointerEvent) => {
+    const spawnTrail = (
+      x: number,
+      y: number,
+      target: HTMLElement,
+      throttle: boolean = true,
+    ) => {
       // Check if hovering over a card or interactive element
-      const target = e.target as HTMLElement;
       const isBlocked =
         target.closest(".no-cursor-effect") ||
         target.closest("button") ||
@@ -29,26 +33,39 @@ export function CursorMatrixEffect() {
       if (isBlocked) return;
 
       count++;
-      // Limit spawn rate
-      if (count % 3 !== 0) return;
+      // THROTTLE: Only limit spawn rate if requested (mouse)
+      if (throttle && count % 3 !== 0) return;
 
       const chars = ["0", "1"];
       const char = chars[Math.floor(Math.random() * chars.length)];
 
       const newPoint: TrailPoint = {
         id: Date.now() + Math.random(),
-        x: e.clientX,
-        y: e.clientY,
+        x,
+        y,
         char,
       };
 
       setTrail((prev) => [...prev.slice(-15), newPoint]);
     };
 
-    window.addEventListener("pointermove", handlePointerMove, {
-      passive: true,
-    });
-    return () => window.removeEventListener("pointermove", handlePointerMove);
+    const handleMouseMove = (e: MouseEvent) => {
+      spawnTrail(e.clientX, e.clientY, e.target as HTMLElement, true);
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      const touch = e.touches[0];
+      // No throttle for touch to ensure smooth trail during scroll dragging
+      spawnTrail(touch.clientX, touch.clientY, e.target as HTMLElement, false);
+    };
+
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    window.addEventListener("touchmove", handleTouchMove, { passive: true });
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("touchmove", handleTouchMove);
+    };
   }, []);
 
   useEffect(() => {
