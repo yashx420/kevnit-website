@@ -18,7 +18,9 @@ export function CursorMatrixEffect() {
   useEffect(() => {
     let count = 0;
 
-    const spawnTrail = (x: number, y: number, target: HTMLElement) => {
+    const handlePointerMove = (e: PointerEvent) => {
+      // Check if hovering over a card or interactive element
+      const target = e.target as HTMLElement;
       const isBlocked =
         target.closest(".no-cursor-effect") ||
         target.closest("button") ||
@@ -27,6 +29,7 @@ export function CursorMatrixEffect() {
       if (isBlocked) return;
 
       count++;
+      // Limit spawn rate
       if (count % 3 !== 0) return;
 
       const chars = ["0", "1"];
@@ -34,35 +37,18 @@ export function CursorMatrixEffect() {
 
       const newPoint: TrailPoint = {
         id: Date.now() + Math.random(),
-        x,
-        y,
+        x: e.clientX,
+        y: e.clientY,
         char,
       };
 
       setTrail((prev) => [...prev.slice(-15), newPoint]);
     };
 
-    const handleMouseMove = (e: MouseEvent) => {
-      spawnTrail(e.clientX, e.clientY, e.target as HTMLElement);
-    };
-
-    const handleTouchMove = (e: TouchEvent) => {
-      const touch = e.touches[0];
-      // Use document.elementFromPoint to get the actual element under finger if needed,
-      // but e.target is okay for approximation of "start".
-      // Actually, for a visual effect, we just want coordinates.
-      // Ignoring blocking on touch might be better because fingers cover buttons anyway?
-      // Let's keep blocking logic for consistency.
-      spawnTrail(touch.clientX, touch.clientY, e.target as HTMLElement);
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-    window.addEventListener("touchmove", handleTouchMove, { passive: true });
-
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("touchmove", handleTouchMove);
-    };
+    window.addEventListener("pointermove", handlePointerMove, {
+      passive: true,
+    });
+    return () => window.removeEventListener("pointermove", handlePointerMove);
   }, []);
 
   useEffect(() => {
