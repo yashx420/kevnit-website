@@ -24,7 +24,7 @@ export default function ServicesPage() {
 
         <Container className="text-center relative z-10 px-4">
           <motion.div style={{ scale: titleScale, opacity: titleOpacity }}>
-            <h1 className="text-6xl md:text-[10rem] font-bold font-heading mb-6 tracking-tighter leading-none">
+            <h1 className="text-5xl md:text-8xl lg:text-9xl font-bold font-heading mb-6 tracking-tighter leading-none select-none">
               OUR
               <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-b from-white to-white/20">
@@ -37,7 +37,7 @@ export default function ServicesPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}
-            className="text-xl md:text-2xl text-gray-400 max-w-2xl mx-auto mt-12"
+            className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mt-8 md:mt-12"
           >
             Digital craftsmanship for the bold.
           </motion.p>
@@ -46,10 +46,10 @@ export default function ServicesPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1, duration: 1 }}
-            className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/30"
+            className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/30"
           >
-            <span className="text-sm uppercase tracking-widest">Scroll</span>
-            <div className="w-[1px] h-12 bg-gradient-to-b from-white/0 via-white/50 to-white/0" />
+            <span className="text-xs uppercase tracking-widest">Scroll</span>
+            <div className="w-[1px] h-8 md:h-12 bg-gradient-to-b from-white/0 via-white/50 to-white/0" />
           </motion.div>
         </Container>
       </section>
