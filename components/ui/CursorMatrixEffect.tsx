@@ -13,23 +13,20 @@ interface TrailPoint {
 export function CursorMatrixEffect() {
   const [trail, setTrail] = useState<TrailPoint[]>([]);
   const lastPos = useRef<{ x: number; y: number } | null>(null);
-  // requestRef and previousTimeRef are no longer used with the new logic, but keeping them as they were not explicitly removed.
+  // requestRef is no longer used with the new logic, but keeping it as it was not explicitly removed.
   const requestRef = useRef<number | null>(null);
-  const previousTimeRef = useRef<number | null>(null);
 
   useEffect(() => {
-    const addPoint = (x: number, y: number) => {
+    const addPoints = (coords: { x: number; y: number }[]) => {
       const chars = ["0", "1"];
-      const char = chars[Math.floor(Math.random() * chars.length)];
-
-      const newPoint: TrailPoint = {
+      const newPoints = coords.map(({ x, y }) => ({
         id: Date.now() + Math.random(),
         x,
         y,
-        char,
-      };
+        char: chars[Math.floor(Math.random() * chars.length)],
+      }));
 
-      setTrail((prev) => [...prev.slice(-40), newPoint]); // Increased trail length
+      setTrail((prev) => [...prev.slice(-60), ...newPoints]); // Increased trail length & batch update
     };
 
     const processMovement = (
@@ -52,7 +49,7 @@ export function CursorMatrixEffect() {
       }
 
       if (!lastPos.current) {
-        addPoint(x, y);
+        addPoints([{ x, y }]);
         lastPos.current = { x, y };
         return;
       }
@@ -62,21 +59,26 @@ export function CursorMatrixEffect() {
       const dist = Math.hypot(dx, dy);
 
       // Interpolation Step (Spatial Throttling)
-      // Ensure we have a point every ~15px
-      const step = 15;
+      // Ensure we have a point every ~5px (Very Dense)
+      const step = 5;
+      const pointsToAdd = [];
 
       if (dist > step) {
         const steps = Math.floor(dist / step);
-        // Limit max steps to prevent freezing on huge jumps
-        const safeSteps = Math.min(steps, 20);
+        const safeSteps = Math.min(steps, 50); // Limit max points per frame
 
         for (let i = 1; i <= safeSteps; i++) {
           const tx = lastPos.current.x + (dx / steps) * i;
           const ty = lastPos.current.y + (dy / steps) * i;
-          addPoint(tx, ty);
+          pointsToAdd.push({ x: tx, y: ty });
         }
-        lastPos.current = { x, y };
+      } else {
+        // Even if moved slightly, add a point to keep it alive
+        pointsToAdd.push({ x, y });
       }
+
+      addPoints(pointsToAdd);
+      lastPos.current = { x, y };
     };
 
     const handleMouseMove = (e: MouseEvent) => {
@@ -96,7 +98,7 @@ export function CursorMatrixEffect() {
     const handleTouchStart = (e: TouchEvent) => {
       const touch = e.touches[0];
       lastPos.current = { x: touch.clientX, y: touch.clientY };
-      addPoint(touch.clientX, touch.clientY);
+      addPoints([{ x: touch.clientX, y: touch.clientY }]);
     };
 
     window.addEventListener("mousemove", handleMouseMove);
