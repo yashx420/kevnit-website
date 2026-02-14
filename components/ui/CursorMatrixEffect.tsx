@@ -23,14 +23,18 @@ export function CursorMatrixEffect() {
       y: number,
       target: HTMLElement,
       throttle: boolean = true,
+      ignoreBlocking: boolean = false,
     ) => {
-      // Check if hovering over a card or interactive element
-      const isBlocked =
-        target.closest(".no-cursor-effect") ||
-        target.closest("button") ||
-        target.closest("a");
+      // Logic for blocking hover effects on interactive elements
+      // Only check this if ignoreBlocking is false (mouse behavior)
+      if (!ignoreBlocking) {
+        const isBlocked =
+          target.closest(".no-cursor-effect") ||
+          target.closest("button") ||
+          target.closest("a");
 
-      if (isBlocked) return;
+        if (isBlocked) return;
+      }
 
       count++;
       // THROTTLE: Only limit spawn rate if requested (mouse)
@@ -50,13 +54,20 @@ export function CursorMatrixEffect() {
     };
 
     const handleMouseMove = (e: MouseEvent) => {
-      spawnTrail(e.clientX, e.clientY, e.target as HTMLElement, true);
+      spawnTrail(e.clientX, e.clientY, e.target as HTMLElement, true, false);
     };
 
     const handleTouchMove = (e: TouchEvent) => {
       const touch = e.touches[0];
-      // No throttle for touch to ensure smooth trail during scroll dragging
-      spawnTrail(touch.clientX, touch.clientY, e.target as HTMLElement, false);
+      // No throttle and ignore blocking for touch to ensure smooth trail during scroll dragging
+      // because touch targets are sticky to the element touched first (which might be a button/link)
+      spawnTrail(
+        touch.clientX,
+        touch.clientY,
+        e.target as HTMLElement,
+        false,
+        true,
+      );
     };
 
     window.addEventListener("mousemove", handleMouseMove, { passive: true });
