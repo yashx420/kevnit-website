@@ -10,7 +10,7 @@ export function Manifesto() {
   const container = useRef(null);
   const { scrollYProgress } = useScroll({
     target: container,
-    offset: ["start 0.6", "start 0.2"],
+    offset: ["start 0.9", "start 0.4"],
   });
 
   const words = text.split(" ");
