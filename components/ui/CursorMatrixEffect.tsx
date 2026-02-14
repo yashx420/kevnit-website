@@ -18,6 +18,14 @@ export function CursorMatrixEffect() {
   const previousTimeRef = useRef<number | null>(null);
 
   useEffect(() => {
+    // Completely disable effect on touch devices (phones/tablets)
+    if (
+      typeof window !== "undefined" &&
+      window.matchMedia("(pointer: coarse)").matches
+    ) {
+      return;
+    }
+
     const addPoint = (x: number, y: number) => {
       const chars = ["0", "1"];
       const char = chars[Math.floor(Math.random() * chars.length)];
