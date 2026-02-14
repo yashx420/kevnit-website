@@ -30,18 +30,6 @@ const services = [
     color: "#6BC323",
   },
   {
-    title: "Web App Development",
-    icon: Monitor,
-    description: "Scalable and secure web apps built with modern frameworks.",
-    deliverables: [
-      "Custom Functionality",
-      "Database Integration",
-      "API Development",
-      "User Authentication",
-    ],
-    color: "#3B82F6",
-  },
-  {
     title: "Mobile App Development",
     icon: Smartphone,
     description: "Native and cross-platform mobile apps for iOS and Android.",
