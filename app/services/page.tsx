@@ -11,7 +11,7 @@ export default function ServicesPage() {
   const targetRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: targetRef,
-    offset: ["start end", "end start"],
+    offset: ["start start", "end start"],
   });
 
   const titleScale = useTransform(scrollYProgress, [0, 0.5], [1, 1.2]);
