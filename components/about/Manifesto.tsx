@@ -10,17 +10,17 @@ export function Manifesto() {
   const container = useRef(null);
   const { scrollYProgress } = useScroll({
     target: container,
-    offset: ["start 0.9", "center center"],
+    offset: ["start 0.75", "start 0.45"],
   });
 
   const words = text.split(" ");
 
   return (
     <div className="py-48 md:py-60 bg-black min-h-screen flex flex-col items-center justify-start">
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-6">
         <p
           ref={container}
-          className="flex flex-wrap gap-x-6 gap-y-4 text-5xl md:text-7xl font-bold leading-tight"
+          className="flex flex-wrap gap-x-8 gap-y-6 text-6xl md:text-9xl font-bold leading-tight"
         >
           {words.map((word, i) => {
             const start = i / words.length;
