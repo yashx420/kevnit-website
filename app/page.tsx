@@ -22,8 +22,8 @@ export default function Home() {
       <Process />
       <Testimonials />
       <FAQ />
-      <CTA />
       <Accreditations />
+      <CTA />
     </main>
   );
 }

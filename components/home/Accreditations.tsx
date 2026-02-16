@@ -6,15 +6,15 @@ import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 
 const accreditations = [
-  "/accreds/Importance-1-e1536998812445.png",
-  "/accreds/Screenshot 2026-02-16 105626.png",
-  "/accreds/Screenshot 2026-02-16 105630.png",
-  "/accreds/Screenshot 2026-02-16 105635.png",
-  "/accreds/Screenshot 2026-02-16 105638.png",
-  "/accreds/Screenshot 2026-02-16 105648.png",
-  "/accreds/Screenshot 2026-02-16 105655.png",
-  "/accreds/Screenshot 2026-02-16 105700.png",
-  "/accreds/Screenshot 2026-02-16 105704.png",
+  "/accreds/accred-105626.png",
+  "/accreds/accred-105630.png",
+  "/accreds/accred-105635.png",
+  "/accreds/accred-105638.png",
+  "/accreds/accred-105648.png",
+  "/accreds/accred-105655.png",
+  "/accreds/accred-105700.png",
+  "/accreds/accred-105704.png",
+  "/accreds/accred-110921.png",
 ];
 
 export function Accreditations() {
