@@ -188,7 +188,7 @@ export function Hero() {
               transition={{ delay: 0.5, duration: 0.8, ease: "easeOut" }}
               className="inline-block mb-1 md:mb-0"
             >
-              Unaiza ❤️
+              We Build
             </motion.span>{" "}
             <br />
             <span className="relative inline-block">
