@@ -128,7 +128,7 @@ export function Process() {
 
                         <div className="relative mb-4 inline-block">
                           <span className="text-4xl">{step.icon}</span>
-                          <div className="absolute inset-0 filter blur-xl opacity-50 bg-[#6BC323] rounded-full" />
+                          <div className="absolute inset-0 filter blur-xl opacity-20 md:opacity-50 bg-[#6BC323] rounded-full" />
                         </div>
 
                         <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-[#6BC323] transition-colors">

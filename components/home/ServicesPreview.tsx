@@ -94,7 +94,7 @@ export function ServicesPreview() {
       className="bg-black relative mt-12 md:mt-24"
       ref={container}
     >
-      <div className="pt-12 pb-6 text-center sticky top-0 bg-black/80 backdrop-blur-md z-40 border-b border-white/5 mb-8">
+      <div className="pt-12 pb-6 text-center sticky top-0 bg-black/80 backdrop-blur-md z-40 border-b border-white/5 mb-4 md:mb-8">
         <Container>
           <motion.div
             initial={{ opacity: 0, y: -20 }}
@@ -120,7 +120,7 @@ export function ServicesPreview() {
       </div>
 
       <Container>
-        <div className="flex flex-col items-center gap-y-0 pb-20 md:pb-40">
+        <div className="flex flex-col items-center gap-y-0 pb-10 md:pb-40">
           {services.map((service, index) => {
             // Target scale drops slightly for each subsequent card
             const targetScale = 1 - (services.length - index) * 0.05;
@@ -209,9 +209,9 @@ const Card = ({
 
         <div className="flex flex-col md:flex-row h-full">
           {/* Left: Content */}
-          <div className="p-5 md:p-6 xl:p-8 flex flex-col justify-between w-full md:w-3/5 relative z-10">
+          <div className="p-4 md:p-6 xl:p-8 flex flex-col justify-between w-full md:w-3/5 relative z-10">
             <div>
-              <div className="flex justify-between items-start mb-6">
+              <div className="flex justify-between items-start mb-4 md:mb-6">
                 <div
                   className={`w-12 h-12 rounded-2xl flex items-center justify-center bg-gradient-to-br ${color} shadow-lg`}
                 >
@@ -222,7 +222,7 @@ const Card = ({
                 </span>
               </div>
 
-              <h3 className="text-4xl md:text-3xl lg:text-4xl font-bold font-heading text-white mb-4 leading-tight">
+              <h3 className="text-4xl md:text-3xl lg:text-4xl font-bold font-heading text-white mb-2 md:mb-4 leading-tight">
                 {title}
               </h3>
               <p className="text-xl md:text-lg text-gray-400 leading-relaxed opacity-90">

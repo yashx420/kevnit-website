@@ -36,7 +36,7 @@ export function Testimonials() {
   return (
     <section className="py-24 bg-black relative">
       <Container>
-        <div className="text-center mb-12">
+        <div className="text-center mb-8 md:mb-12">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -56,7 +56,7 @@ export function Testimonials() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="absolute -top-12 -right-12 text-white/10 pointer-events-none z-20"
           >
-            <Quote size={120} />
+            <Quote className="w-20 h-20 md:w-32 md:h-32" />
           </motion.div>
 
           <motion.div
@@ -64,7 +64,7 @@ export function Testimonials() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="bg-[#111] rounded-3xl p-8 md:p-12 border border-white/5 relative z-10 min-h-[400px] flex items-center justify-center cursor-grab active:cursor-grabbing no-cursor-effect"
+            className="bg-[#111] rounded-3xl p-6 md:p-12 border border-white/5 relative z-10 min-h-[300px] md:min-h-[400px] flex items-center justify-center cursor-grab active:cursor-grabbing no-cursor-effect"
           >
             <AnimatePresence mode="wait">
               <motion.div
@@ -76,7 +76,7 @@ export function Testimonials() {
                 className="text-center flex flex-col justify-between h-full"
               >
                 <div className="flex-grow flex items-center justify-center">
-                  <p className="text-xl md:text-2xl text-gray-300 italic mb-8 leading-relaxed max-w-2xl mx-auto">
+                  <p className="text-lg md:text-2xl text-gray-300 italic mb-4 md:mb-8 leading-relaxed max-w-2xl mx-auto">
                     "{testimonials[current].text}"
                   </p>
                 </div>
