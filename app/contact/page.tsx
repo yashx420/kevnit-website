@@ -65,7 +65,10 @@ export default function ContactPage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             {/* Contact Info */}
-            <AnimatedWrapper animation="slide-in-left">
+            <AnimatedWrapper
+              animation="slide-in-left"
+              className="order-2 lg:order-1"
+            >
               <div className="bg-[#111] p-10 rounded-3xl border border-white/5 h-full">
                 <h2 className="text-3xl font-bold mb-8 text-white">
                   Contact Information
@@ -142,7 +145,11 @@ export default function ContactPage() {
             </AnimatedWrapper>
 
             {/* Form */}
-            <AnimatedWrapper animation="slide-in-right" delay={0.2}>
+            <AnimatedWrapper
+              animation="slide-in-right"
+              delay={0.2}
+              className="order-1 lg:order-2"
+            >
               <form
                 onSubmit={handleSubmit}
                 className="bg-[#111] p-10 rounded-3xl border border-white/5 space-y-6 shadow-2xl shadow-black/50 relative overflow-hidden"

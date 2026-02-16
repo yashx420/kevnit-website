@@ -37,7 +37,7 @@ export default function ServicesPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}
-            className="text-xl md:text-2xl text-gray-400 max-w-2xl mx-auto mt-32 md:mt-40"
+            className="text-xl md:text-2xl text-gray-400 max-w-2xl mx-auto mt-64 md:mt-40"
           >
             Digital craftsmanship for the bold.
           </motion.p>
