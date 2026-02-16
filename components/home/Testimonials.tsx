@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Container } from "@/components/ui/Container";
-import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
+import { ChevronLeft, ChevronRight, Quote, Star } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 
 const testimonials = [
@@ -46,6 +46,32 @@ export function Testimonials() {
           >
             Client Stories
           </motion.h2>
+
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="inline-flex items-center gap-3 px-5 py-2.5 bg-white/5 border border-white/10 rounded-full backdrop-blur-md hover:bg-white/10 transition-colors cursor-default"
+          >
+            <div className="flex gap-1">
+              {[1, 2, 3, 4, 5].map((star) => (
+                <Star
+                  key={star}
+                  className={`w-4 h-4 ${
+                    star <= 4
+                      ? "text-yellow-400 fill-yellow-400"
+                      : "text-yellow-400 fill-yellow-400/30"
+                  }`}
+                />
+              ))}
+            </div>
+            <div className="flex flex-col items-start leading-none">
+              <span className="text-sm font-medium text-white/90">
+                <span className="font-bold text-white">4.8</span> Google Rating
+              </span>
+            </div>
+          </motion.div>
         </div>
 
         <div className="max-w-4xl mx-auto relative">
