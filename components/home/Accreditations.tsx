@@ -32,7 +32,7 @@ export function Accreditations() {
             className="flex gap-16 item-center min-w-max"
             animate={{ x: "-50%" }}
             transition={{
-              duration: 20,
+              duration: 10,
               ease: "linear",
               repeat: Infinity,
             }}

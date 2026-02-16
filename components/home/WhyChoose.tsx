@@ -62,12 +62,12 @@ export function WhyChoose() {
 
   const rotate = useTransform(
     scrollYProgress,
-    [0, 0.2, 0.8, 1],
+    [0, 0.4, 0.8, 1],
     [0, 0, 360, 360],
   );
   const scale = useTransform(
     scrollYProgress,
-    [0, 0.2, 0.8, 1],
+    [0, 0.4, 0.8, 1],
     [0.8, 1, 1, 0.8],
   );
   const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
