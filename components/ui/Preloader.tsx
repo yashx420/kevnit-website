@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLoading } from "@/context/LoadingContext";
 
 export function Preloader() {
-  const [isLoading, setIsLoading] = useState(true);
+  const { isLoading, setIsLoading } = useLoading();
 
   useEffect(() => {
     const handleLoad = () => {
@@ -30,7 +31,7 @@ export function Preloader() {
       window.removeEventListener("load", handleLoad);
       clearTimeout(timeout);
     };
-  }, []);
+  }, [setIsLoading]);
 
   useEffect(() => {
     if (isLoading) {

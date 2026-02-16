@@ -12,10 +12,22 @@ import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { useLoading } from "@/context/LoadingContext";
 
 export function Hero() {
   const { scrollY } = useScroll();
   const [particles, setParticles] = useState<any[]>([]);
+  const { isLoading } = useLoading();
+  const [startAnimation, setStartAnimation] = useState(false);
+
+  useEffect(() => {
+    if (!isLoading) {
+      const timer = setTimeout(() => {
+        setStartAnimation(true);
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, [isLoading]);
 
   // Scroll Parallax settings
   const y1 = useTransform(scrollY, [0, 500], [0, 200]);
@@ -125,14 +137,20 @@ export function Hero() {
             transformStyle: "preserve-3d",
           }}
           initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
+          animate={
+            startAnimation
+              ? { opacity: 1, scale: 1 }
+              : { opacity: 0, scale: 0.9 }
+          }
           transition={{ duration: 1, ease: "easeOut" }}
           className="will-change-transform transform-gpu"
         >
           {/* Large Hero Logo */}
           <motion.div
             initial={{ opacity: 0, y: -50 }}
-            animate={{ opacity: 1, y: 0 }}
+            animate={
+              startAnimation ? { opacity: 1, y: 0 } : { opacity: 0, y: -50 }
+            }
             transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
             className="flex justify-center mb-10 mt-16 md:mb-6 md:mt-12 md:hidden"
           >
@@ -155,7 +173,7 @@ export function Hero() {
 
           <motion.span
             className="hidden md:inline-block py-1 px-3 rounded-full bg-white/5 border border-white/10 text-[#6BC323] text-sm font-medium mb-2 backdrop-blur-sm"
-            animate={{ y: [0, -10, 0] }}
+            animate={startAnimation ? { y: [0, -10, 0] } : { y: 0 }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
           >
             🚀 Elevate Your Digital Presence
@@ -164,7 +182,9 @@ export function Hero() {
           <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold font-heading text-white mb-10 md:mb-6 leading-[1.1] md:leading-tight tracking-tight px-4 [transform:translateZ(50px)]">
             <motion.span
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              animate={
+                startAnimation ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
+              }
               transition={{ delay: 0.5, duration: 0.8, ease: "easeOut" }}
               className="inline-block mb-1 md:mb-0"
             >
@@ -174,10 +194,14 @@ export function Hero() {
             <span className="relative inline-block">
               <motion.span
                 className="text-transparent bg-clip-text bg-gradient-to-r from-[#6BC323] via-[#6BC323] to-[#6BC323] bg-[length:200%_auto] relative z-10"
-                animate={{ backgroundPosition: ["0% center", "200% center"] }}
+                animate={
+                  startAnimation
+                    ? { backgroundPosition: ["0% center", "200% center"] }
+                    : { backgroundPosition: "0% center" }
+                }
                 transition={{ duration: 3, ease: "linear" }}
                 initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+                whileInView={startAnimation ? { opacity: 1, scale: 1 } : {}}
                 viewport={{ once: true }}
               >
                 Digital Experiences
@@ -185,7 +209,7 @@ export function Hero() {
               <motion.div
                 className="absolute -bottom-2 left-0 w-full h-[3px] bg-[#6BC323] rounded-full"
                 initial={{ scaleX: 0 }}
-                animate={{ scaleX: 1 }}
+                animate={startAnimation ? { scaleX: 1 } : { scaleX: 0 }}
                 transition={{ delay: 1.2, duration: 1, ease: "circOut" }}
                 style={{ originX: 0 }}
               />
@@ -193,7 +217,9 @@ export function Hero() {
             <br />
             <motion.span
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              animate={
+                startAnimation ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
+              }
               transition={{ delay: 0.8, duration: 0.8, ease: "easeOut" }}
               className="inline-block mt-4 md:mt-0"
             >
