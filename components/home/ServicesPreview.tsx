@@ -201,7 +201,7 @@ const Card = ({
           flex flex-col relative 
           w-full md:w-[85vw] lg:w-[70vw] xl:w-[60vw] max-w-4xl 
           min-h-[50vh] md:min-h-0 md:h-[55vh] lg:h-[60vh] xl:h-[60vh] 
-          md:rounded-[2rem] overflow-hidden md:border border-white/10 origin-top shadow-[0_0_50px_rgba(0,0,0,0.5)] ${bg}
+          rounded-3xl md:rounded-[2rem] overflow-hidden md:border border-white/10 origin-top shadow-[0_0_50px_rgba(0,0,0,0.5)] ${bg}
           relative no-cursor-effect
         `}
       >
