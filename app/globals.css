@@ -41,6 +41,12 @@
   @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-emerald-400;
 }
 
+@media (min-width: 768px) {
+  * {
+    cursor: none !important;
+  }
+}
+
 body {
   @apply bg-[#0A0A0A] text-white;
 }
