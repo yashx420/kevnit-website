@@ -161,12 +161,12 @@ export function Hero() {
             🚀 Elevate Your Digital Presence
           </motion.span>
 
-          <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold font-heading text-white mb-10 md:mb-6 leading-tight tracking-tight px-4 [transform:translateZ(50px)]">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold font-heading text-white mb-10 md:mb-6 leading-[1.1] md:leading-tight tracking-tight px-4 [transform:translateZ(50px)]">
             <motion.span
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.8, ease: "easeOut" }}
-              className="inline-block mb-4 md:mb-0"
+              className="inline-block mb-1 md:mb-0"
             >
               We Build
             </motion.span>{" "}
