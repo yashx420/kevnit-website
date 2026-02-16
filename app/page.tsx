@@ -8,20 +8,22 @@ import { Process } from "@/components/home/Process";
 import { Testimonials } from "@/components/home/Testimonials";
 import { FAQ } from "@/components/home/FAQ";
 import { CTA } from "@/components/home/CTA";
+import { Accreditations } from "@/components/home/Accreditations";
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-black text-white selection:bg-[#00E676] selection:text-black">
       <Navbar />
-        <Hero />
-        <Trust />
-        <ServicesPreview />
-        <WhyChoose />
-        <Stats />
-        <Process />
-        <Testimonials />
-        <FAQ />
-        <CTA />
+      <Hero />
+      <Trust />
+      <ServicesPreview />
+      <WhyChoose />
+      <Stats />
+      <Process />
+      <Testimonials />
+      <FAQ />
+      <CTA />
+      <Accreditations />
     </main>
   );
 }
