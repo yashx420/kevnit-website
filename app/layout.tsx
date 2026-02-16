@@ -24,6 +24,10 @@ import { BackgroundSpotlight } from "@/components/ui/BackgroundSpotlight";
 
 // ... (keep imports)
 
+import { Preloader } from "@/components/ui/Preloader";
+
+// ... (keep imports)
+
 import { Footer } from "@/components/layout/Footer";
 
 export default function RootLayout({
@@ -36,6 +40,7 @@ export default function RootLayout({
       <body
         className={`${outfit.className} antialiased bg-[#0A0A0A] text-white selection:bg-[#6BC323] selection:text-black cursor-none`}
       >
+        <Preloader />
         <SmoothScroll />
         <CustomCursor />
         <CursorMatrixEffect />
