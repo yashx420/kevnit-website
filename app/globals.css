@@ -37,8 +37,50 @@
   @apply backdrop-blur-md bg-white/5 border border-white/10;
 }
 
+/* Safari-specific backdrop-blur optimization */
+@supports (-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px)) {
+  .glass-card {
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
+}
+
+/* Reduce backdrop-blur intensity on Safari for better performance */
+@media not all and (min-resolution: 0.001dpcm) {
+  @supports (-webkit-appearance: none) {
+    .glass-card {
+      -webkit-backdrop-filter: blur(4px);
+      backdrop-filter: blur(4px);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    /* Reduce all backdrop-blur on Safari */
+    .backdrop-blur-xl {
+      -webkit-backdrop-filter: blur(12px) !important;
+      backdrop-filter: blur(12px) !important;
+    }
+
+    .backdrop-blur-md {
+      -webkit-backdrop-filter: blur(6px) !important;
+      backdrop-filter: blur(6px) !important;
+    }
+
+    .backdrop-blur-sm {
+      -webkit-backdrop-filter: blur(3px) !important;
+      backdrop-filter: blur(3px) !important;
+    }
+  }
+}
+
 .text-gradient {
   @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-emerald-400;
+}
+
+/* GPU acceleration hints for Safari */
+.will-change-transform {
+  will-change: transform;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
 }
 
 @media (min-width: 768px) {

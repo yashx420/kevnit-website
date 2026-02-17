@@ -94,7 +94,7 @@ export function ServicesPreview() {
       className="bg-black relative mt-12 md:mt-24"
       ref={container}
     >
-      <div className="pt-12 pb-6 text-center sticky top-0 bg-black/80 backdrop-blur-md z-40 border-b border-white/5 mb-4 md:mb-8">
+      <div className="pt-12 pb-6 text-center sticky top-0 bg-black/90 backdrop-blur-sm z-40 border-b border-white/5 mb-4 md:mb-8">
         <Container>
           <motion.div
             initial={{ opacity: 0, y: -20 }}
@@ -257,7 +257,7 @@ const Card = ({
                 initial={{ rotate: 0 }}
                 animate={{ rotate: 360 }}
                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                className="relative z-10 w-40 h-40 border border-white/10 rounded-2xl backdrop-blur-md bg-white/5 flex items-center justify-center"
+                className="relative z-10 w-40 h-40 border border-white/10 rounded-2xl backdrop-blur-sm bg-white/5 flex items-center justify-center"
               >
                 <Icon className="w-16 h-16 text-white/80 opacity-50" />
               </motion.div>

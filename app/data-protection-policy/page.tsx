@@ -78,7 +78,7 @@ export default function DataProtectionPolicy() {
           <div className="max-w-4xl mx-auto space-y-12">
             {policySections.map((section, index) => (
               <AnimatedWrapper key={section.id} delay={index * 0.1}>
-                <div className="bg-[#111]/40 backdrop-blur-xl p-8 md:p-12 rounded-[2rem] border border-white/5 hover:border-[#6BC323]/20 transition-all duration-500">
+                <div className="bg-[#111]/40 backdrop-blur-md p-8 md:p-12 rounded-[2rem] border border-white/5 hover:border-[#6BC323]/20 transition-all duration-500">
                   <h2 className="text-2xl md:text-3xl font-bold mb-6 text-white transition-colors">
                     {section.title}
                   </h2>

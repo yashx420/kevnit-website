@@ -142,7 +142,7 @@ export default function PrivacyPolicy() {
                   {/* Decorative line */}
                   <div className="absolute -left-8 top-0 bottom-0 w-[1px] bg-white/5 group-hover:bg-[#6BC323]/30 transition-colors" />
 
-                  <div className="bg-[#111]/40 backdrop-blur-xl p-8 md:p-12 rounded-[2rem] border border-white/5 hover:border-[#6BC323]/20 transition-all duration-500 hover:shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
+                  <div className="bg-[#111]/40 backdrop-blur-md p-8 md:p-12 rounded-[2rem] border border-white/5 hover:border-[#6BC323]/20 transition-all duration-500 hover:shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
                     <h2 className="text-2xl md:text-3xl font-bold mb-6 text-white group-hover:text-[#6BC323] transition-colors">
                       {section.title}
                     </h2>

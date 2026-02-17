@@ -86,13 +86,13 @@ export function Hero() {
         {/* Layer 1 - Moving against mouse & scroll */}
         <motion.div
           style={{ x: layer1X, y: y1 }}
-          className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] rounded-full bg-[#6BC323]/10 blur-[120px] mix-blend-screen opacity-30 md:opacity-100 will-change-transform transform-gpu"
+          className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] rounded-full bg-[#6BC323]/10 blur-[60px] mix-blend-screen opacity-30 md:opacity-100 will-change-transform transform-gpu"
         />
 
         {/* Layer 2 - Moving with mouse & scroll */}
         <motion.div
           style={{ x: layer2X, y: y2 }}
-          className="absolute bottom-[-10%] left-[-10%] w-[700px] h-[700px] rounded-full bg-blue-500/10 blur-[150px] mix-blend-screen opacity-30 md:opacity-100 will-change-transform transform-gpu"
+          className="absolute bottom-[-10%] left-[-10%] w-[700px] h-[700px] rounded-full bg-blue-500/10 blur-[80px] mix-blend-screen opacity-30 md:opacity-100 will-change-transform transform-gpu"
         />
 
         {/* Floating Particles */}
@@ -172,7 +172,7 @@ export function Hero() {
           </motion.div>
 
           <motion.span
-            className="hidden md:inline-block py-1 px-3 rounded-full bg-white/5 border border-white/10 text-[#6BC323] text-sm font-medium mb-2 backdrop-blur-sm"
+            className="hidden md:inline-block py-1 px-3 rounded-full bg-white/5 border border-white/10 text-[#6BC323] text-sm font-medium mb-2 backdrop-blur-[2px]"
             animate={startAnimation ? { y: [0, -10, 0] } : { y: 0 }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
           >

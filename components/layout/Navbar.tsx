@@ -68,7 +68,7 @@ export function Navbar() {
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 100, opacity: 0, transition: { duration: 0.5 } }}
             transition={{ duration: 0.3 }}
-            className="fixed bottom-8 left-1/2 -translate-x-1/2 w-[95%] max-w-5xl rounded-2xl py-3 border border-white/10 bg-black/60 backdrop-blur-xl shadow-[0_0_30px_rgba(0,0,0,0.5)] z-50"
+            className="fixed bottom-8 left-1/2 -translate-x-1/2 w-[95%] max-w-5xl rounded-2xl py-3 border border-white/10 bg-black/80 backdrop-blur-md shadow-[0_0_30px_rgba(0,0,0,0.5)] z-50"
           >
             <div className="px-6">
               <NavContent

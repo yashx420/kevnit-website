@@ -1,44 +1,54 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 
 export function BackgroundSpotlight() {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
+  const [isMobile, setIsMobile] = useState(false);
 
-  const springConfig = { damping: 30, stiffness: 500 }; // Snappier for responsiveness
+  const springConfig = { damping: 30, stiffness: 500 };
   const x = useSpring(mouseX, springConfig);
   const y = useSpring(mouseY, springConfig);
 
   useEffect(() => {
+    // Detect mobile/touch devices
+    const checkMobile = () => {
+      setIsMobile(
+        window.matchMedia("(pointer: coarse)").matches ||
+          window.innerWidth < 768,
+      );
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
     const handleMouseMove = (e: MouseEvent) => {
-      mouseX.set(e.clientX);
-      mouseY.set(e.clientY);
+      if (!isMobile) {
+        mouseX.set(e.clientX);
+        mouseY.set(e.clientY);
+      }
     };
 
     window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [mouseX, mouseY]);
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("resize", checkMobile);
+    };
+  }, [mouseX, mouseY, isMobile]);
+
+  // Disable on mobile for better performance
+  if (isMobile) {
+    return null;
+  }
 
   return (
     <>
-      {/* Heavy Interaction Layer (follows cursor with mix-blend) */}
+      {/* Simplified cursor follow - removed for Safari performance */}
+      {/* Primary Spotlight (Behind content) - Reduced blur */}
       <motion.div
-        className="fixed inset-0 pointer-events-none z-[60]"
-        style={{
-          background: useTransform(
-            [x, y],
-            ([mx, my]) =>
-              `radial-gradient(circle at ${mx}px ${my}px, rgba(0, 230, 118, 0.15), transparent 50%)`,
-          ),
-          mixBlendMode: "plus-lighter",
-        }}
-      />
-
-      {/* Primary Spotlight (Behind content) */}
-      <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-[51]"
+        className="fixed top-0 left-0 pointer-events-none z-[51] will-change-transform"
         style={{
           x,
           y,
@@ -48,21 +58,24 @@ export function BackgroundSpotlight() {
       >
         <motion.div
           animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3],
+            scale: [1, 1.15, 1],
+            opacity: [0.2, 0.35, 0.2],
           }}
           transition={{
-            duration: 4,
+            duration: 5,
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="w-[1000px] h-[1000px] rounded-full bg-gradient-radial from-[#00E676]/20 via-blue-500/10 to-transparent blur-[120px] mix-blend-screen"
+          className="w-[800px] h-[800px] rounded-full bg-gradient-radial from-[#00E676]/15 via-blue-500/8 to-transparent blur-[80px]"
+          style={{
+            willChange: "transform, opacity",
+          }}
         />
       </motion.div>
 
-      {/* Secondary Orbiting Glow */}
+      {/* Secondary Glow - Simplified animation */}
       <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-[52]"
+        className="fixed top-0 left-0 pointer-events-none z-[52] will-change-transform"
         style={{
           x,
           y,
@@ -73,14 +86,16 @@ export function BackgroundSpotlight() {
         <motion.div
           animate={{
             rotate: 360,
-            scale: [1, 1.5, 1],
           }}
           transition={{
-            duration: 8,
+            duration: 20,
             repeat: Infinity,
             ease: "linear",
           }}
-          className="w-[600px] h-[600px] rounded-full bg-gradient-conic from-emerald-500/10 via-purple-500/10 to-emerald-500/10 blur-[100px] mix-blend-screen"
+          className="w-[500px] h-[500px] rounded-full bg-gradient-conic from-emerald-500/8 via-purple-500/8 to-emerald-500/8 blur-[60px]"
+          style={{
+            willChange: "transform",
+          }}
         />
       </motion.div>
     </>
