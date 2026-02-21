@@ -36,6 +36,7 @@ const services = [
     ),
     color: "from-[#6BC323] to-[#58a51c]",
     bg: "bg-[#1a2616]",
+    href: "/portfolio/web-development",
   },
   {
     icon: Smartphone,
@@ -50,6 +51,7 @@ const services = [
     ),
     color: "from-blue-500 to-cyan-500",
     bg: "bg-[#0b121a]",
+    href: "/portfolio/app-development",
   },
   {
     icon: BarChart,
@@ -57,6 +59,7 @@ const services = [
     desc: "Data-driven strategies to grow your audience. We optimize every campaign to maximize ROI and brand visibility.",
     color: "from-purple-500 to-pink-500",
     bg: "bg-[#1a0b18]",
+    href: "/portfolio/digital-marketing",
   },
   {
     icon: Code,
@@ -148,6 +151,7 @@ interface CardProps {
   icon: any;
   color: string;
   bg: string;
+  href?: string;
   progress: MotionValue<number>;
   range: [number, number];
   targetScale: number;
@@ -160,6 +164,7 @@ const Card = ({
   icon: Icon,
   color,
   bg,
+  href,
   progress,
   range,
   targetScale,
@@ -175,9 +180,6 @@ const Card = ({
 
   // Scroll Animations
   const scale = useTransform(progress, range, [1, targetScale]);
-
-  // 3D Depth Effect: Rotate X and Opacity/Blur as it moves back
-  // Removed to keep cards opaque and flat
 
   // Internal Parallax
   const contentY = useTransform(scrollYProgress, [0, 1], [50, -50]);
@@ -199,12 +201,20 @@ const Card = ({
         transition={{ duration: 0.8, type: "spring", bounce: 0.4 }}
         className={`
           flex flex-col relative 
+          group cursor-pointer
           w-full md:w-[85vw] lg:w-[70vw] xl:w-[60vw] max-w-4xl 
           min-h-[50vh] md:min-h-0 md:h-[55vh] lg:h-[60vh] xl:h-[60vh] 
           rounded-3xl md:rounded-[2rem] overflow-hidden md:border border-white/10 origin-top shadow-[0_0_50px_rgba(0,0,0,0.5)] ${bg}
           relative no-cursor-effect
         `}
       >
+        {href && (
+          <Link
+            href={href}
+            className="absolute inset-0 z-50 rounded-3xl md:rounded-[2rem]"
+            aria-label={`View ${title} portfolio`}
+          />
+        )}
         <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-20 pointer-events-none" />
 
         <div className="flex flex-col md:flex-row h-full">
@@ -230,9 +240,9 @@ const Card = ({
               </p>
             </div>
             <div className="mt-8">
-              <div className="flex items-center gap-3 text-white font-medium cursor-pointer group w-fit">
+              <div className="flex items-center gap-3 text-white font-medium w-fit">
                 <span className="border-b border-transparent group-hover:border-[#6BC323] transition-all">
-                  Learn more details
+                  {href ? "View Portfolio" : "Learn more details"}
                 </span>
                 <div
                   className={`w-8 h-8 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-[#6BC323] group-hover:border-[#6BC323] group-hover:text-black transition-all`}

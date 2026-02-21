@@ -131,7 +131,6 @@ export function Hero() {
         <motion.div
           style={{
             y: textY,
-            opacity,
             rotateX,
             rotateY,
             transformStyle: "preserve-3d",
@@ -208,9 +207,16 @@ export function Hero() {
               </motion.span>
               <motion.div
                 className="absolute -bottom-2 left-0 w-full h-[3px] bg-[#6BC323] rounded-full"
-                initial={{ scaleX: 0 }}
-                animate={startAnimation ? { scaleX: 1 } : { scaleX: 0 }}
-                transition={{ delay: 1.2, duration: 1, ease: "circOut" }}
+                initial={{ scaleX: 0, opacity: 1 }}
+                animate={
+                  startAnimation
+                    ? { scaleX: 1, opacity: 0 }
+                    : { scaleX: 0, opacity: 1 }
+                }
+                transition={{
+                  scaleX: { delay: 1.2, duration: 1, ease: "circOut" },
+                  opacity: { delay: 2.5, duration: 0.8, ease: "easeInOut" },
+                }}
                 style={{ originX: 0 }}
               />
             </span>
