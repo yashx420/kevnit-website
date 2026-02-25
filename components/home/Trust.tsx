@@ -9,7 +9,6 @@ import {
   Workflow,
   Target,
   Facebook,
-  Activity,
 } from "lucide-react";
 
 const companies = [
@@ -23,7 +22,7 @@ const companies = [
 
 export function Trust() {
   return (
-    <section className="mt-16 py-6 bg-black border-y border-white/5 overflow-hidden">
+    <section className="mt-16 py-6 border-y border-white/5 overflow-hidden">
       <Container>
         <p className="text-center text-gray-500 text-xs font-semibold tracking-widest mb-6 uppercase">
           Powered by Trusted Global Platforms
@@ -49,8 +48,8 @@ export function Trust() {
             ))}
           </motion.div>
 
-          <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-black to-transparent z-10" />
-          <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-black to-transparent z-10" />
+          <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-[#0A0A0A] to-transparent z-10" />
+          <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-[#0A0A0A] to-transparent z-10" />
         </div>
       </Container>
     </section>

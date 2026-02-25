@@ -1,5 +1,5 @@
 import { Navbar } from "@/components/layout/Navbar";
-import { Hero } from "@/components/home/Hero";
+import { HeroCanvas } from "@/components/home/HeroCanvas";
 import { Trust } from "@/components/home/Trust";
 import { ServicesPreview } from "@/components/home/ServicesPreview";
 import { WhyChoose } from "@/components/home/WhyChoose";
@@ -12,9 +12,9 @@ import { Accreditations } from "@/components/home/Accreditations";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-black text-white selection:bg-[#00E676] selection:text-black">
+    <main className="min-h-screen bg-transparent text-white selection:bg-[#00E676] selection:text-black">
       <Navbar />
-      <Hero />
+      <HeroCanvas />
       <Trust />
       <ServicesPreview />
       <WhyChoose />

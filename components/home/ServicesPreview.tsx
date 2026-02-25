@@ -10,13 +10,7 @@ import {
   Shield,
   ArrowUpRight,
 } from "lucide-react";
-import {
-  motion,
-  useScroll,
-  useTransform,
-  MotionValue,
-  useInView,
-} from "framer-motion";
+import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
@@ -35,7 +29,7 @@ const services = [
       </>
     ),
     color: "from-[#6BC323] to-[#58a51c]",
-    bg: "bg-[#1a2616]",
+    bg: "bg-[#1a2616]/40",
     href: "/portfolio/web-development",
   },
   {
@@ -50,7 +44,7 @@ const services = [
       </>
     ),
     color: "from-blue-500 to-cyan-500",
-    bg: "bg-[#0b121a]",
+    bg: "bg-[#0b121a]/40",
     href: "/portfolio/app-development",
   },
   {
@@ -58,7 +52,7 @@ const services = [
     title: "Digital Marketing",
     desc: "Data-driven strategies to grow your audience. We optimize every campaign to maximize ROI and brand visibility.",
     color: "from-purple-500 to-pink-500",
-    bg: "bg-[#1a0b18]",
+    bg: "bg-[#1a0b18]/40",
     href: "/portfolio/digital-marketing",
   },
   {
@@ -66,21 +60,21 @@ const services = [
     title: "Custom Software",
     desc: "Scalable enterprise software solutions. We solve complex business problems with robust, secure, and efficient code.",
     color: "from-orange-500 to-red-500",
-    bg: "bg-[#1a100b]",
+    bg: "bg-[#1a100b]/40",
   },
   {
     icon: Zap,
     title: "SEO Optimization",
     desc: "Dominate search rankings. Our expert SEO team drives organic traffic to your site with proven techniques.",
     color: "from-yellow-400 to-orange-400",
-    bg: "bg-[#1a180b]",
+    bg: "bg-[#1a180b]/40",
   },
   {
     icon: Shield,
     title: "Cybersecurity",
     desc: "Protect your digital assets. We implement advanced security measures to safeguard your business from threats.",
     color: "from-emerald-500 to-teal-500",
-    bg: "bg-[#0b1a15]",
+    bg: "bg-[#0b1a15]/40",
   },
 ];
 
@@ -92,12 +86,8 @@ export function ServicesPreview() {
   });
 
   return (
-    <section
-      id="expertise"
-      className="bg-black relative mt-12 md:mt-24"
-      ref={container}
-    >
-      <div className="pt-12 pb-6 text-center sticky top-0 bg-black/90 backdrop-blur-sm z-40 border-b border-white/5 mb-4 md:mb-8">
+    <section id="expertise" className="relative mt-12 md:mt-24" ref={container}>
+      <div className="pt-12 pb-6 text-center sticky top-0 bg-transparent backdrop-blur-sm z-40 border-b border-white/5 mb-4 md:mb-8">
         <Container>
           <motion.div
             initial={{ opacity: 0, y: -20 }}
@@ -176,7 +166,7 @@ const Card = ({
   });
 
   // Entrance Animation Trigger
-  const isInView = useInView(container, { margin: "-10%" });
+  //   const isInView = useInView(container, { margin: "-10%" });
 
   // Scroll Animations
   const scale = useTransform(progress, range, [1, targetScale]);
@@ -201,11 +191,10 @@ const Card = ({
         transition={{ duration: 0.8, type: "spring", bounce: 0.4 }}
         className={`
           flex flex-col relative 
-          group cursor-pointer
           w-full md:w-[85vw] lg:w-[70vw] xl:w-[60vw] max-w-4xl 
           min-h-[50vh] md:min-h-0 md:h-[55vh] lg:h-[60vh] xl:h-[60vh] 
-          rounded-3xl md:rounded-[2rem] overflow-hidden md:border border-white/10 origin-top shadow-[0_0_50px_rgba(0,0,0,0.5)] ${bg}
-          relative no-cursor-effect
+          rounded-3xl md:rounded-[2rem] overflow-hidden md:border border-white/10 origin-top shadow-[0_0_50px_rgba(0,0,0,0.5)] ${bg} backdrop-blur-md
+          no-cursor-effect
         `}
       >
         {href && (
