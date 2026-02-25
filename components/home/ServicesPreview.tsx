@@ -60,21 +60,21 @@ const services = [
     title: "Custom Software",
     desc: "Scalable enterprise software solutions. We solve complex business problems with robust, secure, and efficient code.",
     color: "from-orange-500 to-red-500",
-    bg: "bg-[#1a100b]/40",
+    bg: "bg-[#1a100b]",
   },
   {
     icon: Zap,
     title: "SEO Optimization",
     desc: "Dominate search rankings. Our expert SEO team drives organic traffic to your site with proven techniques.",
     color: "from-yellow-400 to-orange-400",
-    bg: "bg-[#1a180b]/40",
+    bg: "bg-[#1a180b]",
   },
   {
     icon: Shield,
     title: "Cybersecurity",
     desc: "Protect your digital assets. We implement advanced security measures to safeguard your business from threats.",
     color: "from-emerald-500 to-teal-500",
-    bg: "bg-[#0b1a15]/40",
+    bg: "bg-[#0b1a15]",
   },
 ];
 
