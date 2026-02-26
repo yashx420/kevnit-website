@@ -44,7 +44,7 @@ export function Footer() {
                   src="/logo.png"
                   alt="Kevnit Digital Solutions"
                   fill
-                  className="object-contain object-left"
+                  className="object-contain object-center md:object-left"
                 />
               </div>
             </Link>
@@ -139,7 +139,7 @@ export function Footer() {
                     href="https://www.google.com/maps/dir//Kevnit,+F1,+Talankis.+929+4th+A+Cross,+9th+Main+Hongasandra+GB+Palya+Rd,+Vijaya+Bank+Layout,+Bengaluru,+Karnataka+560076/@12.8892884,77.6192442,15z/data=!3m1!4b1!4m8!4m7!1m0!1m5!1m1!1s0x3bae6adbdd5576ad:0xd306a7108fdbde84!2m2!1d77.6092019!2d12.8911666"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hover:text-[#6BC323] transition-colors"
+                    className="hover:text-[#6BC323] transition-colors text-center md:text-left"
                   >
                     Kevnit, F1, Talankis. 929 4th A Cross, 9th Main Hongasandra
                     GB Palya Rd, Vijaya Bank Layout, Bengaluru, Karnataka 560076
@@ -148,11 +148,15 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-3 text-gray-400 text-sm justify-center md:justify-start">
                 <Phone size={18} className="text-[#6BC323] shrink-0" />
-                <span>+91 80471 06668</span>
+                <span className="text-center md:text-left">
+                  +91 80471 06668
+                </span>
               </li>
               <li className="flex items-center gap-3 text-gray-400 text-sm justify-center md:justify-start">
                 <Mail size={18} className="text-[#6BC323] shrink-0" />
-                <span>info@kevnit.com</span>
+                <span className="text-center md:text-left">
+                  info@kevnit.com
+                </span>
               </li>
             </ul>
           </div>
