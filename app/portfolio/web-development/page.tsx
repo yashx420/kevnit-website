@@ -1,5 +1,9 @@
 "use client";
-import { EcoShopMockup, FinTechMockup, ModernRealEstateMockup, HealthPortalMockup, EduTechMockup } from '@/components/ui/mockups';
+import { FashionMockup } from "@/components/ui/fashion-mockup";
+import { RealEstateMockup } from "@/components/ui/realestate-mockup";
+import { ITCompanyMockup } from "@/components/ui/itcompany-mockup";
+import { MarketingAgencyMockup } from "@/components/ui/marketing-mockup";
+import { FoodSiteMockup } from "@/components/ui/food-mockup";
 import { useState } from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Container } from "@/components/ui/Container";
@@ -46,83 +50,78 @@ export interface Project {
 
 const projects: Project[] = [
   {
-    id: "eco-shop",
-    title: "EcoShop E-Commerce",
+    id: "fashion-store",
+    title: "Aavriti — Ethnic Fashion Store",
     category: "E-Commerce",
-    image:
-      "https://images.unsplash.com/photo-1661956602116-aa6865609028?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-    tags: ["Next.js", "Shopify", "Tailwind CSS"],
+    image: "",
+    tags: ["Next.js", "Shopify", "Tailwind CSS", "Stripe"],
     overview:
-      "A high-performance e-commerce platform built for a sustainable lifestyle brand. The goal was to create a seamless, eco-friendly shopping experience with a focus on conversion rate optimization and brand storytelling.",
+      "A premium Indian ethnic fashion e-commerce platform featuring 400+ handcrafted pieces — from Banarasi sarees to designer lehengas. Multi-page interactive store with product detail pages, size guides, and seamless checkout.",
     features: [
-      "Headless Shopify integration for lightning-fast page loads",
-      "Custom 3D product viewer for immersive shopping",
-      "Dynamic sustainability impact tracker for user purchases",
-      "Seamless and secure checkout flow with multiple payment options",
+      "Multi-page interactive storefront with product detail pages",
+      "Advanced filtering by category, size, and colour",
+      "Wishlist, size guide, and COD payment support",
+      "Newsletter-driven loyalty with ₹500 first-order discount",
     ],
   },
   {
-    id: "fintech-dash",
-    title: "FinTech Dashboard",
-    category: "SaaS Application",
-    image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-    tags: ["React", "D3.js", "Node.js"],
+    id: "real-estate",
+    title: "NestIn — Property Platform",
+    category: "Real Estate",
+    image: "",
+    tags: ["Next.js", "PostgreSQL", "Mapbox", "Three.js"],
     overview:
-      "A comprehensive B2B financial dashboard that provides real-time market insights and portfolio management. Built to handle massive data streams securely and display them intuitively.",
+      "A premium Indian real estate platform with 13,000+ verified properties across 50+ cities. Features BHK-based search, ₹Cr pricing, EMI calculators, and agent dashboards.",
     features: [
-      "Real-time WebSocket data integration for live market updates",
-      "Custom D3.js charting library for complex data visualization",
-      "Bank-grade security and authentication protocols",
-      "Automated custom report generation system",
-    ],
-  },
-  {
-    id: "modern-re",
-    title: "Modern Real Estate",
-    category: "Corporate Website",
-    image:
-      "https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-    tags: ["Three.js", "Next.js", "PostgreSQL"],
-    overview:
-      "A luxury real estate platform designed to showcase high-end properties through immersive digital experiences, replacing traditional static listings with interactive 3D tours.",
-    features: [
-      "Interactive 3D property tours powered by Three.js",
-      "Advanced map-based property search with custom filters",
-      "Automated showing scheduling system",
+      "Location-based property search with ₹ price range filters",
+      "EMI calculator and home loan pre-qualification",
       "Agent dashboard for listing management",
+      "Featured listings with BHK configs and virtual tours",
     ],
   },
   {
-    id: "health-portal",
-    title: "Healthcare Portal",
-    category: "Web Application",
-    image:
-      "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-    tags: ["React", "WebRTC", "AWS", "HIPAA"],
+    id: "it-company",
+    title: "Nexlabs — IT Solutions",
+    category: "Corporate Website",
+    image: "",
+    tags: ["React", "Node.js", "AWS", "Framer Motion"],
     overview:
-      "A HIPAA-compliant patient management platform that connects patients with healthcare providers, featuring secure telehealth capabilities and comprehensive medical record management.",
+      "A bold, dark-themed IT company website for Nexlabs — featuring AI/ML solutions, glassmorphic service cards, and client logos of Indian tech giants like Flipkart and Razorpay.",
     features: [
-      "End-to-end encrypted WebRTC video consultations",
-      "Secure patient health record (EHR) integration",
-      "Automated appointment reminders and scheduling",
-      "Integrated prescription management system",
+      "Glassmorphic service cards with hover animations",
+      "Client logo showcase (Flipkart, Razorpay, CRED, Zerodha)",
+      "300+ project stats and global presence section",
+      "CTA with free 30-min consultation for Indian startups",
     ],
   },
   {
-    id: "edutech-lms",
-    title: "EduTech LMS",
-    category: "E-Learning",
-    image:
-      "https://images.unsplash.com/photo-1513258496099-48168024aec0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-    tags: ["Vue.js", "Laravel", "AWS"],
+    id: "marketing-agency",
+    title: "GrowthBox — Digital Marketing",
+    category: "Marketing Agency",
+    image: "",
+    tags: ["Next.js", "Sanity CMS", "Google Ads API", "Tailwind"],
     overview:
-      "A scalable Learning Management System serving over 50,000 active students. The platform delivers interactive courses, real-time assessments, and detailed student progress analytics.",
+      "India's #1 performance marketing agency website. Showcases ₹500Cr+ revenue generated for 200+ D2C brands with case studies for boAt and Mamaearth.",
     features: [
-      "Interactive video player with in-video quizzing",
-      "Gamified student progression system with badges",
-      "Real-time analytics dashboard for educators",
-      "Offline-first PWA support for low-bandwidth areas",
+      "Case studies with animated ROI metrics (4.2x ROAS)",
+      "Full-funnel service cards (SEO, Ads, Social, Email)",
+      "Results banner with live stats (₹500Cr+ revenue)",
+      "Free audit CTA with booking system integration",
+    ],
+  },
+  {
+    id: "food-site",
+    title: "Tambula — Fine Dining",
+    category: "Restaurant Website",
+    image: "",
+    tags: ["Next.js", "OpenTable API", "Cloudinary", "GSAP"],
+    overview:
+      "A premium Indian fine dining restaurant website for Tambula — Times Food Award winner in Bandra West, Mumbai. Features cinematic hero, Chef's Table signatures with ₹ pricing, and reservation system.",
+    features: [
+      "Cinematic hero with award badges and auto-play video",
+      "Chef's signature dishes with ₹ pricing and descriptions",
+      "Ambiance photo gallery with lightbox viewer",
+      "Online reservation with OpenTable and WhatsApp booking",
     ],
   },
 ];
@@ -139,16 +138,16 @@ export default function WebDevPortfolioPage() {
   // Helper to render the correct mockup component
   const renderMockup = (projectId: string) => {
     switch (projectId) {
-      case "eco-shop":
-        return <EcoShopMockup />;
-      case "fintech-dash":
-        return <FinTechMockup />;
-      case "modern-re":
-        return <ModernRealEstateMockup />;
-      case "health-portal":
-        return <HealthPortalMockup />;
-      case "edutech-lms":
-        return <EduTechMockup />;
+      case "fashion-store":
+        return <FashionMockup />;
+      case "real-estate":
+        return <RealEstateMockup />;
+      case "it-company":
+        return <ITCompanyMockup />;
+      case "marketing-agency":
+        return <MarketingAgencyMockup />;
+      case "food-site":
+        return <FoodSiteMockup />;
       default:
         return (
           <div className="p-20 text-center text-white">Mockup not found</div>
@@ -215,13 +214,20 @@ export default function WebDevPortfolioPage() {
                   layoutId={`image-container-${project.id}`}
                   className="relative aspect-[4/3] rounded-3xl overflow-hidden mb-6 border border-white/10"
                 >
-                  <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500 z-10" />
-                  <motion.img
-                    layoutId={`image-${project.id}`}
-                    src={project.image}
-                    alt={project.title}
-                    className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105"
-                  />
+                  <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500 z-10" />
+                  {/* Scaled-down mockup as cover image */}
+                  <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                    <div
+                      style={{
+                        transform: "scale(0.5)",
+                        transformOrigin: "top left",
+                        width: "200%",
+                        height: "200%",
+                      }}
+                    >
+                      {renderMockup(project.id)}
+                    </div>
+                  </div>
 
                   {/* Overlay on hover */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20 flex items-end p-8">
@@ -261,13 +267,16 @@ export default function WebDevPortfolioPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex items-start justify-center p-4 md:p-8 overflow-y-auto bg-black/80 backdrop-blur-xl"
+            className="fixed inset-0 z-[100] flex items-start justify-center p-4 md:p-8 overflow-y-auto bg-black/80 backdrop-blur-xl mockup-popup-open"
+            style={{ cursor: "default" }}
+            data-mockup-open
             onClick={() => setSelectedId(null)}
             data-lenis-prevent
           >
             <motion.div
               layoutId={`project-${selectedProject.id}`}
-              className="bg-[#0A0A0A] w-full max-w-7xl mt-24 mb-auto rounded-[2rem] shadow-2xl border border-white/10 flex flex-col items-center overflow-hidden"
+              className="bg-[#0A0A0A] w-full max-w-7xl mt-24 mb-auto rounded-[2rem] shadow-2xl border border-white/10 flex flex-col items-center overflow-hidden mockup-popup-open"
+              style={{ cursor: "default" }}
               onClick={(e) => e.stopPropagation()}
             >
               <div className="w-full relative h-[30vh] md:h-[40vh] overflow-hidden">
@@ -279,12 +288,18 @@ export default function WebDevPortfolioPage() {
                 </button>
                 <div className="absolute inset-0 bg-[#0A0A0A]/50 z-10" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/80 to-transparent z-10" />
-                <motion.img
-                  layoutId={`image-${selectedProject.id}`}
-                  src={selectedProject.image}
-                  alt={selectedProject.title}
-                  className="w-full h-full object-cover"
-                />
+                <div className="absolute inset-0 overflow-hidden">
+                  <div
+                    style={{
+                      transform: "scale(0.5)",
+                      transformOrigin: "top left",
+                      width: "200%",
+                      height: "200%",
+                    }}
+                  >
+                    {renderMockup(selectedProject.id)}
+                  </div>
+                </div>
 
                 <div className="absolute bottom-12 left-12 right-12 z-20 flex flex-col items-center text-center gap-4">
                   <motion.span
@@ -302,8 +317,25 @@ export default function WebDevPortfolioPage() {
                 </div>
               </div>
 
-              {/* Project Details Section */}
-              <div className="w-full bg-[#0A0A0A] px-6 py-12 md:py-16 md:px-16 border-b border-white/5">
+              {/* UI Mockup — shown FIRST at the top */}
+              <div className="w-full p-4 md:p-8 pt-6 bg-[#0A0A0A]">
+                <div className="w-full rounded-2xl overflow-hidden border border-white/10 shadow-[0_0_80px_rgba(0,0,0,0.8)]">
+                  <div className="bg-[#1e1e1e] border-b border-white/10 p-3 flex items-center gap-2">
+                    <div className="flex gap-2">
+                      <div className="w-3 h-3 rounded-full bg-red-500/80" />
+                      <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
+                      <div className="w-3 h-3 rounded-full bg-green-500/80" />
+                    </div>
+                    <div className="mx-auto w-1/2 bg-black/50 rounded-md py-1 text-center text-xs text-gray-500 font-mono">
+                      https://{selectedProject.id}.kevnit.com
+                    </div>
+                  </div>
+                  {renderMockup(selectedProject.id)}
+                </div>
+              </div>
+
+              {/* Project Details — below the mockup */}
+              <div className="w-full bg-[#0A0A0A] px-6 py-10 md:py-14 md:px-16 border-t border-white/5">
                 <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
                   <div className="md:col-span-2 space-y-6">
                     <div>
@@ -349,23 +381,6 @@ export default function WebDevPortfolioPage() {
                       ))}
                     </div>
                   </div>
-                </div>
-              </div>
-
-              <div className="w-full p-4 md:p-12 pb-24 bg-[#0A0A0A]">
-                {/* Native React UI Mockup Showcase */}
-                <div className="w-full rounded-2xl overflow-hidden border border-white/10 shadow-[0_0_80px_rgba(0,0,0,0.8)]">
-                  <div className="bg-[#1e1e1e] border-b border-white/10 p-3 flex items-center gap-2">
-                    <div className="flex gap-2">
-                      <div className="w-3 h-3 rounded-full bg-red-500/80" />
-                      <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-                      <div className="w-3 h-3 rounded-full bg-green-500/80" />
-                    </div>
-                    <div className="mx-auto w-1/2 bg-black/50 rounded-md py-1 text-center text-xs text-gray-500 font-mono">
-                      https://{selectedProject.id}.kevnit.com
-                    </div>
-                  </div>
-                  {renderMockup(selectedProject.id)}
                 </div>
               </div>
             </motion.div>

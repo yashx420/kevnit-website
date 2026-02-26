@@ -47,6 +47,7 @@ export function CursorMatrixEffect() {
     const processMovement = (x: number, y: number, target: HTMLElement) => {
       const isBlocked =
         target.closest(".no-cursor-effect") ||
+        target.closest("[data-mockup-open]") ||
         target.closest("button") ||
         target.closest("a");
 

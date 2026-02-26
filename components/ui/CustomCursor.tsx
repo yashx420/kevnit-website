@@ -5,6 +5,7 @@ import { motion, useMotionValue, useSpring } from "framer-motion";
 
 export function CustomCursor() {
   const [isHovered, setIsHovered] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -20,6 +21,13 @@ export function CustomCursor() {
 
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
+      // Hide custom cursor when inside mockup popup
+      if (target.closest("[data-mockup-open]")) {
+        setIsHidden(true);
+        setIsHovered(false);
+        return;
+      }
+      setIsHidden(false);
       if (target.closest("button") || target.closest("a")) {
         setIsHovered(true);
       } else {
@@ -39,7 +47,12 @@ export function CustomCursor() {
   return (
     <motion.div
       className="hidden md:block fixed top-0 left-0 w-6 h-6 rounded-full border-2 border-[#6BC323] pointer-events-none z-[9999] mix-blend-difference"
-      style={{ x: cursorX, y: cursorY, scale: isHovered ? 2.5 : 1 }}
+      style={{
+        x: cursorX,
+        y: cursorY,
+        scale: isHovered ? 2.5 : 1,
+        display: isHidden ? "none" : "block",
+      }}
       animate={{
         backgroundColor: isHovered
           ? "rgba(107, 195, 35, 1)"

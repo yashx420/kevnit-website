@@ -30,12 +30,15 @@ const companies = [
 
 export function Footer() {
   return (
-    <footer className="relative md:fixed bottom-0 left-0 w-full z-0 bg-[#050505] border-t border-white/10 pt-6 pb-8 md:h-[400px] flex flex-col justify-end">
+    <footer className="relative md:fixed bottom-0 left-0 w-full z-0 bg-[#050505] border-t border-white/10 pt-16 pb-8 md:h-[460px] flex flex-col justify-end">
       <Container>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12 text-center md:text-left">
           {/* Brand */}
           <div>
-            <Link href="/" className="flex items-center gap-2 mb-6 group">
+            <Link
+              href="/"
+              className="flex items-center gap-2 mb-6 group justify-center md:justify-start"
+            >
               <div className="relative h-16 w-52 transition-transform duration-300 group-hover:scale-105">
                 <Image
                   src="/logo.png"
@@ -50,7 +53,7 @@ export function Footer() {
               businesses with cutting-edge technology and innovative marketing
               strategies.
             </p>
-            <div className="flex gap-4">
+            <div className="flex gap-4 justify-center md:justify-start">
               {[
                 {
                   Icon: Linkedin,
@@ -129,7 +132,7 @@ export function Footer() {
           <div>
             <h3 className="text-white font-bold mb-6">Contact</h3>
             <ul className="space-y-4">
-              <li className="flex items-start gap-3 text-gray-400 text-sm">
+              <li className="flex items-start gap-3 text-gray-400 text-sm justify-center md:justify-start">
                 <MapPin size={18} className="text-[#6BC323] shrink-0 mt-0.5" />
                 <span>
                   <a
@@ -143,11 +146,11 @@ export function Footer() {
                   </a>
                 </span>
               </li>
-              <li className="flex items-center gap-3 text-gray-400 text-sm">
+              <li className="flex items-center gap-3 text-gray-400 text-sm justify-center md:justify-start">
                 <Phone size={18} className="text-[#6BC323] shrink-0" />
                 <span>+91 80471 06668</span>
               </li>
-              <li className="flex items-center gap-3 text-gray-400 text-sm">
+              <li className="flex items-center gap-3 text-gray-400 text-sm justify-center md:justify-start">
                 <Mail size={18} className="text-[#6BC323] shrink-0" />
                 <span>info@kevnit.com</span>
               </li>

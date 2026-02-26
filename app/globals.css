@@ -87,6 +87,12 @@
   * {
     cursor: none !important;
   }
+  .mockup-popup-open,
+  .mockup-popup-open *,
+  [data-mockup-open],
+  [data-mockup-open] * {
+    cursor: auto !important;
+  }
 }
 
 body {
