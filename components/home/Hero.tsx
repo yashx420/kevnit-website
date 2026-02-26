@@ -178,7 +178,7 @@ export function Hero() {
             🚀 Elevate Your Digital Presence
           </motion.span>
 
-          <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold font-heading text-white mb-10 md:mb-6 leading-[1.1] md:leading-tight tracking-tight px-4 [transform:translateZ(50px)]">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl 3xl:text-8xl 4xl:text-9xl font-bold font-heading text-white mb-10 md:mb-6 leading-[1.1] md:leading-tight tracking-tight px-4 [transform:translateZ(50px)]">
             <motion.span
               initial={{ opacity: 0, y: 20 }}
               animate={
@@ -233,7 +233,7 @@ export function Hero() {
             </motion.span>
           </h1>
 
-          <p className="text-lg md:text-xl text-gray-400 mb-6 md:mb-10 max-w-2xl mx-auto px-4 md:px-0">
+          <p className="text-lg md:text-xl 3xl:text-2xl 4xl:text-3xl text-gray-400 mb-6 md:mb-10 max-w-2xl 3xl:max-w-3xl 4xl:max-w-4xl mx-auto px-4 md:px-0">
             Kevnit Digital Solutions transforms businesses with cutting-edge web
             development, mobile apps, and data-driven marketing strategies.
           </p>

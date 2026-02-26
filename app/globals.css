@@ -6,6 +6,9 @@
   --color-secondary: #111111;
   --color-accent: #2979ff;
 
+  --breakpoint-3xl: 1920px;
+  --breakpoint-4xl: 2560px;
+
   --animate-float: float 6s ease-in-out infinite;
   --animate-pulse-glow: pulse-glow 3s infinite;
 
