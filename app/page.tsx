@@ -2,6 +2,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { HeroCanvas } from "@/components/home/HeroCanvas";
 import { Trust } from "@/components/home/Trust";
 import { ServicesPreview } from "@/components/home/ServicesPreview";
+import { UIMockupParallax } from "@/components/home/UIMockupParallax";
 import { WhyChoose } from "@/components/home/WhyChoose";
 import { Stats } from "@/components/home/Stats";
 import { Process } from "@/components/home/Process";
@@ -17,6 +18,7 @@ export default function Home() {
       <HeroCanvas />
       <Trust />
       <ServicesPreview />
+      <UIMockupParallax />
       <WhyChoose />
       <Stats />
       <Process />
