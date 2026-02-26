@@ -12,16 +12,19 @@ interface TrailPoint {
 
 export function CursorMatrixEffect() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [isTouch, setIsTouch] = useState(false);
   const lastPos = useRef<{ x: number; y: number } | null>(null);
   const trailRef = useRef<
     { x: number; y: number; char: string; opacity: number; life: number }[]
   >([]);
 
   useEffect(() => {
-    if (
-      typeof window === "undefined" ||
-      window.matchMedia("(pointer: coarse)").matches
-    ) {
+    if (typeof window === "undefined") return;
+
+    const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
+    setIsTouch(isTouchDevice);
+
+    if (isTouchDevice) {
       return;
     }
 
@@ -115,10 +118,12 @@ export function CursorMatrixEffect() {
     };
   }, []);
 
+  if (isTouch) return null;
+
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 pointer-events-none z-[99999] overflow-hidden"
+      className="hidden md:block fixed inset-0 pointer-events-none z-[99999] overflow-hidden"
     />
   );
 }
