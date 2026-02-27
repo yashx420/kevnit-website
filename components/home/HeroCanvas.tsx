@@ -143,18 +143,18 @@ export function HeroCanvas() {
     // GSAP animation object
     const frameObj = { frame: 0 };
 
-    // Create a continuous auto-playing loop that is offset by scroll
+    // Create ScrollTrigger animation for frames with LOOPING (only on scroll)
     const tl = gsap.to(frameObj, {
-      frame: FRAME_COUNT - 1,
-      duration: 6,
-      repeat: -1,
+      frame: FRAME_COUNT * 20 - 1, // Large range for many loops
       ease: "none",
+      scrollTrigger: {
+        trigger: document.body,
+        start: "top top",
+        end: "bottom top",
+        scrub: 0.5,
+      },
       onUpdate: () => {
-        // Calculate frame based on auto-play progress + user scroll
-        const baseFrame = Math.round(frameObj.frame);
-        const scrollOffset = Math.round(window.scrollY / 8);
-        const newFrame = (baseFrame + scrollOffset) % FRAME_COUNT;
-
+        const newFrame = Math.round(frameObj.frame) % FRAME_COUNT;
         if (newFrame !== currentFrameRef.current) {
           currentFrameRef.current = newFrame;
           drawFrame(newFrame);
