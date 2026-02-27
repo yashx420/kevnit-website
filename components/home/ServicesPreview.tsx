@@ -9,6 +9,12 @@ import {
   Zap,
   Shield,
   ArrowUpRight,
+  Search,
+  Lock,
+  Layout,
+  Terminal,
+  MousePointer2,
+  TrendingUp,
 } from "lucide-react";
 import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
 import Link from "next/link";
@@ -77,6 +83,286 @@ const services = [
     bg: "bg-[#0b1a15]",
   },
 ];
+
+/* ─── UNIQUE VISUAL COMPONENTS ────────────────────────────────────── */
+
+const WebDevVisual = ({ color }: { color: string }) => (
+  <div className="relative w-full h-full flex items-center justify-center [perspective:1000px] z-10">
+    <motion.div
+      animate={{ y: [-10, 10, -10], rotateX: [2, -2, 2], rotateY: [-5, 5, -5] }}
+      transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+      className="w-64 md:w-72 h-48 md:h-56 rounded-xl border border-white/20 bg-black/60 backdrop-blur-md shadow-2xl overflow-hidden flex flex-col"
+    >
+      {/* Browser Header */}
+      <div className="h-8 bg-white/10 flex items-center px-3 gap-1.5 border-b border-white/10">
+        <div className="w-2.5 h-2.5 rounded-full bg-red-400/80" />
+        <div className="w-2.5 h-2.5 rounded-full bg-yellow-400/80" />
+        <div className="w-2.5 h-2.5 rounded-full bg-green-400/80" />
+        <div className="ml-4 flex-1 h-4 bg-white/5 rounded pl-2 flex items-center">
+          <Globe size={10} className="text-white/40" />
+        </div>
+      </div>
+      {/* Browser Content */}
+      <div className="p-4 flex flex-col gap-3 flex-1 relative">
+        <motion.div className="w-1/3 h-4 rounded-full bg-white/20" />
+        <div className="flex gap-3">
+          <motion.div
+            animate={{ height: ["20px", "40px", "20px"] }}
+            transition={{ duration: 4, repeat: Infinity }}
+            className={`w-1/2 rounded-lg bg-gradient-to-br ${color} opacity-40`}
+          />
+          <div className="w-1/2 flex flex-col gap-2">
+            <div className="w-full h-2 rounded-full bg-white/10" />
+            <div className="w-4/5 h-2 rounded-full bg-white/10" />
+            <div className="w-full h-2 rounded-full bg-white/10" />
+          </div>
+        </div>
+        <div className="mt-auto w-full h-12 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center">
+          <Layout size={16} className="text-white/50" />
+        </div>
+
+        {/* Floating cursor */}
+        <motion.div
+          animate={{ x: [0, 80, 0], y: [0, 30, 0] }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-10 left-10 text-white drop-shadow-lg"
+        >
+          <MousePointer2 size={24} className="fill-white/20" />
+        </motion.div>
+      </div>
+    </motion.div>
+  </div>
+);
+
+const AppDevVisual = ({ color }: { color: string }) => (
+  <div className="relative w-full h-full flex items-center justify-center [perspective:1000px] z-10">
+    <motion.div
+      animate={{
+        y: [-15, 15, -15],
+        rotateY: [-10, 10, -10],
+        rotateZ: [-2, 2, -2],
+      }}
+      transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+      className="w-36 md:w-44 h-72 md:h-80 rounded-[2rem] border-4 border-white/20 bg-black/80 backdrop-blur-xl shadow-2xl overflow-hidden relative"
+    >
+      {/* Notch */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-5 bg-white/20 rounded-b-xl backdrop-blur-md z-20" />
+
+      {/* Screen Content - scrolling feed */}
+      <div className="p-4 pt-8 flex flex-col gap-3 h-full overflow-hidden relative z-10">
+        <motion.div
+          animate={{ y: [0, -150, 0] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+          className="flex flex-col gap-3"
+        >
+          {[1, 2, 3, 4, 5].map((_, i) => (
+            <div
+              key={i}
+              className="w-full h-20 rounded-xl bg-white/5 border border-white/10 flex p-3 gap-3"
+            >
+              <div
+                className={`w-8 h-8 rounded-full bg-gradient-to-br ${color} opacity-50 shrink-0`}
+              />
+              <div className="flex flex-col gap-2 w-full">
+                <div className="w-full h-2 rounded-full bg-white/20" />
+                <div className="w-2/3 h-2 rounded-full bg-white/10" />
+              </div>
+            </div>
+          ))}
+        </motion.div>
+      </div>
+
+      {/* Floating notification */}
+      <motion.div
+        animate={{ scale: [0.9, 1.1, 0.9], opacity: [0.8, 1, 0.8] }}
+        transition={{ duration: 2, repeat: Infinity }}
+        className={`absolute bottom-6 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full bg-gradient-to-r ${color} shadow-lg text-[10px] font-bold text-white whitespace-nowrap z-20`}
+      >
+        New Install
+      </motion.div>
+    </motion.div>
+  </div>
+);
+
+const MarketingVisual = ({ color }: { color: string }) => (
+  <div className="relative w-full h-full flex items-center justify-center [perspective:1000px] z-10">
+    <motion.div
+      animate={{ rotateX: [10, 20, 10], rotateY: [-15, 15, -15] }}
+      transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+      className="relative w-64 h-64 flex items-end justify-center gap-4 pb-10"
+    >
+      {/* Bar Chart */}
+      {[40, 70, 50, 100, 80].map((h, i) => (
+        <motion.div
+          key={i}
+          initial={{ height: 0 }}
+          animate={{ height: `${h}%` }}
+          transition={{
+            duration: 2,
+            delay: i * 0.2,
+            repeat: Infinity,
+            repeatType: "reverse",
+          }}
+          className={`w-8 rounded-t-lg bg-gradient-to-t ${color} opacity-80 border-t border-white/40 shadow-[0_0_20px_rgba(255,255,255,0.1)]`}
+        />
+      ))}
+
+      {/* Trending line and dot */}
+      <motion.div
+        animate={{ x: [-20, 20, -20], y: [-10, 10, -10] }}
+        transition={{ duration: 4, repeat: Infinity }}
+        className="absolute top-10 right-10 w-20 h-20 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 flex flex-col items-center justify-center gap-1 shadow-xl"
+      >
+        <TrendingUp size={28} className="text-white" />
+        <span className="text-xs font-bold text-white drop-shadow-md">
+          +124%
+        </span>
+      </motion.div>
+    </motion.div>
+  </div>
+);
+
+const SoftwareVisual = ({ color }: { color: string }) => (
+  <div className="relative w-full h-full flex items-center justify-center [perspective:1000px] z-10">
+    <motion.div
+      animate={{ rotateY: [0, 360] }}
+      transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+      className="relative w-48 h-48 [transform-style:preserve-3d]"
+    >
+      {/* Center node */}
+      <div
+        className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-2xl bg-gradient-to-br ${color} flex items-center justify-center z-20 shadow-[0_0_30px_rgba(255,255,255,0.2)]`}
+      >
+        <Terminal size={24} className="text-white drop-shadow-md" />
+      </div>
+
+      {/* Orbiting nodes */}
+      {[0, 120, 240].map((deg, i) => (
+        <motion.div
+          key={i}
+          style={{ rotateZ: deg }}
+          className="absolute inset-0 border border-white/10 rounded-full"
+        >
+          <motion.div
+            animate={{ rotateZ: -deg }} // counter rotate so icon stays upright
+            className="absolute -top-4 left-1/2 -translate-x-1/2 w-10 h-10 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center"
+          >
+            <Code size={18} className="text-white/70" />
+          </motion.div>
+        </motion.div>
+      ))}
+    </motion.div>
+  </div>
+);
+
+const SEOVisual = ({ color }: { color: string }) => (
+  <div className="relative w-full h-full flex items-center justify-center [perspective:1000px] z-10">
+    <div className="w-64 h-56 flex flex-col gap-3">
+      {/* Search Bar */}
+      <div className="w-full h-10 rounded-full bg-white/10 border border-white/20 flex items-center px-4 gap-2 backdrop-blur-md">
+        <Search size={14} className="text-white/50" />
+        <motion.div
+          animate={{ width: ["0%", "50%", "0%"] }}
+          transition={{ duration: 4, repeat: Infinity }}
+          className="h-2 rounded-full bg-white/30"
+        />
+      </div>
+
+      {/* Results */}
+      <div className="flex-1 relative mt-2">
+        {/* Top result animated */}
+        <motion.div
+          animate={{
+            y: [20, 0, 20],
+            scale: [0.95, 1.05, 0.95],
+            zIndex: [10, 20, 10],
+          }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+          className={`absolute top-0 w-full h-16 rounded-xl bg-gradient-to-r ${color} shadow-[0_0_30px_rgba(255,255,255,0.2)] p-3 flex gap-3 items-center`}
+        >
+          <div className="w-10 h-10 rounded-lg bg-white/20 flex items-center justify-center font-bold text-white text-xs backdrop-blur-sm">
+            #1
+          </div>
+          <div className="flex flex-col gap-1.5 flex-1">
+            <div className="w-3/4 h-2 rounded bg-white/80" />
+            <div className="w-full h-1.5 rounded bg-white/40" />
+          </div>
+        </motion.div>
+
+        {/* Other results static/faded */}
+        <div className="absolute top-20 w-full h-12 rounded-xl bg-white/5 border border-white/10 p-3 flex gap-3 items-center opacity-50">
+          <div className="w-8 h-8 rounded-lg bg-white/10" />
+          <div className="flex flex-col gap-1.5 flex-1">
+            <div className="w-2/3 h-2 rounded bg-white/20" />
+            <div className="w-full h-1.5 rounded bg-white/10" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
+const SecurityVisual = ({ color }: { color: string }) => (
+  <div className="relative w-full h-full flex items-center justify-center [perspective:1000px] z-10">
+    <div className="relative w-56 h-56 rounded-full border border-white/20 bg-black/40 flex items-center justify-center backdrop-blur-sm overflow-hidden">
+      {/* Grid */}
+      <div className="absolute inset-0 opacity-20 bg-[linear-gradient(to_right,#00ff9d_1px,transparent_1px),linear-gradient(to_bottom,#00ff9d_1px,transparent_1px)] bg-[size:20px_20px]" />
+
+      {/* Radar Sweep */}
+      <motion.div
+        animate={{ rotate: 360 }}
+        transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+        className="absolute inset-0 origin-center"
+        style={{
+          background:
+            "conic-gradient(from 0deg, transparent 70%, rgba(16, 185, 129, 0.4) 100%)",
+        }}
+      />
+
+      {/* Center Shield */}
+      <motion.div
+        animate={{ scale: [0.9, 1.1, 0.9] }}
+        transition={{ duration: 2, repeat: Infinity }}
+        className={`relative z-20 w-20 h-20 rounded-2xl bg-gradient-to-br ${color} flex items-center justify-center shadow-[0_0_30px_rgba(16,185,129,0.5)]`}
+      >
+        <Lock size={32} className="text-white" />
+      </motion.div>
+
+      {/* Floating threat dots */}
+      <motion.div
+        animate={{ opacity: [0, 1, 0] }}
+        transition={{ duration: 2, repeat: Infinity, delay: 1 }}
+        className="absolute top-10 left-10 w-2 h-2 rounded-full bg-red-500 shadow-[0_0_10px_red]"
+      />
+      <motion.div
+        animate={{ opacity: [0, 1, 0] }}
+        transition={{ duration: 2, repeat: Infinity, delay: 2.5 }}
+        className="absolute bottom-16 right-12 w-2 h-2 rounded-full bg-red-500 shadow-[0_0_10px_red]"
+      />
+    </div>
+  </div>
+);
+
+const VisualSwitch = ({ title, color }: { title: string; color: string }) => {
+  switch (title) {
+    case "Website Development":
+      return <WebDevVisual color={color} />;
+    case "App Development":
+      return <AppDevVisual color={color} />;
+    case "Digital Marketing":
+      return <MarketingVisual color={color} />;
+    case "Custom Software":
+      return <SoftwareVisual color={color} />;
+    case "SEO Optimization":
+      return <SEOVisual color={color} />;
+    case "Cybersecurity":
+      return <SecurityVisual color={color} />;
+    default:
+      return <WebDevVisual color={color} />;
+  }
+};
+
+/* ─── MAIN COMPONENTS ──────────────────────────────────────────────── */
 
 export function ServicesPreview() {
   const container = useRef(null);
@@ -165,9 +451,6 @@ const Card = ({
     offset: ["start end", "start start"],
   });
 
-  // Entrance Animation Trigger
-  //   const isInView = useInView(container, { margin: "-10%" });
-
   // Scroll Animations
   const scale = useTransform(progress, range, [1, targetScale]);
 
@@ -221,7 +504,7 @@ const Card = ({
                 </span>
               </div>
 
-              <h3 className="text-4xl md:text-3xl lg:text-4xl font-bold font-heading text-white mb-2 md:mb-4 leading-tight">
+              <h3 className="text-3xl md:text-3xl lg:text-4xl font-bold font-heading text-white mb-2 md:mb-4 leading-tight">
                 {title}
               </h3>
               <p className="text-xl md:text-lg text-gray-400 leading-relaxed opacity-90">
@@ -233,33 +516,29 @@ const Card = ({
                 <span className="border-b border-transparent group-hover:border-[#6BC323] transition-all">
                   {href ? "View Portfolio" : "Learn more details"}
                 </span>
-                <div
-                  className={`w-8 h-8 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-[#6BC323] group-hover:border-[#6BC323] group-hover:text-black transition-all`}
-                >
+                <div className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-[#6BC323] group-hover:border-[#6BC323] group-hover:text-black transition-all">
                   <ArrowUpRight size={16} />
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Right: Visual */}
-          <div className="w-full md:w-2/5 h-full relative overflow-hidden bg-white/5 border-l border-white/5 hidden md:block">
+          {/* Right: Unique Visual */}
+          <div className="w-full md:w-2/5 h-full relative overflow-hidden hidden md:flex items-center justify-center border-l border-white/5 bg-[#050505]">
+            {/* Tech grid background */}
+            <div className="absolute inset-0 opacity-[0.04] bg-[linear-gradient(to_right,#fff_1px,transparent_1px),linear-gradient(to_bottom,#fff_1px,transparent_1px)] bg-[size:24px_24px]" />
+
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full overflow-hidden">
+              <div
+                className={`absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-gradient-to-br ${color} opacity-20 blur-[100px] animate-pulse-glow mix-blend-screen pointer-events-none`}
+              />
+            </div>
+
             <motion.div
               style={{ y: contentY }}
-              className="absolute inset-0 flex items-center justify-center"
+              className="relative w-full h-full flex items-center justify-center [perspective:1000px] z-10 pointer-events-none"
             >
-              <div
-                className={`w-64 h-64 rounded-full bg-gradient-to-br ${color} opacity-20 blur-[80px] animate-pulse-glow`}
-              />
-              {/* Decorative Elements */}
-              <motion.div
-                initial={{ rotate: 0 }}
-                animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                className="relative z-10 w-40 h-40 border border-white/10 rounded-2xl backdrop-blur-sm bg-white/5 flex items-center justify-center"
-              >
-                <Icon className="w-16 h-16 text-white/80 opacity-50" />
-              </motion.div>
+              <VisualSwitch title={title} color={color} />
             </motion.div>
           </div>
         </div>

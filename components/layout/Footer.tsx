@@ -111,6 +111,7 @@ export function Footer() {
             <ul className="space-y-3">
               {[
                 { name: "About Us", href: "/about" },
+                { name: "Blog", href: "/blogs" },
                 { name: "Contact Us", href: "/contact" },
                 { name: "Privacy Policy", href: "/privacy-policy" },
                 { name: "Terms of Use", href: "/terms-of-use" },
