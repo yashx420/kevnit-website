@@ -143,19 +143,18 @@ export function HeroCanvas() {
     // GSAP animation object
     const frameObj = { frame: 0 };
 
-    // Create ScrollTrigger animation for frames
+    // Create a continuous auto-playing loop that is offset by scroll
     const tl = gsap.to(frameObj, {
       frame: FRAME_COUNT - 1,
-      snap: "frame",
+      duration: 6,
+      repeat: -1,
       ease: "none",
-      scrollTrigger: {
-        trigger: document.body,
-        start: "top top",
-        end: `+=${window.innerHeight * 3}`, // Scrub over 300vh of scroll
-        scrub: 0.5,
-      },
       onUpdate: () => {
-        const newFrame = Math.round(frameObj.frame);
+        // Calculate frame based on auto-play progress + user scroll
+        const baseFrame = Math.round(frameObj.frame);
+        const scrollOffset = Math.round(window.scrollY / 8);
+        const newFrame = (baseFrame + scrollOffset) % FRAME_COUNT;
+
         if (newFrame !== currentFrameRef.current) {
           currentFrameRef.current = newFrame;
           drawFrame(newFrame);
@@ -163,14 +162,14 @@ export function HeroCanvas() {
       },
     });
 
-    // Fade opacity of the canvas container based on scroll
+    // Fade opacity of the canvas container based on Expertise section
     gsap.to(container, {
       opacity: 0,
       ease: "none",
       scrollTrigger: {
-        trigger: document.body,
-        start: `+=${window.innerHeight * 2.5}`, // Start fading out towards the end of the video
-        end: `+=${window.innerHeight * 3}`, // Fully hidden by 300vh
+        trigger: "#expertise",
+        start: "bottom-=1000 bottom", // Start fading as we reach the end
+        end: "bottom bottom", // Fully hidden at end of expertise
         scrub: true,
       },
     });
