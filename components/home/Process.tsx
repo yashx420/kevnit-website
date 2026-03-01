@@ -24,21 +24,21 @@ const steps = [
     title: "Strategy",
     desc: "We craft a tactical roadmap — choosing the right tech stack, defining milestones, and aligning every detail with your business goals.",
     icon: "⚡",
-    gradient: "from-blue-500/20 to-indigo-500/5",
+    gradient: "from-emerald-500/20 to-green-500/5",
   },
   {
     number: "03",
     title: "Execution",
     desc: "Our engineering and design teams bring the blueprint to life — pixel-perfect UIs, clean architecture, and relentless iteration.",
     icon: "🛠️",
-    gradient: "from-purple-500/20 to-violet-500/5",
+    gradient: "from-emerald-500/20 to-green-500/5",
   },
   {
     number: "04",
     title: "Launch & Scale",
     desc: "We deploy to production, set up monitoring and analytics, then continuously optimize for performance and growth.",
     icon: "🚀",
-    gradient: "from-orange-500/20 to-amber-500/5",
+    gradient: "from-emerald-500/20 to-green-500/5",
   },
 ];
 

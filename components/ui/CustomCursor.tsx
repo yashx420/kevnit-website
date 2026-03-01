@@ -10,17 +10,13 @@ export function CustomCursor() {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  const springConfig = { damping: 40, stiffness: 800 };
-  const cursorX = useSpring(mouseX, springConfig);
-  const cursorY = useSpring(mouseY, springConfig);
-
   useEffect(() => {
     // Check if device is touch-enabled
     setIsTouch(window.matchMedia("(pointer: coarse)").matches);
 
     const handleMouseMove = (e: MouseEvent) => {
-      mouseX.set(e.clientX - 12);
-      mouseY.set(e.clientY - 12);
+      mouseX.set(e.clientX);
+      mouseY.set(e.clientY);
     };
 
     const handleMouseOver = (e: MouseEvent) => {
@@ -51,19 +47,40 @@ export function CustomCursor() {
   if (isTouch) return null;
 
   return (
-    <motion.div
-      className="hidden md:block fixed top-0 left-0 w-6 h-6 rounded-full border-2 border-[#6BC323] pointer-events-none z-[9999] mix-blend-difference"
+    <div
+      className="hidden md:block fixed top-0 left-0 pointer-events-none z-[9999] mix-blend-difference"
       style={{
-        x: cursorX,
-        y: cursorY,
-        scale: isHovered ? 2.5 : 1,
         display: isHidden ? "none" : "block",
       }}
-      animate={{
-        backgroundColor: isHovered
-          ? "rgba(107, 195, 35, 1)"
-          : "rgba(0, 0, 0, 0)",
-      }}
-    />
+    >
+      {/* Outer Ring */}
+      <motion.div
+        className="absolute w-8 h-8 rounded-full border border-[#6BC323]/50"
+        style={{
+          x: mouseX,
+          y: mouseY,
+          translateX: "-50%",
+          translateY: "-50%",
+        }}
+        animate={{
+          scale: isHovered ? 1.5 : 1,
+        }}
+        transition={{ type: "tween", duration: 0.1 }}
+      />
+      {/* Inner Dot */}
+      <motion.div
+        className="absolute w-1.5 h-1.5 rounded-full bg-[#6BC323]"
+        style={{
+          x: mouseX,
+          y: mouseY,
+          translateX: "-50%",
+          translateY: "-50%",
+        }}
+        animate={{
+          scale: isHovered ? 0.5 : 1,
+        }}
+        transition={{ type: "tween", duration: 0.1 }}
+      />
+    </div>
   );
 }
