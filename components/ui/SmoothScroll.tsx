@@ -16,9 +16,10 @@ export function SmoothScroll() {
     }
 
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: 0.85,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      touchMultiplier: 2,
+      touchMultiplier: 2.5,
+      wheelMultiplier: 1.3,
     });
 
     // Reset lenis position as well

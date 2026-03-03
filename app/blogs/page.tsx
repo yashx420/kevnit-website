@@ -198,89 +198,35 @@ export default function BlogsPage() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
             >
-              {/* Row 1: One hero-wide card + one tall card */}
-              {filteredPosts.length >= 2 && (
-                <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 mb-6">
-                  <motion.div
-                    initial={{ opacity: 0, y: 40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                    className="lg:col-span-3 h-[420px] md:h-[480px]"
-                  >
-                    <FlipCard
-                      post={filteredPosts[0]}
-                      imgClass="h-[60%]"
-                      titleClass="text-xl md:text-2xl"
-                    />
-                  </motion.div>
-                  <motion.div
-                    initial={{ opacity: 0, y: 40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.1 }}
-                    className="lg:col-span-2 h-[420px] md:h-[480px]"
-                  >
-                    <FlipCard
-                      post={filteredPosts[1]}
-                      imgClass="h-[55%]"
-                      titleClass="text-lg md:text-xl"
-                    />
-                  </motion.div>
-                </div>
-              )}
-
-              {/* Row 2: Three equal cards */}
-              {filteredPosts.length >= 3 && (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
-                  {filteredPosts.slice(2, 5).map((post, i) => (
+              {/* Render all posts in a repeatable mosaic pattern */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {filteredPosts.map((post, i) => {
+                  // Every 5 posts, create a different layout feel
+                  const isWide = i % 5 === 0 || i % 5 === 1; // First two in every 5 are slightly different if needed
+                  // But for simplicity and clean grid, let's just use equal cards for the loop
+                  // and maybe just highlight the very first one
+                  return (
                     <motion.div
                       key={post.slug}
                       initial={{ opacity: 0, y: 40 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
-                      transition={{ duration: 0.6, delay: i * 0.1 }}
-                      className="h-[400px] md:h-[420px]"
-                    >
-                      <FlipCard post={post} />
-                    </motion.div>
-                  ))}
-                </div>
-              )}
-
-              {/* Row 3: Remaining in reversed wide layout */}
-              {filteredPosts.length >= 6 && (
-                <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
-                  <motion.div
-                    initial={{ opacity: 0, y: 40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                    className="lg:col-span-2 h-[420px] md:h-[480px]"
-                  >
-                    <FlipCard
-                      post={filteredPosts[5]}
-                      imgClass="h-[55%]"
-                      titleClass="text-lg md:text-xl"
-                    />
-                  </motion.div>
-                  {filteredPosts[6] && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 40 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.6, delay: 0.1 }}
-                      className="lg:col-span-3 h-[420px] md:h-[480px]"
+                      transition={{ duration: 0.6, delay: (i % 3) * 0.1 }}
+                      className={`h-[420px] md:h-[480px] ${
+                        i === 0 ? "md:col-span-2 lg:col-span-2" : ""
+                      }`}
                     >
                       <FlipCard
-                        post={filteredPosts[6]}
-                        imgClass="h-[60%]"
-                        titleClass="text-xl md:text-2xl"
+                        post={post}
+                        imgClass={i === 0 ? "h-[65%]" : "h-[55%]"}
+                        titleClass={
+                          i === 0 ? "text-xl md:text-2xl" : "text-lg md:text-xl"
+                        }
                       />
                     </motion.div>
-                  )}
-                </div>
-              )}
+                  );
+                })}
+              </div>
 
               {/* Single filtered result fallback */}
               {filteredPosts.length === 1 && (

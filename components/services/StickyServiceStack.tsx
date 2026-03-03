@@ -1,12 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import {
-  motion,
-  useScroll,
-  useTransform,
-  useMotionValueEvent,
-} from "framer-motion";
+import { useScroll, useTransform, motion } from "framer-motion";
 import {
   Globe,
   Monitor,
@@ -17,10 +12,8 @@ import {
   Megaphone,
   PenTool,
   Server,
-  ArrowRight,
 } from "lucide-react";
-import { Button } from "@/components/ui/Button";
-import Link from "next/link";
+import { ServiceCard } from "./ServiceCard";
 
 const services = [
   {
@@ -29,6 +22,7 @@ const services = [
     desc: "Custom, high-performance websites that leave a lasting impression.",
     tags: ["Responsive", "Fast", "SEO Ready"],
     color: "#6BC323",
+    portfolioUrl: "/portfolio?tab=web",
   },
   {
     title: "Mobile App Development",
@@ -36,6 +30,7 @@ const services = [
     desc: "Native and cross-platform mobile apps for iOS and Android.",
     tags: ["iOS", "Android", "Flutter"],
     color: "#8B5CF6",
+    portfolioUrl: "/portfolio?tab=app",
   },
   {
     title: "E-Commerce",
@@ -43,6 +38,7 @@ const services = [
     desc: "Robust online stores designed to maximize conversions.",
     tags: ["Shopify", "Stripe", "Growth"],
     color: "#F59E0B",
+    portfolioUrl: "/portfolio?tab=web",
   },
   {
     title: "SEO Optimization",
@@ -50,6 +46,7 @@ const services = [
     desc: "Improve your search rankings and drive organic traffic.",
     tags: ["Audit", "Keywords", "Ranking"],
     color: "#10B981",
+    portfolioUrl: "/portfolio?tab=digital",
   },
   {
     title: "Social Media Marketing",
@@ -57,6 +54,7 @@ const services = [
     desc: "Engage your audience and build brand loyalty.",
     tags: ["Content", "Ads", "Viral"],
     color: "#EC4899",
+    portfolioUrl: "/portfolio?tab=smm",
   },
   {
     title: "Paid Advertising",
@@ -64,6 +62,7 @@ const services = [
     desc: "Targeted PPC campaigns to generate instant leads.",
     tags: ["Google Ads", "Meta Ads", "ROI"],
     color: "#EF4444",
+    portfolioUrl: "/portfolio?tab=digital",
   },
   {
     title: "Branding & Design",
@@ -71,6 +70,7 @@ const services = [
     desc: "Create a cohesive brand identity that resonates.",
     tags: ["Logo", "UI/UX", "Identity"],
     color: "#6366F1",
+    portfolioUrl: "/portfolio?tab=web",
   },
   {
     title: "Website Maintenance",
@@ -78,145 +78,123 @@ const services = [
     desc: "Keep your website secure and running smoothly.",
     tags: ["Security", "Backups", "Updates"],
     color: "#14B8A6",
+    portfolioUrl: "/portfolio?tab=web",
   },
 ];
 
 export function StickyServiceStack() {
-  return (
-    <div className="relative w-full">
-      {services.map((service, i) => (
-        <Card
-          key={i}
-          i={i}
-          {...service}
-          range={[i * 0.1, 1]}
-          targetScale={1 - (services.length - i) * 0.05}
-        />
-      ))}
-    </div>
-  );
-}
+  const containerRef = useRef<HTMLDivElement>(null);
 
-const Card = ({
-  i,
-  title,
-  desc,
-  icon: Icon,
-  tags,
-  color,
-  range,
-  targetScale,
-}: any) => {
-  const container = useRef(null);
   const { scrollYProgress } = useScroll({
-    target: container,
-    offset: ["start end", "start start"],
+    target: containerRef,
+    offset: ["start start", "end end"],
   });
-
-  const imageScale = useTransform(scrollYProgress, [0, 1], [2, 1]);
-  const scale = useTransform(scrollYProgress, range, [1, targetScale]);
 
   return (
     <div
-      ref={container}
-      className="min-h-[50vh] md:h-screen flex flex-col items-center justify-start sticky top-28 md:top-32"
+      ref={containerRef}
+      className="relative w-full bg-black/95"
+      style={{ height: `${services.length * 40}vh` }}
     >
-      <motion.div
-        style={{
-          scale,
-          marginTop: i * 20,
-        }}
-        className="flex flex-col h-[50vh] md:h-[70vh] lg:h-[80vh] w-[95vw] md:w-[90vw] max-w-7xl rounded-3xl p-4 md:p-12 border border-white/10 bg-[#0A0A0A] overflow-hidden origin-top shadow-2xl will-change-transform transform-gpu"
-      >
-        {/* Dynamic Background Glow */}
-        <div
-          className="absolute top-0 right-0 w-[600px] h-[600px] opacity-20 blur-[120px] pointer-events-none transition-all duration-700"
-          style={{
-            background: `radial-gradient(circle, ${color}, transparent)`,
-          }}
-        />
+      <div className="sticky top-0 w-full min-h-screen flex flex-col md:flex-row items-center justify-center overflow-hidden py-10 px-4 md:px-12">
+        {/* Background Ambient Lights */}
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-[#6BC323]/10 rounded-full blur-[120px] mix-blend-screen opacity-50" />
+          <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-[#8B5CF6]/10 rounded-full blur-[150px] mix-blend-screen opacity-50" />
+        </div>
 
-        <div className="relative z-10 flex flex-col md:flex-row gap-6 md:gap-12 h-full items-center">
-          {/* Left Content */}
-          <div className="w-full md:w-[60%] flex flex-col justify-center">
-            <div className="flex items-center gap-4 mb-4 md:mb-6">
-              <div className="p-3 rounded-xl bg-white/5 border border-white/10 text-white">
-                <Icon size={32} style={{ color }} />
-              </div>
-              <span className="text-2xl font-mono text-white/30">0{i + 1}</span>
-            </div>
-
-            <h2 className="text-4xl md:text-7xl font-bold font-heading text-white mb-3 md:mb-6 uppercase tracking-tight leading-none">
-              {title}
+        <div className="relative z-10 w-full max-w-[95rem] mx-auto flex flex-col items-center xl:flex-row xl:items-start xl:justify-between gap-8 mt-12">
+          {/* Left Content Area */}
+          <div className="flex-1 w-full text-center xl:text-left z-20 xl:pr-10 xl:pt-12">
+            <h2 className="text-5xl md:text-7xl lg:text-8xl font-black font-heading text-white mb-6 uppercase tracking-tighter leading-none">
+              Our <span className="text-[#6BC323] block mt-2">Services</span>
             </h2>
-
-            <p className="text-xl md:text-2xl text-gray-400 mb-6 md:mb-10 leading-relaxed max-w-xl">
-              {desc}
+            <p className="text-xl md:text-2xl text-gray-400 max-w-2xl mx-auto xl:mx-0 mb-8 font-medium">
+              Keep scrolling to unveil our deck of core competencies. We deliver
+              premium, high-converting digital solutions crafted to dominate
+              your industry.
             </p>
-
-            <div className="flex flex-wrap gap-2 mb-6 md:mb-10">
-              {tags.map((tag: string, idx: number) => (
-                <span
-                  key={idx}
-                  className="px-5 py-2.5 rounded-full border border-white/10 text-base text-gray-300 bg-white/5"
-                >
-                  #{tag}
-                </span>
-              ))}
+            <div className="flex flex-col sm:flex-row justify-center xl:justify-start gap-4">
+              <div className="px-8 py-4 rounded-full border border-[#6BC323]/30 bg-[#6BC323]/10 text-[#6BC323] backdrop-blur-md text-sm font-bold uppercase tracking-widest motion-safe:animate-pulse">
+                Scroll Down To Uncover
+              </div>
             </div>
-
-            <Link href="/contact">
-              <Button
-                size="lg"
-                variant="outline"
-                className="group w-fit border-white/20 hover:border-white text-white hover:bg-white hover:text-black transition-all duration-300 text-lg px-8 py-6 h-auto"
-              >
-                Get Quote{" "}
-                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
-            </Link>
           </div>
 
-          {/* Right Visual (Abstract Representation) */}
-          <div className="w-full md:w-[40%] h-full relative rounded-2xl overflow-hidden border border-white/5 bg-black/50 hidden md:flex items-center justify-center group">
-            <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-30" />
-
-            <motion.div style={{ scale: imageScale }} className="relative z-10">
-              <Icon
-                size={180}
-                strokeWidth={0.5}
-                style={{ color }}
-                className="opacity-80"
-              />
-            </motion.div>
-
-            {/* Floating Particles */}
-            <div className="absolute inset-0">
-              {[...Array(5)].map((_, idx) => (
-                <motion.div
-                  key={idx}
-                  animate={{
-                    y: [0, -20, 0],
-                    x: [0, 10, 0],
-                    opacity: [0.2, 0.5, 0.2],
-                  }}
-                  transition={{
-                    duration: 3 + idx,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                  className="absolute w-2 h-2 rounded-full"
-                  style={{
-                    background: color,
-                    top: `${20 + idx * 15}%`,
-                    left: `${20 + idx * 20}%`,
-                  }}
+          {/* Right Area for Framer Motion Scroll Deck */}
+          <div className="flex-1 w-full relative min-h-[700px] flex items-start justify-center xl:justify-end mt-16 xl:mt-24 xl:mr-24">
+            <div className="w-[500px] sm:w-[600px] h-[480px] relative max-w-[90vw] [perspective:900px] [transform-style:preserve-3d]">
+              {services.map((service, i) => (
+                <ScrollCard
+                  key={i}
+                  i={i}
+                  total={services.length}
+                  service={service}
+                  progress={scrollYProgress}
                 />
               ))}
             </div>
           </div>
         </div>
-      </motion.div>
+      </div>
     </div>
+  );
+}
+
+const ScrollCard = ({ i, total, service, progress }: any) => {
+  // activeIndex goes from 0 to total - 1
+  const activeIndex = useTransform(progress, [0, 1], [0, total - 1]);
+
+  // offset is the distance of this card from the active index
+  // 0 = active, > 0 = waiting behind in the stack, < 0 = scrolled past & falling
+  const offset = useTransform(activeIndex, (val) => i - val);
+
+  // When card flies off (offset < 0), it rapidly falls down (800px)
+  // When card is waiting (offset > 0), it is stacked slightly up (-40px per index)
+  const y = useTransform(
+    offset,
+    [-1, -0.2, 0, 1, total],
+    [800, 200, 0, -40, -total * 40],
+  );
+
+  // When stacked, X moves slightly right (40px per index for more horizontal scroll feel)
+  const x = useTransform(offset, [-1, 0, 1, total], [-30, 0, 40, total * 40]);
+
+  // When stacked, z drops back creating the 3D deck look
+  // When falling off, z pops forward briefly
+  const z = useTransform(offset, [-1, 0, 1, total], [100, 0, -45, -total * 45]);
+
+  // A subtle tumble effect as the card falls off
+  const rotateZ = useTransform(offset, [-1, -0.5, 0], [-15, -10, 0]);
+
+  // Fade out card immediately when it passes the front slot
+  const opacity = useTransform(offset, [-0.5, 0, total], [0, 1, 1]);
+
+  // Cards behind must have a numerically lower z-index so they sit below the front card
+  const zIndex = total - i;
+
+  return (
+    <motion.div
+      className="absolute inset-0 origin-center overflow-hidden border border-white/20 rounded-[3rem] bg-[#0A0A0A] [transform-style:preserve-3d]"
+      style={{
+        x,
+        y,
+        z,
+        opacity,
+        rotateZ,
+        skewY: 6, // Match the CardSwap elastic lean
+        zIndex,
+        boxShadow: "0 30px 60px -15px rgba(0,0,0,0.8)",
+      }}
+    >
+      <ServiceCard
+        service={{
+          ...service,
+          description: service.desc,
+          deliverables: service.tags,
+        }}
+        index={i}
+      />
+    </motion.div>
   );
 };

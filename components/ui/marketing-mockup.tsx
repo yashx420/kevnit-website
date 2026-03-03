@@ -146,10 +146,6 @@ export const MarketingAgencyMockup = () => {
         containerRef.current.closest("[data-lenis-prevent]") ||
         containerRef.current.closest(".overflow-y-auto");
       if (sp) sp.scrollTop = 0;
-      containerRef.current.scrollIntoView({
-        behavior: "instant",
-        block: "start",
-      });
     }
   }, [page, selected]);
 

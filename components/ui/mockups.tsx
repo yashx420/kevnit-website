@@ -40,621 +40,1271 @@ import {
   Award,
   CheckCircle,
   DollarSign,
+  Camera,
+  Receipt,
+  ShoppingBag,
+  Target,
+  HelpCircle,
+  Play,
+  Pause,
 } from "lucide-react";
 
-export const FitTrackMockup = () => (
-  <div className="w-full bg-black text-white font-sans h-[852px] relative overflow-hidden flex flex-col font-sans">
-    <div className="flex-1 overflow-y-auto custom-scrollbar pb-28">
-      {/* Status bar */}
-      <div className="flex justify-between items-center px-6 pt-4 pb-2 text-xs font-medium sticky top-0 bg-black/80 backdrop-blur-md z-30">
-        <span>9:41</span>
-        <div className="flex gap-1">
-          <div className="w-4 h-3 bg-white rounded-sm" />
-          <div className="w-3 h-3 bg-white rounded-full" />
-        </div>
-      </div>
+import { useState, useEffect } from "react";
 
-      <div className="px-6 py-4 flex justify-between items-center">
-        <div>
-          <p className="text-gray-400 text-sm">Tuesday, 24 Oct</p>
-          <h1 className="text-3xl font-bold mt-1">Summary</h1>
-        </div>
-        <img
-          src="https://i.pravatar.cc/100?img=11"
-          className="w-12 h-12 rounded-full border-2 border-gray-800"
-          alt="Profile"
-        />
-      </div>
+export const FitTrackMockup = () => {
+  const [activeTab, setActiveTab] = useState("summary");
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [progress, setProgress] = useState(0);
 
-      {/* Rings */}
-      <div className="px-6 py-6 flex justify-center">
-        <div className="relative w-56 h-56 rounded-full border-[16px] border-gray-800 flex justify-center items-center">
-          <div className="absolute inset-[-16px] rounded-full border-[16px] border-red-500 border-r-transparent border-t-transparent rotate-45 transition-all duration-1000" />
-          <div className="w-40 h-40 rounded-full border-[16px] border-gray-800 flex justify-center items-center">
-            <div className="absolute w-40 h-40 rounded-full border-[16px] border-green-500 border-b-transparent border-l-transparent rotate-[120deg] transition-all duration-1000" />
-            <div className="w-24 h-24 rounded-full border-[16px] border-gray-800 flex justify-center items-center">
-              <div className="absolute w-24 h-24 rounded-full border-[16px] border-blue-500 border-r-transparent border-t-transparent -rotate-12 transition-all duration-1000" />
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+    if (isPlaying) {
+      interval = setInterval(() => {
+        setProgress((prev) => (prev >= 100 ? 0 : prev + 1));
+      }, 50);
+    }
+    return () => clearInterval(interval);
+  }, [isPlaying]);
+
+  return (
+    <div className="w-full h-full flex items-center justify-center p-4 bg-transparent outline-none ring-0">
+      <div className="relative w-[380px] h-[812px] bg-black text-white rounded-[50px] overflow-hidden shadow-2xl border-[8px] border-zinc-800 flex flex-col font-sans shrink-0">
+        {/* Dynamic Island Notch */}
+        <div className="absolute top-0 inset-x-0 h-[30px] flex justify-center z-50 mt-2 pointer-events-none">
+          <div className="w-[120px] h-[30px] bg-black rounded-full flex items-center justify-between px-3">
+            <div className="w-3 h-3 rounded-full bg-zinc-800" />
+            <div className="w-3 h-3 rounded-full bg-zinc-800/50" />
+          </div>
+        </div>
+
+        <div className="flex-1 overflow-y-auto custom-scrollbar pb-24 pt-12 relative z-10 scroll-smooth">
+          {/* Status bar */}
+          <div className="flex justify-between items-center px-6 pt-2 pb-2 text-xs font-medium sticky top-0 bg-black/80 backdrop-blur-md z-30">
+            <span>9:41</span>
+            <div className="flex gap-1">
+              <div className="w-4 h-3 bg-white rounded-sm" />
+              <div className="w-3 h-3 bg-white rounded-full" />
             </div>
           </div>
-        </div>
-      </div>
 
-      <div className="px-6 grid grid-cols-2 gap-4 mt-4">
-        <div className="bg-[#1c1c1e] p-5 rounded-3xl">
-          <div className="flex gap-2 items-center text-red-500 font-bold text-sm mb-2">
-            <Flame className="w-4 h-4" /> Move
+          <div className="px-6 py-4 flex justify-between items-center">
+            <div>
+              <p className="text-gray-400 text-sm">Tuesday, 24 Oct</p>
+              <h1 className="text-3xl font-bold mt-1">Summary</h1>
+            </div>
+            <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-gray-800">
+              <img
+                src="https://i.pravatar.cc/100?img=11"
+                className="w-full h-full object-cover"
+                alt="Profile"
+              />
+            </div>
           </div>
-          <div className="text-2xl font-bold">
-            420{" "}
-            <span className="text-gray-500 text-sm font-normal">
-              / 500 kcal
-            </span>
-          </div>
-        </div>
-        <div className="bg-[#1c1c1e] p-5 rounded-3xl">
-          <div className="flex gap-2 items-center text-green-500 font-bold text-sm mb-2">
-            <Activity className="w-4 h-4" /> Exercise
-          </div>
-          <div className="text-2xl font-bold">
-            24{" "}
-            <span className="text-gray-500 text-sm font-normal">/ 30 min</span>
-          </div>
-        </div>
-      </div>
 
-      <div className="px-6 mt-8">
-        <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-bold">Today's Workouts</h2>
-          <span className="text-red-500 text-sm font-semibold">See All</span>
-        </div>
-
-        <div className="space-y-3">
-          <div className="bg-[#1c1c1e] p-4 rounded-3xl flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center text-green-500">
-                <Activity className="w-6 h-6" />
-              </div>
-              <div>
-                <div className="font-bold">Outdoor Run</div>
-                <div className="text-gray-400 text-xs mt-1">
-                  8:14 AM • 3.2 mi
+          {/* SUMMARY TAB */}
+          {activeTab === "summary" && (
+            <div className="animate-in fade-in duration-500">
+              {/* Active Workout Banner */}
+              <div className="px-6 mb-6">
+                <div className="bg-gradient-to-r from-red-600 to-orange-500 rounded-[32px] p-6 relative overflow-hidden shadow-[0_8px_30px_rgb(220,38,38,0.3)]">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2" />
+                  <div className="relative z-10 flex justify-between items-start">
+                    <div>
+                      <div className="flex items-center gap-2 text-white/80 text-sm font-medium mb-1">
+                        <Flame className="w-4 h-4" /> Outdoor Run
+                      </div>
+                      <div className="text-4xl font-bold tracking-tight mb-4">
+                        4.2<span className="text-xl text-white/70">km</span>
+                      </div>
+                      <div className="flex gap-6 text-sm">
+                        <div>
+                          <p className="text-white/60 mb-0.5">Time</p>
+                          <p className="font-bold">24:15</p>
+                        </div>
+                        <div>
+                          <p className="text-white/60 mb-0.5">Pace</p>
+                          <p className="font-bold">5'42"</p>
+                        </div>
+                      </div>
+                    </div>
+                    {/* Interactive Play/Pause Button */}
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setIsPlaying(!isPlaying);
+                      }}
+                      className="w-14 h-14 bg-white text-red-500 rounded-full flex items-center justify-center shadow-lg hover:scale-105 active:scale-95 transition-all cursor-pointer z-50 relative"
+                    >
+                      {isPlaying ? (
+                        <Pause className="w-6 h-6 fill-current" />
+                      ) : (
+                        <Play className="w-6 h-6 fill-current ml-1" />
+                      )}
+                    </button>
+                  </div>
+                  {/* Progress Bar (Indicates active status) */}
+                  <div className="mt-5 w-full bg-black/20 h-1.5 rounded-full overflow-hidden">
+                    <div
+                      className="h-full bg-white rounded-full transition-all duration-300 ease-linear"
+                      style={{ width: `${progress}%` }}
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="font-bold text-lg">342 kcal</div>
-          </div>
 
-          <div className="bg-[#1c1c1e] p-4 rounded-3xl flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 bg-blue-500/20 rounded-full flex items-center justify-center text-blue-500">
-                <Users className="w-6 h-6" />
-              </div>
-              <div>
-                <div className="font-bold">Yoga</div>
-                <div className="text-gray-400 text-xs mt-1">
-                  6:30 AM • 45 min
-                </div>
-              </div>
-            </div>
-            <div className="font-bold text-lg">120 kcal</div>
-          </div>
-        </div>
-      </div>
-
-      {/* Friends Feed Section */}
-      <div className="px-6 mt-8 pb-8">
-        <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-bold">Friends Activity</h2>
-        </div>
-        <div className="flex gap-4 overflow-x-auto pb-4 custom-scrollbar">
-          {[
-            {
-              name: "Alex M.",
-              img: "https://i.pravatar.cc/100?img=33",
-              text: "Finished 5K Run",
-              time: "2h ago",
-              ring: "border-green-500",
-            },
-            {
-              name: "Sarah K.",
-              img: "https://i.pravatar.cc/100?img=47",
-              text: "Closed all rings!",
-              time: "4h ago",
-              ring: "border-red-500",
-            },
-            {
-              name: "Mike T.",
-              img: "https://i.pravatar.cc/100?img=12",
-              text: "HIIT Workout",
-              time: "5h ago",
-              ring: "border-blue-500",
-            },
-          ].map((friend, i) => (
-            <div
-              key={i}
-              className="bg-[#1c1c1e] p-4 rounded-3xl shrink-0 w-48 flex flex-col pt-6 relative mt-6"
-            >
-              <div className="absolute -top-6 left-1/2 -translate-x-1/2 relative">
-                <img
-                  src={friend.img}
-                  className={`w-14 h-14 rounded-full border-4 border-[#1c1c1e] shadow-lg absolute -top-12 left-1/2 -translate-x-1/2`}
-                />
-                <svg className="absolute -top-[52px] left-1/2 -translate-x-1/2 w-[64px] h-[64px] rotate-[-90deg]">
-                  <circle
-                    cx="32"
-                    cy="32"
-                    r="30"
-                    fill="none"
-                    stroke="#333"
-                    strokeWidth="4"
-                  />
-                  <circle
-                    cx="32"
-                    cy="32"
-                    r="30"
-                    fill="none"
-                    className={`stroke-current ${friend.ring.replace("border-", "text-")}`}
-                    strokeWidth="4"
-                    strokeDasharray="188"
-                    strokeDashoffset={i === 1 ? "0" : "60"}
-                  />
-                </svg>
-              </div>
-              <div className="font-bold mb-1 text-center mt-2">
-                {friend.name}
-              </div>
-              <div className="text-gray-400 text-xs text-center mb-2 h-8">
-                {friend.text}
-              </div>
-              <div className="text-gray-500 text-[10px] text-center uppercase tracking-wider">
-                {friend.time}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-
-    {/* Generic App Navbar Bottom */}
-    <div className="absolute bottom-0 w-full h-24 bg-[#1c1c1e]/90 backdrop-blur-xl border-t border-white/10 flex justify-around items-center px-6 pb-6 pt-2 z-40 rounded-b-[3rem]">
-      <div className="flex flex-col items-center gap-1 text-red-500 cursor-pointer">
-        <Activity className="w-6 h-6" />
-        <span className="text-[10px] font-bold">Summary</span>
-      </div>
-      <div className="flex flex-col items-center gap-1 text-gray-500 hover:text-white cursor-pointer transition-colors">
-        <Flame className="w-6 h-6" />
-        <span className="text-[10px]">Fitness</span>
-      </div>
-      <div className="flex flex-col items-center gap-1 text-gray-500 hover:text-white cursor-pointer transition-colors">
-        <Users className="w-6 h-6" />
-        <span className="text-[10px]">Sharing</span>
-      </div>
-    </div>
-  </div>
-);
-
-export const UrbanBitesMockup = () => (
-  <div className="w-full bg-[#f9fafb] text-gray-900 h-[852px] relative overflow-hidden font-sans flex flex-col">
-    <div className="flex-1 overflow-y-auto custom-scrollbar pb-28">
-      {/* Status bar */}
-      <div className="flex justify-between items-center px-6 pt-4 pb-2 text-xs font-medium bg-white sticky top-0 z-50">
-        <span>9:41</span>
-        <div className="flex gap-1 text-black">
-          <div className="w-4 h-3 bg-black rounded-sm" />
-          <div className="w-3 h-3 bg-black rounded-full" />
-        </div>
-      </div>
-
-      {/* App Header */}
-      <div className="bg-white px-6 pb-6 rounded-b-3xl shadow-sm relative z-40">
-        <div className="flex justify-between items-center mb-6">
-          <div>
-            <p className="text-gray-500 text-xs font-bold uppercase tracking-wider mb-1">
-              Delivering to
-            </p>
-            <div className="flex items-center gap-1 font-bold text-lg cursor-pointer">
-              <MapPin className="w-5 h-5 text-orange-500" /> Home - 482 Market
-              St <ChevronRight className="w-4 h-4 text-gray-400" />
-            </div>
-          </div>
-          <div className="relative cursor-pointer">
-            <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors">
-              <Bell className="w-6 h-6" />
-            </div>
-            <div className="absolute top-0 right-0 w-3.5 h-3.5 bg-red-500 rounded-full border-2 border-white" />
-          </div>
-        </div>
-        <div className="relative">
-          <Search className="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
-          <input
-            type="text"
-            placeholder="Search restaurants, dishes..."
-            className="w-full bg-gray-100/80 hover:bg-gray-100 focus:bg-white rounded-2xl py-4 pl-12 pr-4 font-medium text-sm outline-none border border-transparent focus:border-orange-500 transition-all shadow-inner"
-          />
-        </div>
-      </div>
-
-      {/* Active order tracking */}
-      <div className="px-6 pt-6 relative z-10">
-        <div className="bg-gradient-to-r from-orange-500 to-red-500 rounded-3xl p-6 text-white shadow-lg shadow-orange-500/30 overflow-hidden relative cursor-pointer hover:scale-[1.02] transition-transform">
-          <div className="relative z-10">
-            <div className="flex justify-between items-center mb-2">
-              <div className="font-bold text-xl">Preparing your order</div>
-              <div className="font-bold flex items-center gap-1 bg-black/20 px-3 py-1 rounded-full text-sm">
-                <Clock className="w-4 h-4" /> 15-20 min
-              </div>
-            </div>
-            <p className="text-orange-100 text-sm mb-5 font-medium">
-              Shake Shack - 2 items
-            </p>
-
-            <div className="w-full bg-black/20 h-2.5 rounded-full overflow-hidden mb-2">
-              <div className="w-1/3 bg-white h-full rounded-full animate-pulse" />
-            </div>
-            <div className="flex justify-between text-xs font-bold text-orange-100 uppercase tracking-wider">
-              <span>Accepted</span>
-              <span className="text-white">Prep</span>
-              <span className="opacity-50">On the way</span>
-            </div>
-          </div>
-          <div className="absolute -right-6 -bottom-6 w-40 h-40 bg-white/20 rounded-full blur-2xl" />
-          <div className="absolute -left-10 -top-10 w-32 h-32 bg-black/10 rounded-full blur-xl" />
-        </div>
-      </div>
-
-      {/* Popular Categories */}
-      <div className="px-6 mt-8">
-        <h2 className="text-xl font-bold mb-4">Categories</h2>
-        <div className="flex gap-4 overflow-x-auto pb-4 custom-scrollbar">
-          {[
-            { icon: "🍔", label: "Burger" },
-            { icon: "🍕", label: "Pizza" },
-            { icon: "🥗", label: "Healthy" },
-            { icon: "🍣", label: "Sushi" },
-            { icon: "☕", label: "Coffee" },
-          ].map((cat, i) => (
-            <div
-              key={i}
-              className="flex flex-col items-center gap-2 shrink-0 cursor-pointer group"
-            >
-              <div className="w-16 h-16 bg-white rounded-2xl shadow-sm border border-gray-100 flex items-center justify-center text-3xl group-hover:bg-orange-50 group-hover:border-orange-200 transition-colors">
-                {cat.icon}
-              </div>
-              <span className="text-sm font-medium text-gray-700">
-                {cat.label}
-              </span>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div className="px-6 mt-4">
-        <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-bold">Featured Near You</h2>
-          <span className="text-orange-500 font-semibold text-sm cursor-pointer hover:underline">
-            See all
-          </span>
-        </div>
-        <div className="flex flex-col gap-6">
-          {[
-            {
-              name: "Sweetgreen",
-              type: "Healthy • Salads",
-              rating: "4.8",
-              time: "10-15 min",
-              fee: "$1.49 fee",
-              img: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-            },
-            {
-              name: "Joe's Pizza",
-              type: "Italian • Pizza",
-              rating: "4.6",
-              time: "25-35 min",
-              fee: "Free delivery",
-              img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-            },
-            {
-              name: "Sushi Nakazawa",
-              type: "Japanese • Sushi",
-              rating: "4.9",
-              time: "40-50 min",
-              fee: "$3.99 fee",
-              img: "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-            },
-          ].map((card, i) => (
-            <div
-              key={i}
-              className="w-full bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100 cursor-pointer group hover:shadow-md transition-all"
-            >
-              <div className="h-40 bg-gray-200 relative overflow-hidden">
-                <img
-                  src={card.img}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  alt={card.name}
-                />
-                <div className="absolute top-3 right-3 bg-white px-3 py-1.5 rounded-full text-xs font-bold flex items-center gap-1 shadow-md">
-                  <Star className="w-3.5 h-3.5 text-yellow-500 fill-yellow-500" />{" "}
-                  {card.rating}
-                </div>
-                <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full text-xs font-bold shadow-md">
-                  {card.time}
-                </div>
-              </div>
-              <div className="p-5">
-                <h3 className="font-bold text-xl mb-1">{card.name}</h3>
-                <p className="text-gray-500 text-sm mb-3">{card.type}</p>
-                <div className="flex items-center gap-4 text-xs font-semibold text-gray-600">
-                  <span className="flex items-center gap-1 bg-gray-50 px-2 py-1 rounded-md">
-                    <Clock className="w-3.5 h-3.5" /> {card.time}
-                  </span>
-                  <span className="flex items-center gap-1 bg-gray-50 px-2 py-1 rounded-md">
-                    <Activity className="w-3.5 h-3.5" /> {card.fee}
-                  </span>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-
-    {/* App Navbar Bottom */}
-    <div className="absolute bottom-0 w-full h-24 bg-white/90 backdrop-blur-xl border-t border-gray-100 flex justify-around items-center px-6 pb-6 pt-2 z-50 rounded-b-[3rem]">
-      <div className="flex flex-col items-center gap-1 text-orange-500 cursor-pointer">
-        <Home className="w-6 h-6" />
-        <span className="text-[10px] font-bold">Home</span>
-      </div>
-      <div className="flex flex-col items-center gap-1 text-gray-400 hover:text-gray-900 cursor-pointer transition-colors">
-        <Search className="w-6 h-6" />
-        <span className="text-[10px]">Search</span>
-      </div>
-      <div className="flex flex-col items-center gap-1 text-gray-400 hover:text-gray-900 cursor-pointer transition-colors relative">
-        <FileText className="w-6 h-6" />
-        <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-orange-500 rounded-full" />
-        <span className="text-[10px]">Orders</span>
-      </div>
-      <div className="flex flex-col items-center gap-1 text-gray-400 hover:text-gray-900 cursor-pointer transition-colors">
-        <Users className="w-6 h-6" />
-        <span className="text-[10px]">Profile</span>
-      </div>
-    </div>
-  </div>
-);
-
-export const SecureWalletMockup = () => (
-  <div className="w-full bg-[#080b12] text-white h-[852px] relative overflow-hidden font-sans flex flex-col">
-    <div className="flex-1 overflow-y-auto custom-scrollbar pb-28">
-      {/* Status bar */}
-      <div className="flex justify-between items-center px-6 pt-4 pb-2 text-xs font-medium bg-[#080b12]/90 backdrop-blur-md sticky top-0 z-50">
-        <span>9:41</span>
-        <div className="flex gap-1">
-          <div className="w-4 h-3 bg-white rounded-sm" />
-          <div className="w-3 h-3 bg-white rounded-full" />
-        </div>
-      </div>
-
-      {/* Header */}
-      <div className="px-6 py-4 flex justify-between items-center relative z-20">
-        <div className="flex items-center gap-3">
-          <img
-            src="https://i.pravatar.cc/100?img=33"
-            className="w-12 h-12 rounded-full border-2 border-indigo-500 shadow-lg shadow-indigo-500/20"
-            alt="Avatar"
-          />
-          <div>
-            <p className="text-gray-400 text-xs mb-0.5">Welcome back,</p>
-            <h1 className="text-xl font-bold tracking-tight">Alex Chen</h1>
-          </div>
-        </div>
-        <div className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center relative cursor-pointer hover:bg-white/10 transition-colors">
-          <Fingerprint className="w-6 h-6 text-indigo-400" />
-        </div>
-      </div>
-
-      {/* Main Card */}
-      <div className="px-6 mt-4 relative z-20">
-        <div className="bg-gradient-to-br from-indigo-500 to-purple-600 rounded-[2rem] p-7 relative overflow-hidden shadow-2xl shadow-indigo-500/30 group cursor-pointer">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-2xl -mt-20 -mr-20 group-hover:scale-110 transition-transform duration-700" />
-          <div className="absolute bottom-0 left-0 w-40 h-40 bg-black/10 rounded-full blur-xl -mb-10 -ml-10" />
-
-          <div className="flex justify-between items-center mb-2 relative z-10">
-            <p className="text-indigo-100 text-sm font-medium">Total Balance</p>
-            <div className="bg-white/20 px-2.5 py-1 rounded-lg text-xs font-semibold backdrop-blur-md text-white flex items-center gap-1">
-              <TrendingUp className="w-3 h-3" /> +2.4%
-            </div>
-          </div>
-
-          <h2 className="text-5xl font-bold tracking-tight mb-8 relative z-10">
-            $84,290.50
-          </h2>
-
-          <div className="flex justify-between items-end relative z-10">
-            <div className="flex gap-2 text-indigo-100 tracking-widest font-mono items-center text-lg">
-              <span>••••</span> <span>••••</span> <span>••••</span>{" "}
-              <span className="text-white font-bold ml-1">4092</span>
-            </div>
-            <div className="flex -space-x-3">
-              <div className="w-10 h-10 rounded-full bg-red-500/80 mix-blend-multiply border-2 border-transparent" />
-              <div className="w-10 h-10 rounded-full bg-yellow-500/80 mix-blend-multiply border-2 border-transparent" />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Quick Actions */}
-      <div className="px-6 mt-8 flex justify-between gap-4">
-        {[
-          { icon: <ExternalLink className="w-6 h-6" />, label: "Send" },
-          { icon: <TrendingUp className="w-6 h-6" />, label: "Receive" },
-          { icon: <CreditCard className="w-6 h-6" />, label: "Top Up" },
-          { icon: <Activity className="w-6 h-6" />, label: "More" },
-        ].map((action, i) => (
-          <div
-            key={i}
-            className="flex flex-col items-center gap-2 cursor-pointer group flex-1"
-          >
-            <div className="w-full aspect-square max-w-[4rem] rounded-2xl bg-[#131620] border border-white/5 flex items-center justify-center text-indigo-400 group-hover:bg-indigo-500 group-hover:text-white transition-all shadow-lg">
-              {action.icon}
-            </div>
-            <span className="text-xs font-semibold text-gray-400 group-hover:text-gray-200 transition-colors">
-              {action.label}
-            </span>
-          </div>
-        ))}
-      </div>
-
-      {/* Asset Allocation */}
-      <div className="px-6 mt-10">
-        <h3 className="text-lg font-bold mb-4">Asset Allocation</h3>
-        <div className="bg-[#131620] rounded-[2rem] p-6 border border-white/5 shadow-xl">
-          <div className="flex items-center justify-between mb-6">
-            <div className="flex items-center gap-4">
-              <div className="w-16 h-16 rounded-full border-4 border-indigo-500 border-r-purple-500 border-b-blue-500 border-l-cyan-500 relative flex items-center justify-center rotate-45">
-                <div className="w-full h-full absolute inset-0 rounded-full border-4 border-transparent opacity-50 bg-gradient-to-tr from-indigo-500 to-purple-500 blur-sm -z-10" />
-                <div className="w-10 h-10 bg-[#080b12] rounded-full absolute -rotate-45 flex items-center justify-center font-bold text-xs">
-                  $
-                </div>
-              </div>
-              <div>
-                <div className="font-bold text-xl">4 Assets</div>
-                <div className="text-gray-400 text-xs">
-                  Diversified Portfolio
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="space-y-4">
-            {[
-              {
-                name: "Bitcoin",
-                sym: "BTC",
-                val: "$45,200",
-                pct: "55%",
-                fill: "w-[55%] bg-yellow-500",
-              },
-              {
-                name: "Ethereum",
-                sym: "ETH",
-                val: "$24,100",
-                pct: "30%",
-                fill: "w-[30%] bg-indigo-400",
-              },
-              {
-                name: "Solana",
-                sym: "SOL",
-                val: "$8,500",
-                pct: "10%",
-                fill: "w-[10%] bg-green-400",
-              },
-            ].map((coin, i) => (
-              <div key={i}>
-                <div className="flex justify-between text-sm font-semibold mb-2">
-                  <span className="text-white">
-                    {coin.name}{" "}
-                    <span className="text-gray-500 font-normal">
-                      {coin.sym}
+              {/* Activity Rings (Visual representation) */}
+              <div className="px-6 mb-8 mt-4 grid grid-cols-3 gap-4">
+                {[
+                  {
+                    value: "80%",
+                    label: "Move",
+                    color: "text-red-500",
+                    ring: "border-red-500/20",
+                  },
+                  {
+                    value: "60%",
+                    label: "Exercise",
+                    color: "text-green-500",
+                    ring: "border-green-500/20",
+                  },
+                  {
+                    value: "40%",
+                    label: "Stand",
+                    color: "text-blue-500",
+                    ring: "border-blue-500/20",
+                  },
+                ].map((stat, i) => (
+                  <div key={i} className="flex flex-col items-center">
+                    <div
+                      className={`w-20 h-20 rounded-full border-[6px] ${stat.ring} flex items-center justify-center mb-2`}
+                    >
+                      <span className={`font-bold ${stat.color} text-lg`}>
+                        {stat.value}
+                      </span>
+                    </div>
+                    <span className="text-xs text-gray-400 font-medium">
+                      {stat.label}
                     </span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Recent Workouts */}
+              <div className="px-6">
+                <div className="flex justify-between items-center mb-4">
+                  <h2 className="text-xl font-bold">Recent</h2>
+                  <span className="text-red-500 text-sm font-medium cursor-pointer hover:underline">
+                    Show All
                   </span>
-                  <span>{coin.val}</span>
                 </div>
-                <div className="w-full h-2 bg-white/5 rounded-full overflow-hidden">
-                  <div className={`h-full rounded-full ${coin.fill}`} />
+                <div className="space-y-4">
+                  {[
+                    {
+                      title: "HIIT Session",
+                      time: "Today • 45 min",
+                      cal: "420 kcal",
+                      icon: <Flame className="w-6 h-6" />,
+                      color: "text-red-500",
+                      bg: "bg-red-500/20",
+                    },
+                    {
+                      title: "Pool Swim",
+                      time: "Yesterday • 30 min",
+                      cal: "310 kcal",
+                      icon: <Activity className="w-6 h-6" />,
+                      color: "text-blue-500",
+                      bg: "bg-blue-500/20",
+                    },
+                    {
+                      title: "Core Training",
+                      time: "Yesterday • 20 min",
+                      cal: "150 kcal",
+                      icon: <CheckCircle className="w-6 h-6" />,
+                      color: "text-orange-500",
+                      bg: "bg-orange-500/20",
+                    },
+                  ].map((workout, i) => (
+                    <div
+                      key={i}
+                      className="bg-[#1c1c1e] p-4 rounded-3xl flex items-center justify-between hover:bg-[#2c2c2e] transition-colors cursor-pointer group"
+                    >
+                      <div className="flex items-center gap-4">
+                        <div
+                          className={`w-12 h-12 ${workout.bg} rounded-full flex items-center justify-center ${workout.color} group-hover:scale-110 transition-transform`}
+                        >
+                          {workout.icon}
+                        </div>
+                        <div>
+                          <div className="font-bold">{workout.title}</div>
+                          <div className="text-gray-400 text-xs mt-1">
+                            {workout.time}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="font-bold text-lg">{workout.cal}</div>
+                    </div>
+                  ))}
                 </div>
               </div>
-            ))}
-          </div>
+            </div>
+          )}
+
+          {/* FITNESS TAB */}
+          {activeTab === "fitness" && (
+            <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+              <div className="px-6 mb-6">
+                <h1 className="text-3xl font-bold mb-4">Workouts</h1>
+                <div className="grid grid-cols-2 gap-4">
+                  {[
+                    {
+                      title: "Running",
+                      icon: <Activity />,
+                      bg: "bg-green-500",
+                    },
+                    { title: "Cycling", icon: <Activity />, bg: "bg-blue-500" },
+                    { title: "Swimming", icon: <Users />, bg: "bg-cyan-500" },
+                    {
+                      title: "Strength",
+                      icon: <Trophy />,
+                      bg: "bg-purple-500",
+                    },
+                  ].map((type, i) => (
+                    <div
+                      key={i}
+                      className={`p-4 rounded-3xl ${type.bg} text-white flex flex-col items-center justify-center h-32 gap-3 cursor-pointer hover:scale-105 transition-transform shadow-lg shadow-${type.bg.split("-")[1]}-500/30`}
+                    >
+                      <div className="p-3 bg-white/20 rounded-full backdrop-blur-sm">
+                        {type.icon}
+                      </div>
+                      <span className="font-bold">{type.title}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="px-6 pb-6">
+                <h2 className="text-xl font-bold mb-4">Training Plans</h2>
+                <div className="space-y-4">
+                  {[
+                    "Couch to 5K",
+                    "Half Marathon Prep",
+                    "Core Crusher 30 Days",
+                  ].map((plan, i) => (
+                    <div
+                      key={i}
+                      className="bg-[#1c1c1e] p-5 rounded-3xl flex items-center justify-between group cursor-pointer hover:bg-[#2c2c2e] transition-colors border border-white/5"
+                    >
+                      <div>
+                        <h3 className="font-bold text-lg">{plan}</h3>
+                        <p className="text-gray-400 text-sm mt-1">
+                          {8 - i} weeks • {i + 3}x/week
+                        </p>
+                      </div>
+                      <ChevronRight className="w-5 h-5 text-gray-500 group-hover:text-red-500 transition-colors" />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* SHARING TAB */}
+          {activeTab === "sharing" && (
+            <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+              <div className="px-6 mb-6">
+                <div className="flex items-center justify-between mb-6">
+                  <h1 className="text-3xl font-bold">Activity</h1>
+                  <button className="w-10 h-10 rounded-full bg-[#1c1c1e] flex items-center justify-center hover:bg-[#2c2c2e] transition-colors cursor-pointer">
+                    <Users className="w-5 h-5 text-red-500" />
+                  </button>
+                </div>
+
+                <div className="space-y-6">
+                  {[
+                    {
+                      name: "Sarah J.",
+                      action: "completed a workout",
+                      type: "Morning Run",
+                      stats: "5.2 km in 28:40",
+                      time: "2 hours ago",
+                      img: "https://i.pravatar.cc/150?img=5",
+                    },
+                    {
+                      name: "Mike T.",
+                      action: "earned an award",
+                      type: "Perfect Week",
+                      stats: "7/7 Move Goals",
+                      time: "5 hours ago",
+                      img: "https://i.pravatar.cc/150?img=8",
+                      award: true,
+                    },
+                    {
+                      name: "Jessica R.",
+                      action: "completed a workout",
+                      type: "HIIT Session",
+                      stats: "450 kcal in 40 min",
+                      time: "Yesterday",
+                      img: "https://i.pravatar.cc/150?img=9",
+                    },
+                  ].map((feed, i) => (
+                    <div
+                      key={i}
+                      className="bg-[#1c1c1e] p-5 rounded-3xl border border-white/5 relative group cursor-pointer"
+                    >
+                      <div className="flex gap-4">
+                        <img
+                          src={feed.img}
+                          alt={feed.name}
+                          className="w-12 h-12 rounded-full object-cover border-2 border-[#2c2c2e]"
+                        />
+                        <div className="flex-1">
+                          <p className="text-sm">
+                            <span className="font-bold text-white">
+                              {feed.name}
+                            </span>{" "}
+                            <span className="text-gray-400">{feed.action}</span>
+                          </p>
+                          <div
+                            className={`mt-3 p-3 rounded-2xl flex items-center gap-3 ${feed.award ? "bg-orange-500/10 border border-orange-500/20" : "bg-black/50"}`}
+                          >
+                            {feed.award ? (
+                              <Award className="w-8 h-8 text-orange-500" />
+                            ) : (
+                              <Activity className="w-8 h-8 text-red-500" />
+                            )}
+                            <div>
+                              <h4 className="font-bold text-white">
+                                {feed.type}
+                              </h4>
+                              <p className="text-xs text-gray-400 mt-1">
+                                {feed.stats}
+                              </p>
+                            </div>
+                          </div>
+                          <div className="flex items-center justify-between mt-4">
+                            <span className="text-xs text-gray-500">
+                              {feed.time}
+                            </span>
+                            <div className="flex gap-3">
+                              <button className="flex items-center gap-1 text-gray-400 hover:text-red-500 transition-colors text-xs font-bold">
+                                <Heart className="w-4 h-4" /> 12
+                              </button>
+                              <button className="flex items-center gap-1 text-gray-400 hover:text-white transition-colors text-xs font-bold">
+                                <MessageSquare className="w-4 h-4" /> 3
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Bottom Navigation */}
+        <div className="absolute bottom-0 w-full h-24 bg-[#1c1c1e]/90 backdrop-blur-xl border-t border-white/10 flex justify-around items-center px-6 pb-6 pt-2 z-40">
+          <button
+            onClick={() => setActiveTab("summary")}
+            className={`flex flex-col items-center gap-1 transition-colors ${activeTab === "summary" ? "text-red-500 scale-110" : "text-gray-500 hover:text-white"}`}
+          >
+            <Activity className="w-6 h-6" />
+            <span className="text-[10px] font-bold">Summary</span>
+          </button>
+          <button
+            onClick={() => setActiveTab("fitness")}
+            className={`flex flex-col items-center gap-1 transition-colors ${activeTab === "fitness" ? "text-red-500 scale-110" : "text-gray-500 hover:text-white"}`}
+          >
+            <Flame className="w-6 h-6" />
+            <span className="text-[10px] font-bold">Fitness</span>
+          </button>
+          <button
+            onClick={() => setActiveTab("sharing")}
+            className={`flex flex-col items-center gap-1 transition-colors ${activeTab === "sharing" ? "text-red-500 scale-110" : "text-gray-500 hover:text-white"}`}
+          >
+            <Users className="w-6 h-6" />
+            <span className="text-[10px] font-bold">Sharing</span>
+          </button>
         </div>
       </div>
+    </div>
+  );
+};
 
-      {/* Transactions */}
-      <div className="px-6 mt-10 pb-8">
-        <div className="flex justify-between items-center mb-6">
-          <h3 className="text-lg font-bold">Recent Activity</h3>
-          <span className="text-indigo-400 font-semibold text-sm cursor-pointer hover:underline">
-            See all
-          </span>
+export const UrbanBitesMockup = () => {
+  const [activeTab, setActiveTab] = useState("home");
+
+  return (
+    <div className="w-full bg-[#f9fafb] text-gray-900 h-[852px] relative overflow-hidden font-sans flex flex-col">
+      <div className="flex-1 overflow-y-auto custom-scrollbar pb-28">
+        {/* Status bar */}
+        <div className="flex justify-between items-center px-6 pt-4 pb-2 text-xs font-medium bg-white sticky top-0 z-50">
+          <span>9:41</span>
+          <div className="flex gap-1 text-black">
+            <div className="w-4 h-3 bg-black rounded-sm" />
+            <div className="w-3 h-3 bg-black rounded-full" />
+          </div>
         </div>
 
-        <div className="space-y-4">
-          {[
-            {
-              name: "Apple Store",
-              cat: "Electronics • Dec 24",
-              amt: "-$999.00",
-              icon: <ShoppingCart className="w-5 h-5" />,
-              color: "bg-gray-800 text-white",
-            },
-            {
-              name: "Stripe Subscriptions",
-              cat: "Income • Dec 23",
-              amt: "+$4,200.00",
-              icon: <TrendingUp className="w-5 h-5" />,
-              color: "bg-green-500/20 text-green-400",
-            },
-            {
-              name: "Starbucks Coffee",
-              cat: "Food & Drink • Dec 22",
-              amt: "-$6.50",
-              icon: <Flame className="w-5 h-5" />,
-              color: "bg-orange-500/20 text-orange-400",
-            },
-            {
-              name: "Uber Rides",
-              cat: "Transport • Dec 21",
-              amt: "-$24.00",
-              icon: <Activity className="w-5 h-5" />,
-              color: "bg-purple-500/20 text-purple-400",
-            },
-          ].map((tx, i) => (
-            <div
-              key={i}
-              className="flex justify-between items-center p-4 bg-[#131620] rounded-2xl border border-white/5 hover:bg-[#1a1e2b] transition-colors cursor-pointer"
-            >
-              <div className="flex items-center gap-4">
+        {activeTab === "home" && (
+          <div className="animate-in fade-in duration-500">
+            {/* App Header */}
+            <div className="bg-white px-6 pb-6 rounded-b-3xl shadow-sm relative z-40">
+              <div className="flex justify-between items-center mb-6">
+                <div>
+                  <p className="text-gray-500 text-xs font-bold uppercase tracking-wider mb-1">
+                    Delivering to
+                  </p>
+                  <div className="flex items-center gap-1 font-bold text-lg cursor-pointer">
+                    <MapPin className="w-5 h-5 text-orange-500" /> Home - 482
+                    Market St <ChevronRight className="w-4 h-4 text-gray-400" />
+                  </div>
+                </div>
+                <div className="relative cursor-pointer">
+                  <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors">
+                    <Bell className="w-6 h-6" />
+                  </div>
+                  <div className="absolute top-0 right-0 w-3.5 h-3.5 bg-red-500 rounded-full border-2 border-white" />
+                </div>
+              </div>
+              <div className="relative">
+                <Search className="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
+                <input
+                  type="text"
+                  placeholder="Search restaurants, dishes..."
+                  className="w-full bg-gray-100/80 hover:bg-gray-100 focus:bg-white rounded-2xl py-4 pl-12 pr-4 font-medium text-sm outline-none border border-transparent focus:border-orange-500 transition-all shadow-inner"
+                />
+              </div>
+            </div>
+
+            {/* Active order tracking */}
+            <div className="px-6 pt-6 relative z-10">
+              <div className="bg-gradient-to-r from-orange-500 to-red-500 rounded-3xl p-6 text-white shadow-lg shadow-orange-500/30 overflow-hidden relative cursor-pointer hover:scale-[1.02] transition-transform">
+                <div className="relative z-10">
+                  <div className="flex justify-between items-center mb-2">
+                    <div className="font-bold text-xl">
+                      Preparing your order
+                    </div>
+                    <div className="font-bold flex items-center gap-1 bg-black/20 px-3 py-1 rounded-full text-sm">
+                      <Clock className="w-4 h-4" /> 15-20 min
+                    </div>
+                  </div>
+                  <p className="text-orange-100 text-sm mb-5 font-medium">
+                    Shake Shack - 2 items
+                  </p>
+
+                  <div className="w-full bg-black/20 h-2.5 rounded-full overflow-hidden mb-2">
+                    <div className="w-1/3 bg-white h-full rounded-full animate-pulse" />
+                  </div>
+                  <div className="flex justify-between text-xs font-bold text-orange-100 uppercase tracking-wider">
+                    <span>Accepted</span>
+                    <span className="text-white">Prep</span>
+                    <span className="opacity-50">On the way</span>
+                  </div>
+                </div>
+                <div className="absolute -right-6 -bottom-6 w-40 h-40 bg-white/20 rounded-full blur-2xl" />
+                <div className="absolute -left-10 -top-10 w-32 h-32 bg-black/10 rounded-full blur-xl" />
+              </div>
+            </div>
+
+            {/* Popular Categories */}
+            <div className="px-6 mt-8">
+              <h2 className="text-xl font-bold mb-4">Categories</h2>
+              <div className="flex gap-4 overflow-x-auto pb-4 custom-scrollbar">
+                {[
+                  { icon: "🍔", label: "Burger" },
+                  { icon: "🍕", label: "Pizza" },
+                  { icon: "🥗", label: "Healthy" },
+                  { icon: "🍣", label: "Sushi" },
+                  { icon: "☕", label: "Coffee" },
+                ].map((cat, i) => (
+                  <div
+                    key={i}
+                    className="flex flex-col items-center gap-2 shrink-0 cursor-pointer group"
+                  >
+                    <div className="w-16 h-16 bg-white rounded-2xl shadow-sm border border-gray-100 flex items-center justify-center text-3xl group-hover:bg-orange-50 group-hover:border-orange-200 transition-colors">
+                      {cat.icon}
+                    </div>
+                    <span className="text-sm font-medium text-gray-700">
+                      {cat.label}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="px-6 mt-4">
+              <div className="flex justify-between items-center mb-4">
+                <h2 className="text-xl font-bold">Featured Near You</h2>
+                <span className="text-orange-500 font-semibold text-sm cursor-pointer hover:underline">
+                  See all
+                </span>
+              </div>
+              <div className="flex flex-col gap-6">
+                {[
+                  {
+                    name: "Sweetgreen",
+                    type: "Healthy • Salads",
+                    rating: "4.8",
+                    time: "10-15 min",
+                    fee: "$1.49 fee",
+                    img: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                  },
+                  {
+                    name: "Joe's Pizza",
+                    type: "Italian • Pizza",
+                    rating: "4.6",
+                    time: "25-35 min",
+                    fee: "Free delivery",
+                    img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                  },
+                  {
+                    name: "Sushi Nakazawa",
+                    type: "Japanese • Sushi",
+                    rating: "4.9",
+                    time: "40-50 min",
+                    fee: "$3.99 fee",
+                    img: "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                  },
+                ].map((card, i) => (
+                  <div
+                    key={i}
+                    className="w-full bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100 cursor-pointer group hover:shadow-md transition-all"
+                  >
+                    <div className="h-40 bg-gray-200 relative overflow-hidden">
+                      <img
+                        src={card.img}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                        alt={card.name}
+                      />
+                      <div className="absolute top-3 right-3 bg-white px-3 py-1.5 rounded-full text-xs font-bold flex items-center gap-1 shadow-md">
+                        <Star className="w-3.5 h-3.5 text-yellow-500 fill-yellow-500" />{" "}
+                        {card.rating}
+                      </div>
+                      <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full text-xs font-bold shadow-md">
+                        {card.time}
+                      </div>
+                    </div>
+                    <div className="p-5">
+                      <h3 className="font-bold text-xl mb-1">{card.name}</h3>
+                      <p className="text-gray-500 text-sm mb-3">{card.type}</p>
+                      <div className="flex items-center gap-4 text-xs font-semibold text-gray-600">
+                        <span className="flex items-center gap-1 bg-gray-50 px-2 py-1 rounded-md">
+                          <Clock className="w-3.5 h-3.5" /> {card.time}
+                        </span>
+                        <span className="flex items-center gap-1 bg-gray-50 px-2 py-1 rounded-md">
+                          <Activity className="w-3.5 h-3.5" /> {card.fee}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {activeTab === "search" && (
+          <div className="animate-in fade-in slide-in-from-right-8 duration-500 px-6 pt-2">
+            <h1 className="text-3xl font-bold mb-6">Search</h1>
+            <div className="relative mb-6">
+              <Search className="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
+              <input
+                type="text"
+                placeholder="Dishes, restaurants, cuisines..."
+                className="w-full bg-white shadow-sm rounded-2xl py-4 pl-12 pr-4 font-medium text-sm outline-none border border-gray-100 focus:border-orange-500 transition-all"
+              />
+            </div>
+            <h2 className="text-lg font-bold mb-4">Top Cuisines</h2>
+            <div className="grid grid-cols-2 gap-4">
+              {[
+                { name: "American", color: "bg-blue-100", img: "🍔" },
+                { name: "Mexican", color: "bg-red-100", img: "🌮" },
+                { name: "Indian", color: "bg-orange-100", img: "🍛" },
+                { name: "Healthy", color: "bg-green-100", img: "🥗" },
+              ].map((c, i) => (
                 <div
-                  className={`w-12 h-12 rounded-2xl flex items-center justify-center shadow-lg ${tx.color}`}
+                  key={i}
+                  className={`h-24 rounded-2xl ${c.color} p-4 flex flex-col justify-between cursor-pointer hover:scale-[1.02] transition-transform`}
                 >
-                  {tx.icon}
+                  <span className="text-xl leading-none">{c.img}</span>
+                  <span className="font-bold text-gray-800">{c.name}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {activeTab === "orders" && (
+          <div className="animate-in fade-in slide-in-from-bottom-8 duration-500 px-6 pt-2">
+            <h1 className="text-3xl font-bold mb-6">Your Orders</h1>
+            <div className="space-y-4">
+              {[
+                {
+                  name: "Shake Shack",
+                  items: "2 items",
+                  price: "$24.50",
+                  date: "Today, 1:45 PM",
+                  status: "Delivered",
+                  icon: "🍔",
+                },
+                {
+                  name: "Sweetgreen",
+                  items: "1 item",
+                  price: "$15.00",
+                  date: "Yesterday",
+                  status: "Delivered",
+                  icon: "🥗",
+                },
+                {
+                  name: "Joe's Pizza",
+                  items: "3 items",
+                  price: "$32.40",
+                  date: "Oct 20",
+                  status: "Delivered",
+                  icon: "🍕",
+                },
+              ].map((order, i) => (
+                <div
+                  key={i}
+                  className="bg-white p-5 rounded-3xl shadow-sm border border-gray-100"
+                >
+                  <div className="flex justify-between items-start mb-3">
+                    <div className="flex gap-3 items-center">
+                      <div className="w-12 h-12 bg-gray-50 rounded-2xl flex items-center justify-center text-xl">
+                        {order.icon}
+                      </div>
+                      <div>
+                        <h3 className="font-bold">{order.name}</h3>
+                        <p className="text-xs text-gray-500">{order.date}</p>
+                      </div>
+                    </div>
+                    <span className="font-bold">{order.price}</span>
+                  </div>
+                  <div className="flex justify-between items-center text-sm border-t border-gray-50 pt-3 mt-1">
+                    <span className="text-gray-500">
+                      {order.items} • {order.status}
+                    </span>
+                    <button className="text-orange-500 font-bold px-3 py-1.5 bg-orange-50 rounded-xl hover:bg-orange-100 transition-colors">
+                      Reorder
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {activeTab === "profile" && (
+          <div className="animate-in fade-in duration-500">
+            <div className="bg-white px-6 py-8 rounded-b-[40px] shadow-sm flex items-center gap-5">
+              <img
+                src="https://i.pravatar.cc/150?img=11"
+                className="w-20 h-20 rounded-full border-4 border-white shadow-lg"
+                alt="Profile"
+              />
+              <div>
+                <h1 className="text-2xl font-bold">Alex Chen</h1>
+                <p className="text-gray-500 text-sm">alex.chen@example.com</p>
+                <div className="mt-2 text-xs font-bold text-orange-500 bg-orange-50 px-3 py-1 rounded-full inline-block">
+                  Gold Member
+                </div>
+              </div>
+            </div>
+            <div className="px-6 mt-8 space-y-4">
+              {[
+                {
+                  icon: <MapPin />,
+                  text: "Saved Addresses",
+                  val: "Home, Work",
+                },
+                {
+                  icon: <CreditCard />,
+                  text: "Payment Methods",
+                  val: "Visa ending in 4242",
+                },
+                { icon: <Bell />, text: "Notifications", val: "On" },
+                { icon: <HelpCircle />, text: "Help & Support", val: "" },
+              ].map((item, i) => (
+                <div
+                  key={i}
+                  className="flex items-center justify-between p-4 bg-white rounded-2xl shadow-sm border border-gray-50 cursor-pointer hover:bg-gray-50 transition-colors"
+                >
+                  <div className="flex items-center gap-4">
+                    <div className="w-10 h-10 bg-gray-50 rounded-full flex items-center justify-center text-gray-600">
+                      {item.icon}
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-sm">{item.text}</h4>
+                      {item.val && (
+                        <p className="text-xs text-gray-500 mt-0.5">
+                          {item.val}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                  <ChevronRight className="w-5 h-5 text-gray-400" />
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* App Navbar Bottom */}
+      <div className="absolute bottom-0 w-full h-24 bg-white/90 backdrop-blur-xl border-t border-gray-100 flex justify-around items-center px-6 pb-6 pt-2 z-50 rounded-b-[3rem]">
+        <div
+          onClick={() => setActiveTab("home")}
+          className={`flex flex-col items-center gap-1 cursor-pointer transition-colors ${activeTab === "home" ? "text-orange-500" : "text-gray-400 hover:text-gray-900"}`}
+        >
+          <Home className="w-6 h-6" />
+          <span className="text-[10px] font-bold">Home</span>
+        </div>
+        <div
+          onClick={() => setActiveTab("search")}
+          className={`flex flex-col items-center gap-1 cursor-pointer transition-colors ${activeTab === "search" ? "text-orange-500" : "text-gray-400 hover:text-gray-900"}`}
+        >
+          <Search className="w-6 h-6" />
+          <span className="text-[10px] font-bold">Search</span>
+        </div>
+        <div
+          onClick={() => setActiveTab("orders")}
+          className={`flex flex-col items-center gap-1 relative cursor-pointer transition-colors ${activeTab === "orders" ? "text-orange-500" : "text-gray-400 hover:text-gray-900"}`}
+        >
+          <FileText className="w-6 h-6" />
+          {activeTab !== "orders" && (
+            <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-orange-500 rounded-full" />
+          )}
+          <span className="text-[10px] font-bold">Orders</span>
+        </div>
+        <div
+          onClick={() => setActiveTab("profile")}
+          className={`flex flex-col items-center gap-1 cursor-pointer transition-colors ${activeTab === "profile" ? "text-orange-500" : "text-gray-400 hover:text-gray-900"}`}
+        >
+          <Users className="w-6 h-6" />
+          <span className="text-[10px] font-bold">Profile</span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export const SecureWalletMockup = () => {
+  const [activeTab, setActiveTab] = useState("home");
+
+  return (
+    <div className="w-full bg-[#080b12] text-white h-[852px] relative overflow-hidden font-sans flex flex-col">
+      <div className="flex-1 overflow-y-auto custom-scrollbar pb-28">
+        {/* Status bar */}
+        <div className="flex justify-between items-center px-6 pt-4 pb-2 text-xs font-medium bg-[#080b12]/90 backdrop-blur-md sticky top-0 z-50">
+          <span>9:41</span>
+          <div className="flex gap-1">
+            <div className="w-4 h-3 bg-white rounded-sm" />
+            <div className="w-3 h-3 bg-white rounded-full" />
+          </div>
+        </div>
+
+        {activeTab === "home" && (
+          <div className="animate-in fade-in duration-500">
+            {/* Header */}
+            <div className="px-6 py-4 flex justify-between items-center relative z-20">
+              <div className="flex items-center gap-3">
+                <img
+                  src="https://i.pravatar.cc/100?img=33"
+                  className="w-12 h-12 rounded-full border-2 border-indigo-500 shadow-lg shadow-indigo-500/20"
+                  alt="Avatar"
+                />
+                <div>
+                  <p className="text-gray-400 text-xs mb-0.5">Welcome back,</p>
+                  <h1 className="text-xl font-bold tracking-tight">
+                    Alex Chen
+                  </h1>
+                </div>
+              </div>
+              <div className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center relative cursor-pointer hover:bg-white/10 transition-colors">
+                <Fingerprint className="w-6 h-6 text-indigo-400" />
+              </div>
+            </div>
+
+            {/* Main Card */}
+            <div className="px-6 mt-4 relative z-20">
+              <div className="bg-gradient-to-br from-indigo-500 to-purple-600 rounded-[2rem] p-7 relative overflow-hidden shadow-2xl shadow-indigo-500/30 group cursor-pointer">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-2xl -mt-20 -mr-20 group-hover:scale-110 transition-transform duration-700" />
+                <div className="absolute bottom-0 left-0 w-40 h-40 bg-black/10 rounded-full blur-xl -mb-10 -ml-10" />
+
+                <div className="flex justify-between items-center mb-2 relative z-10">
+                  <p className="text-indigo-100 text-sm font-medium">
+                    Total Balance
+                  </p>
+                  <div className="bg-white/20 px-2.5 py-1 rounded-lg text-xs font-semibold backdrop-blur-md text-white flex items-center gap-1">
+                    <TrendingUp className="w-3 h-3" /> +2.4%
+                  </div>
+                </div>
+
+                <h2 className="text-5xl font-bold tracking-tight mb-8 relative z-10">
+                  $84,290.50
+                </h2>
+
+                <div className="flex justify-between items-end relative z-10">
+                  <div className="flex gap-2 text-indigo-100 tracking-widest font-mono items-center text-lg">
+                    <span>••••</span> <span>••••</span> <span>••••</span>{" "}
+                    <span className="text-white font-bold ml-1">4092</span>
+                  </div>
+                  <div className="flex -space-x-3">
+                    <div className="w-10 h-10 rounded-full bg-red-500/80 mix-blend-multiply border-2 border-transparent" />
+                    <div className="w-10 h-10 rounded-full bg-yellow-500/80 mix-blend-multiply border-2 border-transparent" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Quick Actions */}
+            <div className="px-6 mt-8 flex justify-between gap-4">
+              {[
+                { icon: <ExternalLink className="w-6 h-6" />, label: "Send" },
+                { icon: <TrendingUp className="w-6 h-6" />, label: "Receive" },
+                { icon: <CreditCard className="w-6 h-6" />, label: "Top Up" },
+                { icon: <Activity className="w-6 h-6" />, label: "More" },
+              ].map((action, i) => (
+                <div
+                  key={i}
+                  className="flex flex-col items-center gap-2 cursor-pointer group flex-1"
+                >
+                  <div className="w-full aspect-square max-w-[4rem] rounded-2xl bg-[#131620] border border-white/5 flex items-center justify-center text-indigo-400 group-hover:bg-indigo-500 group-hover:text-white transition-all shadow-lg">
+                    {action.icon}
+                  </div>
+                  <span className="text-xs font-semibold text-gray-400 group-hover:text-gray-200 transition-colors">
+                    {action.label}
+                  </span>
+                </div>
+              ))}
+            </div>
+
+            {/* Asset Allocation */}
+            <div className="px-6 mt-10">
+              <h3 className="text-lg font-bold mb-4">Asset Allocation</h3>
+              <div className="bg-[#131620] rounded-[2rem] p-6 border border-white/5 shadow-xl">
+                <div className="flex items-center justify-between mb-6">
+                  <div className="flex items-center gap-4">
+                    <div className="w-16 h-16 rounded-full border-4 border-indigo-500 border-r-purple-500 border-b-blue-500 border-l-cyan-500 relative flex items-center justify-center rotate-45">
+                      <div className="w-full h-full absolute inset-0 rounded-full border-4 border-transparent opacity-50 bg-gradient-to-tr from-indigo-500 to-purple-500 blur-sm -z-10" />
+                      <div className="w-10 h-10 bg-[#080b12] rounded-full absolute -rotate-45 flex items-center justify-center font-bold text-xs">
+                        $
+                      </div>
+                    </div>
+                    <div>
+                      <div className="font-bold text-xl">4 Assets</div>
+                      <div className="text-gray-400 text-xs">
+                        Diversified Portfolio
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  {[
+                    {
+                      name: "Bitcoin",
+                      sym: "BTC",
+                      val: "$45,200",
+                      pct: "55%",
+                      fill: "w-[55%] bg-yellow-500",
+                    },
+                    {
+                      name: "Ethereum",
+                      sym: "ETH",
+                      val: "$24,100",
+                      pct: "30%",
+                      fill: "w-[30%] bg-indigo-400",
+                    },
+                    {
+                      name: "Solana",
+                      sym: "SOL",
+                      val: "$8,500",
+                      pct: "10%",
+                      fill: "w-[10%] bg-green-400",
+                    },
+                  ].map((coin, i) => (
+                    <div key={i}>
+                      <div className="flex justify-between text-sm font-semibold mb-2">
+                        <span className="text-white">
+                          {coin.name}{" "}
+                          <span className="text-gray-500 font-normal">
+                            {coin.sym}
+                          </span>
+                        </span>
+                        <span>{coin.val}</span>
+                      </div>
+                      <div className="w-full h-2 bg-white/5 rounded-full overflow-hidden">
+                        <div className={`h-full rounded-full ${coin.fill}`} />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Transactions */}
+            <div className="px-6 mt-10 pb-8">
+              <div className="flex justify-between items-center mb-6">
+                <h3 className="text-lg font-bold">Recent Activity</h3>
+                <span className="text-indigo-400 font-semibold text-sm cursor-pointer hover:underline">
+                  See all
+                </span>
+              </div>
+
+              <div className="space-y-4">
+                {[
+                  {
+                    name: "Apple Store",
+                    cat: "Electronics • Dec 24",
+                    amt: "-$999.00",
+                    icon: <ShoppingCart className="w-5 h-5" />,
+                    color: "bg-gray-800 text-white",
+                  },
+                  {
+                    name: "Stripe Subscriptions",
+                    cat: "Income • Dec 23",
+                    amt: "+$4,200.00",
+                    icon: <TrendingUp className="w-5 h-5" />,
+                    color: "bg-green-500/20 text-green-400",
+                  },
+                  {
+                    name: "Starbucks Coffee",
+                    cat: "Food & Drink • Dec 22",
+                    amt: "-$6.50",
+                    icon: <Flame className="w-5 h-5" />,
+                    color: "bg-orange-500/20 text-orange-400",
+                  },
+                  {
+                    name: "Uber Rides",
+                    cat: "Transport • Dec 21",
+                    amt: "-$24.00",
+                    icon: <Activity className="w-5 h-5" />,
+                    color: "bg-purple-500/20 text-purple-400",
+                  },
+                ].map((tx, i) => (
+                  <div
+                    key={i}
+                    className="flex justify-between items-center p-4 bg-[#131620] rounded-2xl border border-white/5 hover:bg-[#1a1e2b] transition-colors cursor-pointer"
+                  >
+                    <div className="flex items-center gap-4">
+                      <div
+                        className={`w-12 h-12 rounded-2xl flex items-center justify-center shadow-lg ${tx.color}`}
+                      >
+                        {tx.icon}
+                      </div>
+                      <div>
+                        <div className="font-bold text-white mb-0.5">
+                          {tx.name}
+                        </div>
+                        <div className="text-xs text-gray-400">{tx.cat}</div>
+                      </div>
+                    </div>
+                    <div
+                      className={`font-bold text-lg ${tx.amt.startsWith("+") ? "text-green-400" : "text-white"}`}
+                    >
+                      {tx.amt}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {activeTab === "stats" && (
+          <div className="animate-in fade-in slide-in-from-right-8 duration-500 px-6 pt-4">
+            <h1 className="text-3xl font-bold mb-6">Analytics</h1>
+
+            <div className="bg-[#131620] rounded-[2rem] p-6 border border-white/5 shadow-xl mb-6">
+              <div className="flex justify-between items-center mb-6">
+                <div>
+                  <p className="text-gray-400 text-sm">Total Spent</p>
+                  <h2 className="text-3xl font-bold mt-1">$4,290.50</h2>
+                </div>
+                <div className="bg-indigo-500/20 px-3 py-1.5 rounded-xl text-indigo-400 text-sm font-bold flex items-center gap-1">
+                  This Month <ChevronDown className="w-4 h-4" />
+                </div>
+              </div>
+
+              {/* Mock Bar Chart */}
+              <div className="h-40 flex items-end justify-between gap-2 mt-8">
+                {[40, 70, 45, 90, 65, 85, 50].map((h, i) => (
+                  <div
+                    key={i}
+                    className="w-full flex flex-col items-center gap-2 group cursor-pointer"
+                  >
+                    <div
+                      className="w-full bg-white/10 rounded-t-lg relative group-hover:bg-indigo-500/50 transition-colors"
+                      style={{ height: `${h}%` }}
+                    >
+                      <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-white text-black text-xs font-bold py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                        ${h * 12}
+                      </div>
+                    </div>
+                    <span className="text-xs text-gray-500">
+                      {"SMTWTFS"[i]}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <h3 className="text-xl font-bold mb-4">Top Spending Categories</h3>
+            <div className="space-y-4">
+              {[
+                {
+                  name: "Shopping",
+                  val: "$1,240",
+                  icon: <ShoppingBag />,
+                  color: "text-purple-400",
+                  bg: "bg-purple-500/20",
+                },
+                {
+                  name: "Food & Dining",
+                  val: "$850",
+                  icon: <Flame />,
+                  color: "text-orange-400",
+                  bg: "bg-orange-500/20",
+                },
+                {
+                  name: "Transportation",
+                  val: "$340",
+                  icon: <Activity />,
+                  color: "text-blue-400",
+                  bg: "bg-blue-500/20",
+                },
+              ].map((cat, i) => (
+                <div
+                  key={i}
+                  className="flex justify-between items-center p-4 bg-[#131620] rounded-2xl border border-white/5"
+                >
+                  <div className="flex items-center gap-4">
+                    <div
+                      className={`w-12 h-12 rounded-xl flex items-center justify-center ${cat.bg} ${cat.color}`}
+                    >
+                      {cat.icon}
+                    </div>
+                    <span className="font-bold">{cat.name}</span>
+                  </div>
+                  <span className="font-bold">{cat.val}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {activeTab === "cards" && (
+          <div className="animate-in fade-in slide-in-from-bottom-8 duration-500 px-6 pt-4">
+            <div className="flex justify-between items-center mb-8">
+              <h1 className="text-3xl font-bold">My Cards</h1>
+              <button className="w-10 h-10 rounded-full bg-indigo-500 flex items-center justify-center hover:bg-indigo-600 transition-colors shadow-lg shadow-indigo-500/30">
+                <Plus className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Virtual Card */}
+            <div className="bg-gradient-to-br from-indigo-500 to-purple-600 rounded-[2rem] p-7 relative overflow-hidden shadow-2xl shadow-indigo-500/30 mb-6">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-2xl -mt-20 -mr-20" />
+              <div className="flex justify-between items-start mb-12">
+                <div className="font-mono text-xl tracking-widest font-bold opacity-80">
+                  Virtual Card
+                </div>
+                <div className="flex -space-x-3">
+                  <div className="w-10 h-10 rounded-full bg-red-500/80 mix-blend-multiply" />
+                  <div className="w-10 h-10 rounded-full bg-yellow-500/80 mix-blend-multiply" />
+                </div>
+              </div>
+              <div className="font-mono tracking-widest text-2xl mb-4">
+                4092 8210 4920 1928
+              </div>
+              <div className="flex justify-between text-sm uppercase tracking-wider font-semibold opacity-80">
+                <div>
+                  <div className="text-[10px] opacity-60">Card Holder</div>
+                  <div>Alex Chen</div>
                 </div>
                 <div>
-                  <div className="font-bold text-white mb-0.5">{tx.name}</div>
-                  <div className="text-xs text-gray-400">{tx.cat}</div>
+                  <div className="text-[10px] opacity-60">Valid Thru</div>
+                  <div>12/28</div>
                 </div>
               </div>
-              <div
-                className={`font-bold text-lg ${tx.amt.startsWith("+") ? "text-green-400" : "text-white"}`}
-              >
-                {tx.amt}
+            </div>
+
+            {/* Physical Card */}
+            <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-[2rem] p-7 relative overflow-hidden shadow-xl mb-8 border border-white/10">
+              <div className="flex justify-between items-start mb-12">
+                <div className="font-mono text-xl tracking-widest font-bold opacity-80">
+                  Physical Card
+                </div>
+                <div className="font-bold italic text-2xl tracking-tighter opacity-80">
+                  VISA
+                </div>
+              </div>
+              <div className="font-mono tracking-widest text-2xl mb-4 opacity-70">
+                **** **** **** 8839
+              </div>
+              <div className="flex justify-between text-sm uppercase tracking-wider font-semibold opacity-80">
+                <div>
+                  <div className="text-[10px] opacity-60">Card Holder</div>
+                  <div>Alex Chen</div>
+                </div>
+                <div>
+                  <div className="text-[10px] opacity-60">Valid Thru</div>
+                  <div>08/26</div>
+                </div>
               </div>
             </div>
-          ))}
+
+            <h3 className="text-xl font-bold mb-4">Card Settings</h3>
+            <div className="bg-[#131620] rounded-2xl border border-white/5 overflow-hidden">
+              <div className="p-4 flex justify-between items-center border-b border-white/5">
+                <div className="flex items-center gap-3">
+                  <Lock className="w-5 h-5 text-gray-400" />
+                  <span className="font-medium">Lock Card</span>
+                </div>
+                <div className="w-12 h-6 bg-gray-700 rounded-full relative cursor-pointer">
+                  <div className="w-5 h-5 bg-gray-400 rounded-full absolute top-0.5 left-0.5" />
+                </div>
+              </div>
+              <div className="p-4 flex justify-between items-center border-b border-white/5">
+                <div className="flex items-center gap-3">
+                  <Activity className="w-5 h-5 text-gray-400" />
+                  <span className="font-medium">Online Payments</span>
+                </div>
+                <div className="w-12 h-6 bg-indigo-500 rounded-full relative cursor-pointer">
+                  <div className="w-5 h-5 bg-white rounded-full absolute top-0.5 right-0.5 shadow-sm" />
+                </div>
+              </div>
+              <div className="p-4 flex justify-between items-center">
+                <div className="flex items-center gap-3">
+                  <CreditCard className="w-5 h-5 text-gray-400" />
+                  <span className="font-medium">Change PIN</span>
+                </div>
+                <ChevronRight className="w-5 h-5 text-gray-500" />
+              </div>
+            </div>
+          </div>
+        )}
+
+        {activeTab === "profile" && (
+          <div className="animate-in fade-in duration-500 px-6 pt-4 pb-10">
+            <h1 className="text-3xl font-bold mb-8">Profile</h1>
+
+            <div className="flex flex-col items-center mb-8">
+              <div className="relative mb-4">
+                <img
+                  src="https://i.pravatar.cc/150?img=33"
+                  className="w-24 h-24 rounded-full border-4 border-[#131620] shadow-xl"
+                  alt="Profile"
+                />
+                <button className="absolute bottom-0 right-0 w-8 h-8 bg-indigo-500 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
+                  <Camera className="w-4 h-4 text-white" />
+                </button>
+              </div>
+              <h2 className="text-2xl font-bold">Alex Chen</h2>
+              <p className="text-gray-400">@alexchen • Joined 2024</p>
+            </div>
+
+            <div className="space-y-6">
+              <div>
+                <h3 className="text-sm font-bold text-gray-500 uppercase tracking-wider mb-3 px-2">
+                  Account Details
+                </h3>
+                <div className="bg-[#131620] rounded-2xl border border-white/5 overflow-hidden">
+                  {[
+                    { label: "Personal Information", icon: <Users /> },
+                    { label: "Payment Limits", icon: <DollarSign /> },
+                    { label: "Security & Privacy", icon: <ShieldCheck /> },
+                  ].map((item, i) => (
+                    <div
+                      key={i}
+                      className="p-4 flex justify-between items-center border-b border-white/5 hover:bg-white/5 transition-colors cursor-pointer"
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-indigo-400">
+                          {item.icon}
+                        </div>
+                        <span className="font-medium">{item.label}</span>
+                      </div>
+                      <ChevronRight className="w-5 h-5 text-gray-500" />
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-sm font-bold text-gray-500 uppercase tracking-wider mb-3 px-2">
+                  App Settings
+                </h3>
+                <div className="bg-[#131620] rounded-2xl border border-white/5 overflow-hidden">
+                  {[
+                    { label: "Notifications", icon: <Bell /> },
+                    { label: "Appearance", icon: <Target /> },
+                    { label: "Help & Support", icon: <HelpCircle /> },
+                  ].map((item, i) => (
+                    <div
+                      key={i}
+                      className="p-4 flex justify-between items-center border-b border-white/5 hover:bg-white/5 transition-colors cursor-pointer"
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-gray-400">
+                          {item.icon}
+                        </div>
+                        <span className="font-medium">{item.label}</span>
+                      </div>
+                      <ChevronRight className="w-5 h-5 text-gray-500" />
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <button className="w-full py-4 rounded-xl text-red-400 font-bold bg-red-400/10 hover:bg-red-400/20 transition-colors border border-red-400/20 mt-4">
+                Sign Out
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* App Navbar Bottom */}
+      <div className="absolute bottom-0 w-full h-24 bg-[#080b12]/90 backdrop-blur-xl border-t border-white/5 flex justify-around items-center px-6 pb-6 pt-2 z-50 rounded-b-[3rem]">
+        <div
+          onClick={() => setActiveTab("home")}
+          className={`flex flex-col items-center gap-1 cursor-pointer transition-colors ${activeTab === "home" ? "text-indigo-400" : "text-gray-500 hover:text-gray-300"}`}
+        >
+          <Home className="w-6 h-6" />
+          <span className="text-[10px] font-bold">Home</span>
+        </div>
+        <div
+          onClick={() => setActiveTab("stats")}
+          className={`flex flex-col items-center gap-1 relative cursor-pointer transition-colors ${activeTab === "stats" ? "text-indigo-400" : "text-gray-500 hover:text-gray-300"}`}
+        >
+          <PieChart className="w-6 h-6" />
+          {activeTab !== "stats" && (
+            <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-indigo-500 rounded-full" />
+          )}
+          <span className="text-[10px] font-bold">Stats</span>
+        </div>
+        <div
+          onClick={() => setActiveTab("cards")}
+          className={`flex flex-col items-center gap-1 cursor-pointer transition-colors ${activeTab === "cards" ? "text-indigo-400" : "text-gray-500 hover:text-gray-300"}`}
+        >
+          <ShieldCheck className="w-6 h-6" />
+          <span className="text-[10px] font-bold">Cards</span>
+        </div>
+        <div
+          onClick={() => setActiveTab("profile")}
+          className={`flex flex-col items-center gap-1 cursor-pointer transition-colors ${activeTab === "profile" ? "text-indigo-400" : "text-gray-500 hover:text-gray-300"}`}
+        >
+          <Users className="w-6 h-6" />
+          <span className="text-[10px] font-bold">Profile</span>
         </div>
       </div>
     </div>
-
-    {/* App Navbar Bottom */}
-    <div className="absolute bottom-0 w-full h-24 bg-[#080b12]/90 backdrop-blur-xl border-t border-white/5 flex justify-around items-center px-6 pb-6 pt-2 z-50 rounded-b-[3rem]">
-      <div className="flex flex-col items-center gap-1 text-indigo-400 cursor-pointer">
-        <Home className="w-6 h-6" />
-        <span className="text-[10px] font-bold">Home</span>
-      </div>
-      <div className="flex flex-col items-center gap-1 text-gray-500 hover:text-gray-300 cursor-pointer transition-colors relative">
-        <PieChart className="w-6 h-6" />
-        <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-indigo-500 rounded-full" />
-        <span className="text-[10px]">Stats</span>
-      </div>
-      <div className="flex flex-col items-center gap-1 text-gray-500 hover:text-gray-300 cursor-pointer transition-colors">
-        <ShieldCheck className="w-6 h-6" />
-        <span className="text-[10px]">Cards</span>
-      </div>
-      <div className="flex flex-col items-center gap-1 text-gray-500 hover:text-gray-300 cursor-pointer transition-colors">
-        <Users className="w-6 h-6" />
-        <span className="text-[10px]">Profile</span>
-      </div>
-    </div>
-  </div>
-);
+  );
+};
 
 export const EcoShopMockup = () => (
   <div className="w-full bg-[#faf9f6] text-black font-sans h-[800px] overflow-y-auto flex flex-col custom-scrollbar">
@@ -1798,7 +2448,7 @@ export const EduTechMockup = () => (
                 <span className="text-lg font-normal opacity-80">/ 5 hrs</span>
               </div>
               <p className="text-sm opacity-80 mb-4">
-                You're almost there! Keep it up.
+                You&apos;re almost there! Keep it up.
               </p>
               <button className="bg-white text-indigo-600 px-4 py-2 rounded-lg text-sm font-bold shadow-sm">
                 View Stats

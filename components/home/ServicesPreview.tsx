@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import {
   Code,
   Smartphone,
@@ -24,42 +24,48 @@ import { Container } from "@/components/ui/Container";
 const services = [
   {
     icon: Globe,
-    title: "Website Development",
+    title: "Web UI Design",
     desc: (
       <>
-        We build high-performance, responsive websites that captivate your
-        audience.{" "}
+        Stunning, conversion-focused websites built with pixel-perfect
+        precision.{" "}
         <span className="text-[#6BC323] font-bold">Same-Day Prototype:</span> We
-        deliver your first UI prototype on the very day you sign up, iterating
-        until perfection before the final rapid build.
+        deliver your first UI on day one and iterate until it's perfect.
       </>
     ),
     color: "from-[#6BC323] to-[#58a51c]",
     bg: "bg-[#1a2616]/40",
-    href: "/portfolio/web-development",
+    href: "/portfolio?tab=web",
   },
   {
     icon: Smartphone,
-    title: "App Development",
+    title: "App UI Design",
     desc: (
       <>
-        Native and cross-platform mobile apps.{" "}
+        Sleek native and cross-platform mobile experiences.{" "}
         <span className="text-[#6BC323] font-bold">Same-Day Prototype:</span>{" "}
-        Get a clickable UI prototype on Day 1. We refine it until you're 100%
-        satisfied, then deliver the final app at lightning speed.
+        Get a clickable app UI on Day 1, refined until you're 100% satisfied.
       </>
     ),
     color: "from-blue-500 to-cyan-500",
     bg: "bg-[#0b121a]/40",
-    href: "/portfolio/app-development",
+    href: "/portfolio?tab=app",
   },
   {
     icon: BarChart,
     title: "Digital Marketing",
-    desc: "Data-driven strategies to grow your audience. We optimize every campaign to maximize ROI and brand visibility.",
+    desc: "Data-driven campaigns that grow your audience and maximize ROI. We craft strategy, manage spend, and deliver measurable results.",
     color: "from-purple-500 to-pink-500",
     bg: "bg-[#1a0b18]/40",
-    href: "/portfolio/digital-marketing",
+    href: "/portfolio?tab=digital",
+  },
+  {
+    icon: TrendingUp,
+    title: "Social Media Marketing",
+    desc: "Viral-ready content, community management, and paid social that builds brand loyalty and drives real engagement across every platform.",
+    color: "from-[#E1306C] to-[#F77737]",
+    bg: "bg-[#1a0b10]/40",
+    href: "/portfolio?tab=smm",
   },
   {
     icon: Code,
@@ -74,13 +80,6 @@ const services = [
     desc: "Dominate search rankings. Our expert SEO team drives organic traffic to your site with proven techniques.",
     color: "from-yellow-400 to-orange-400",
     bg: "bg-[#1a180b]",
-  },
-  {
-    icon: Shield,
-    title: "Cybersecurity",
-    desc: "Protect your digital assets. We implement advanced security measures to safeguard your business from threats.",
-    color: "from-emerald-500 to-teal-500",
-    bg: "bg-[#0b1a15]",
   },
 ];
 
@@ -457,11 +456,16 @@ const Card = ({
   // Internal Parallax
   const contentY = useTransform(scrollYProgress, [0, 1], [50, -50]);
 
+  // Hover state (CSS hover blocked by z-50 Link overlay, so we track manually)
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
     <div
       ref={container}
       className="h-[85vh] flex items-center justify-center sticky top-24 md:top-[calc(8rem+var(--offset))] perspective-1000"
       style={{ "--offset": `${i * 15}px` } as any}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
       <motion.div
         style={{
@@ -470,6 +474,9 @@ const Card = ({
         }}
         initial={{ opacity: 0, scale: 0.8, y: 100 }}
         whileInView={{ opacity: 1, scale: 1, y: 0 }}
+        whileHover={
+          href ? { boxShadow: "0 0 80px rgba(107,195,35,0.12)" } : undefined
+        }
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.8, type: "spring", bounce: 0.4 }}
         className={`
@@ -511,16 +518,43 @@ const Card = ({
                 {desc}
               </p>
             </div>
-            <div className="mt-8">
-              <div className="flex items-center gap-3 text-white font-medium w-fit">
-                <span className="border-b border-transparent group-hover:border-[#6BC323] transition-all">
-                  {href ? "View Portfolio" : "Learn more details"}
-                </span>
-                <div className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-[#6BC323] group-hover:border-[#6BC323] group-hover:text-black transition-all">
-                  <ArrowUpRight size={16} />
+            {href && (
+              <div className="mt-8">
+                <div className="relative inline-flex items-center gap-3 font-semibold text-white">
+                  <span className="relative">
+                    View Portfolio
+                    <motion.span
+                      className="absolute -bottom-0.5 left-0 h-[2px] bg-gradient-to-r from-[#6BC323] to-cyan-400 rounded-full"
+                      animate={{ width: isHovered ? "100%" : "0%" }}
+                      transition={{ duration: 0.4, ease: "easeOut" }}
+                    />
+                  </span>
+                  <motion.div
+                    className="w-9 h-9 rounded-full border flex items-center justify-center"
+                    animate={{
+                      backgroundColor: isHovered
+                        ? "#6BC323"
+                        : "rgba(255,255,255,0.05)",
+                      borderColor: isHovered
+                        ? "#6BC323"
+                        : "rgba(255,255,255,0.2)",
+                      scale: isHovered ? 1.15 : 1,
+                      boxShadow: isHovered
+                        ? "0 0 20px rgba(107,195,35,0.6)"
+                        : "none",
+                    }}
+                    transition={{ duration: 0.25 }}
+                  >
+                    <motion.div
+                      animate={{ color: isHovered ? "#000" : "#fff" }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <ArrowUpRight size={16} />
+                    </motion.div>
+                  </motion.div>
                 </div>
               </div>
-            </div>
+            )}
           </div>
 
           {/* Right: Unique Visual */}

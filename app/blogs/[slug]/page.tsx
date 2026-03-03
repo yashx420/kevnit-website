@@ -77,7 +77,7 @@ export default function BlogPostPage({
           >
             <Link
               href="/blogs"
-              className="inline-flex items-center gap-2 text-gray-400 hover:text-[#6BC323] transition-colors mb-6 text-sm"
+              className="inline-flex items-center gap-2 text-gray-400 hover:text-[#6BC323] transition-colors mb-6 mr-6 text-sm"
             >
               <ArrowLeft size={16} />
               Back to Blog

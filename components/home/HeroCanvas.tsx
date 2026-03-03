@@ -319,13 +319,13 @@ export function HeroCanvas() {
                   Get a Free Consultation
                 </Button>
               </Link>
-              <Link href="/services">
+              <Link href="/portfolio">
                 <Button
                   variant="outline"
                   size="lg"
                   className="min-w-[200px] text-lg h-14 border-white/20 hover:bg-white/5"
                 >
-                  View Our Services
+                  View Portfolio
                 </Button>
               </Link>
             </div>

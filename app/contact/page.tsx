@@ -18,6 +18,7 @@ export default function ContactPage() {
 
     const formData = new FormData(e.currentTarget);
     formData.append("access_key", "927ec7aa-3d76-4be7-9c80-c639b6b40e36");
+    formData.append("to", "info@kevnit.com");
 
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
@@ -168,7 +169,7 @@ export default function ContactPage() {
                     </h3>
                     <p className="text-gray-400">
                       Thank you for your enquiry. We'll get back to you at
-                      yash50sinha@gmail.com shortly.
+                      info@kevnit.com shortly.
                     </p>
                     <Button
                       variant="outline"

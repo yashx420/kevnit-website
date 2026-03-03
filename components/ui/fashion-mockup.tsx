@@ -141,10 +141,6 @@ export const FashionMockup = () => {
         containerRef.current.closest("[data-lenis-prevent]") ||
         containerRef.current.closest(".overflow-y-auto");
       if (scrollParent) scrollParent.scrollTop = 0;
-      containerRef.current.scrollIntoView({
-        behavior: "instant",
-        block: "start",
-      });
     }
   }, [page, selectedProduct]);
 
