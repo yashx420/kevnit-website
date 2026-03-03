@@ -209,8 +209,7 @@ export default function BlogsPage() {
                     <motion.div
                       key={post.slug}
                       initial={{ opacity: 0, y: 40 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
+                      animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.6, delay: (i % 3) * 0.1 }}
                       className={`h-[380px] md:h-[420px] lg:h-[480px] ${
                         i === 0 ? "md:col-span-2 lg:col-span-2" : ""

@@ -113,66 +113,63 @@ export function PortfolioContent() {
 
   const renderWebAndAppGrid = (projects: Project[]) => (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-16">
-      <AnimatePresence mode="wait">
-        {projects.map((project, index) => (
+      {projects.map((project, index) => (
+        <motion.div
+          key={project.id}
+          layoutId={`project-${project.id}`}
+          onClick={() => setSelectedProjectId(project.id)}
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{
+            duration: 0.7,
+            delay: index % 2 === 0 ? 0 : 0.2,
+          }}
+          className="group cursor-pointer"
+        >
           <motion.div
-            key={project.id}
-            layoutId={`project-${project.id}`}
-            onClick={() => setSelectedProjectId(project.id)}
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: 0.7,
-              delay: index % 2 === 0 ? 0 : 0.2,
-            }}
-            className="group cursor-pointer"
+            layoutId={`image-container-${project.id}`}
+            className="relative aspect-[4/3] rounded-3xl overflow-hidden mb-6 border border-white/10"
           >
-            <motion.div
-              layoutId={`image-container-${project.id}`}
-              className="relative aspect-[4/3] rounded-3xl overflow-hidden mb-6 border border-white/10"
-            >
-              <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500 z-10" />
-              <div className="absolute inset-0 overflow-hidden pointer-events-none flex justify-center mt-4">
-                <div
-                  style={{
-                    transform:
-                      activeTab === "app" ? "scale(0.35)" : "scale(0.5)",
-                    transformOrigin: "top center",
-                    width: activeTab === "app" ? "100%" : "200%",
-                    height: activeTab === "app" ? "200%" : "200%",
-                  }}
-                >
-                  {renderMockup(project.id)}
-                </div>
-              </div>
-
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20 flex items-end p-8">
-                <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-500 flex items-center gap-2 text-white font-medium">
-                  View Live Interactive Preview{" "}
-                  <ExternalLink className="w-4 h-4" />
-                </div>
-              </div>
-            </motion.div>
-
-            <div className="px-2">
-              <div className="flex items-center gap-3 mb-3">
-                <motion.span
-                  layoutId={`category-${project.id}`}
-                  className="text-cyan-400 text-sm font-medium tracking-wide uppercase"
-                >
-                  {project.category}
-                </motion.span>
-              </div>
-              <motion.h3
-                layoutId={`title-${project.id}`}
-                className="text-3xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors"
+            <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500 z-10" />
+            <div className="absolute inset-0 overflow-hidden pointer-events-none flex justify-center mt-4">
+              <div
+                style={{
+                  transform: activeTab === "app" ? "scale(0.35)" : "scale(0.5)",
+                  transformOrigin: "top center",
+                  width: activeTab === "app" ? "100%" : "200%",
+                  height: activeTab === "app" ? "200%" : "200%",
+                }}
               >
-                {project.title}
-              </motion.h3>
+                {renderMockup(project.id)}
+              </div>
+            </div>
+
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20 flex items-end p-8">
+              <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-500 flex items-center gap-2 text-white font-medium">
+                View Live Interactive Preview{" "}
+                <ExternalLink className="w-4 h-4" />
+              </div>
             </div>
           </motion.div>
-        ))}
-      </AnimatePresence>
+
+          <div className="px-2">
+            <div className="flex items-center gap-3 mb-3">
+              <motion.span
+                layoutId={`category-${project.id}`}
+                className="text-cyan-400 text-sm font-medium tracking-wide uppercase"
+              >
+                {project.category}
+              </motion.span>
+            </div>
+            <motion.h3
+              layoutId={`title-${project.id}`}
+              className="text-3xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors"
+            >
+              {project.title}
+            </motion.h3>
+          </div>
+        </motion.div>
+      ))}
     </div>
   );
 
