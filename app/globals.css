@@ -316,3 +316,14 @@ body {
     @apply bg-background text-foreground;
   }
 }
+/* === MOBILE OPTIMISATIONS === */
+body {
+  min-height: 100svh;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-overflow-scrolling: touch;
+}
+.safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
+.safe-top    { padding-top:    env(safe-area-inset-top); }
+@media (max-width: 767px) {
+  button, [role=button] { min-height: 44px; }
+}

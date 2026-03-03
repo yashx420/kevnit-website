@@ -315,12 +315,12 @@ export function PortfolioContent() {
       {/* Unified Tabbed Grid */}
       <section className="relative pb-32">
         <Container>
-          {/* Tab Navigation */}
-          <div className="flex justify-center mb-16 relative z-20 overflow-x-auto pb-4 custom-scrollbar">
-            <div className="inline-flex bg-white/5 backdrop-blur-md border border-white/10 p-1.5 rounded-full whitespace-nowrap min-w-max mx-auto">
+          {/* Tab Navigation - horizontally scrollable on mobile */}
+          <div className="flex justify-start md:justify-center mb-10 md:mb-16 relative z-20 -mx-4 md:mx-0 px-4 md:px-0 overflow-x-auto pb-2 md:pb-4">
+            <div className="inline-flex bg-white/5 backdrop-blur-md border border-white/10 p-1 md:p-1.5 rounded-full whitespace-nowrap min-w-max">
               <button
                 onClick={() => setActiveTab("web")}
-                className={`px-6 md:px-8 py-3 rounded-full font-semibold transition-all duration-300 text-sm md:text-base ${
+                className={`px-4 md:px-8 py-2 md:py-3 rounded-full font-semibold transition-all duration-300 text-xs md:text-base ${
                   activeTab === "web"
                     ? "bg-cyan-500 text-white shadow-[0_0_20px_rgba(6,182,212,0.4)]"
                     : "text-gray-400 hover:text-white"
@@ -330,7 +330,7 @@ export function PortfolioContent() {
               </button>
               <button
                 onClick={() => setActiveTab("app")}
-                className={`px-6 md:px-8 py-3 rounded-full font-semibold transition-all duration-300 text-sm md:text-base ${
+                className={`px-4 md:px-8 py-2 md:py-3 rounded-full font-semibold transition-all duration-300 text-xs md:text-base ${
                   activeTab === "app"
                     ? "bg-purple-500 text-white shadow-[0_0_20px_rgba(168,85,247,0.4)]"
                     : "text-gray-400 hover:text-white"
@@ -340,23 +340,23 @@ export function PortfolioContent() {
               </button>
               <button
                 onClick={() => setActiveTab("digital")}
-                className={`px-6 md:px-8 py-3 rounded-full font-semibold transition-all duration-300 text-sm md:text-base ${
+                className={`px-4 md:px-8 py-2 md:py-3 rounded-full font-semibold transition-all duration-300 text-xs md:text-base ${
                   activeTab === "digital"
                     ? "bg-[#6BC323] text-black shadow-[0_0_20px_rgba(107,195,35,0.4)]"
                     : "text-gray-400 hover:text-white"
                 }`}
               >
-                Digital Marketing
+                Digital
               </button>
               <button
                 onClick={() => setActiveTab("smm")}
-                className={`px-6 md:px-8 py-3 rounded-full font-semibold transition-all duration-300 text-sm md:text-base ${
+                className={`px-4 md:px-8 py-2 md:py-3 rounded-full font-semibold transition-all duration-300 text-xs md:text-base ${
                   activeTab === "smm"
                     ? "bg-[#E1306C] text-white shadow-[0_0_20px_rgba(225,48,108,0.4)]"
                     : "text-gray-400 hover:text-white"
                 }`}
               >
-                Social Media
+                Social
               </button>
             </div>
           </div>

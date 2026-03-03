@@ -212,7 +212,7 @@ export default function BlogsPage() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.6, delay: (i % 3) * 0.1 }}
-                      className={`h-[420px] md:h-[480px] ${
+                      className={`h-[380px] md:h-[420px] lg:h-[480px] ${
                         i === 0 ? "md:col-span-2 lg:col-span-2" : ""
                       }`}
                     >

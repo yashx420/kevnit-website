@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 import Link from "next/link";
@@ -64,6 +64,68 @@ function MockupCard({
 }
 
 export function UIMockupParallax() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Detect mobile to skip heavy parallax animation
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
+  if (isMobile) {
+    return (
+      <section className="relative bg-black py-12 px-4">
+        <p className="text-center text-xs tracking-[0.2em] uppercase text-gray-400 mb-6">
+          Built by <span className="text-[#6BC323] font-semibold">Kevnit</span>
+        </p>
+        <div className="grid grid-cols-2 gap-3 max-w-sm mx-auto">
+          {webImages.map((src, i) => (
+            <div
+              key={i}
+              className="rounded-xl overflow-hidden border border-white/10 aspect-video"
+            >
+              <img
+                src={src}
+                alt={`UI ${i + 1}`}
+                className="w-full h-full object-cover object-top"
+              />
+            </div>
+          ))}
+          {appImages.map((src, i) => (
+            <div
+              key={i}
+              className="rounded-2xl overflow-hidden border-4 border-zinc-800 aspect-[9/16]"
+            >
+              <img
+                src={src}
+                alt={`App UI ${i + 1}`}
+                className="w-full h-full object-cover object-top"
+              />
+            </div>
+          ))}
+        </div>
+        <div className="flex justify-center mt-6">
+          <Link href="/portfolio">
+            <Button
+              variant="outline"
+              size="sm"
+              className="gap-1.5 text-xs h-8 px-4"
+            >
+              View Portfolio <ArrowRight className="w-3 h-3" />
+            </Button>
+          </Link>
+        </div>
+      </section>
+    );
+  }
+
+  return <UIMockupParallaxDesktop />;
+}
+
+function UIMockupParallaxDesktop() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({

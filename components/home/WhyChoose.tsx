@@ -92,8 +92,8 @@ export function WhyChoose() {
               expertise with creative strategy.
             </p>
 
-            {/* 3D Rotating Visual Showcase */}
-            <div className="relative h-[500px] flex items-center justify-center">
+            {/* 3D Rotating Visual Showcase - hidden on smallest screens to save space */}
+            <div className="relative h-[280px] md:h-[500px] flex items-center justify-center">
               <motion.div
                 style={{ rotate, scale, y }}
                 className="relative w-64 h-64 border-2 border-[#6BC323]/30 rounded-full flex items-center justify-center"

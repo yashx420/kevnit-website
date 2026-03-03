@@ -106,8 +106,11 @@ export function StickyServiceStack() {
         <div className="relative z-10 w-full max-w-[95rem] mx-auto flex flex-col items-center xl:flex-row xl:items-start xl:justify-between gap-8 mt-12">
           {/* Left Content Area */}
           <div className="flex-1 w-full text-center xl:text-left z-20 xl:pr-10 xl:pt-12">
-            <h2 className="text-5xl md:text-7xl lg:text-8xl font-black font-heading text-white mb-6 uppercase tracking-tighter leading-none">
-              Our <span className="text-[#6BC323] block mt-2">Services</span>
+            <h2 className="text-4xl md:text-7xl lg:text-8xl font-black font-heading text-white mb-4 md:mb-6 uppercase tracking-tighter leading-none">
+              Our{" "}
+              <span className="text-[#6BC323] block mt-1 md:mt-2">
+                Services
+              </span>
             </h2>
             <p className="text-xl md:text-2xl text-gray-400 max-w-2xl mx-auto xl:mx-0 mb-8 font-medium">
               Keep scrolling to unveil our deck of core competencies. We deliver
@@ -122,8 +125,8 @@ export function StickyServiceStack() {
           </div>
 
           {/* Right Area for Framer Motion Scroll Deck */}
-          <div className="flex-1 w-full relative min-h-[700px] flex items-start justify-center xl:justify-end mt-16 xl:mt-24 xl:mr-24">
-            <div className="w-[500px] sm:w-[600px] h-[480px] relative max-w-[90vw] [perspective:900px] [transform-style:preserve-3d]">
+          <div className="flex-1 w-full relative min-h-[440px] md:min-h-[700px] flex items-start justify-center xl:justify-end mt-8 md:mt-16 xl:mt-24 xl:mr-24">
+            <div className="w-[320px] sm:w-[500px] md:w-[600px] h-[380px] md:h-[480px] relative max-w-[90vw] [perspective:900px] [transform-style:preserve-3d]">
               {services.map((service, i) => (
                 <ScrollCard
                   key={i}
