@@ -226,17 +226,6 @@ export default function BlogsPage() {
                   );
                 })}
               </div>
-
-              {/* Single filtered result fallback */}
-              {filteredPosts.length === 1 && (
-                <div className="max-w-2xl mx-auto h-[450px]">
-                  <FlipCard
-                    post={filteredPosts[0]}
-                    imgClass="h-[60%]"
-                    titleClass="text-xl md:text-2xl"
-                  />
-                </div>
-              )}
             </motion.div>
           </AnimatePresence>
 

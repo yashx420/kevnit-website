@@ -178,11 +178,10 @@ export function PortfolioContent() {
       {campaigns.map((campaign, index) => (
         <motion.div
           key={campaign.id}
-          layoutId={`campaign-${campaign.id}`}
           onClick={() => setSelectedCampaignId(campaign.id)}
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: 0.6, delay: index * 0.1 }}
           className="group cursor-pointer grid grid-cols-1 md:grid-cols-2 gap-8 items-center"
         >
           <div
@@ -190,10 +189,9 @@ export function PortfolioContent() {
           >
             <div
               className="absolute inset-0 group-hover:bg-transparent transition-colors duration-500 z-10 mix-blend-overlay"
-              style={{ backgroundColor: `${accentColor}33` }} // 20% opacity hex equivalent approx
+              style={{ backgroundColor: `${accentColor}33` }}
             />
-            <motion.img
-              layoutId={`image-${campaign.id}`}
+            <img
               src={campaign.image}
               alt={campaign.title}
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -209,13 +207,12 @@ export function PortfolioContent() {
             className={`px-2 md:px-8 ${index % 2 !== 0 ? "md:order-1" : ""}`}
           >
             <div className="flex items-center gap-3 mb-4">
-              <motion.span
-                layoutId={`client-${campaign.id}`}
+              <span
                 className="text-sm font-medium tracking-wide uppercase"
                 style={{ color: accentColor }}
               >
                 Client: {campaign.client}
-              </motion.span>
+              </span>
               {campaign.link && (
                 <Link
                   href={campaign.link}
@@ -227,12 +224,9 @@ export function PortfolioContent() {
                 </Link>
               )}
             </div>
-            <motion.h3
-              layoutId={`title-${campaign.id}`}
-              className="text-4xl font-bold text-white mb-6 transition-colors group-hover:text-white/80"
-            >
+            <h3 className="text-3xl md:text-4xl font-bold text-white mb-6 transition-colors group-hover:text-white/80">
               {campaign.title}
-            </motion.h3>
+            </h3>
             <p className="text-gray-400 leading-relaxed text-lg mb-8">
               {campaign.description}
             </p>
