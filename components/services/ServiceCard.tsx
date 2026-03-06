@@ -50,9 +50,9 @@ export function ServiceCard({ service, index }: ServiceCardProps) {
     <motion.div
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
+      viewport={{ once: true, margin: "-20px" }}
       transition={{ duration: 0.7, ease: "easeOut" }}
-      className={`group relative h-full w-full rounded-[2.5rem] md:rounded-[3.5rem] border border-white/10 bg-gradient-to-br from-white/[0.07] to-transparent backdrop-blur-none md:backdrop-blur-2xl overflow-hidden shadow-none md:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.9),inset_0_1px_0_0_rgba(255,255,255,0.1)] transition-all duration-500`}
+      className={`group relative h-full w-full rounded-[2.5rem] md:rounded-[3.5rem] border border-white/10 bg-[#111] md:bg-gradient-to-br md:from-white/[0.07] md:to-transparent backdrop-blur-none md:backdrop-blur-2xl overflow-hidden shadow-none md:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.9),inset_0_1px_0_0_rgba(255,255,255,0.1)] transition-all duration-500`}
       onMouseMove={onMouseMove}
       onMouseLeave={onMouseLeave}
     >
@@ -124,7 +124,7 @@ export function ServiceCard({ service, index }: ServiceCardProps) {
             />
           </div>
 
-          <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold font-heading text-transparent bg-clip-text bg-gradient-to-br from-white to-white/60 tracking-tight leading-none uppercase transition-opacity duration-500 group-hover:opacity-100">
+          <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold font-heading text-white md:text-transparent md:bg-clip-text md:bg-gradient-to-br from-white to-white/60 tracking-tight leading-none uppercase transition-opacity duration-500 group-hover:opacity-100">
             {service.title}
           </h3>
         </div>
