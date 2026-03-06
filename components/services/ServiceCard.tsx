@@ -49,6 +49,9 @@ export function ServiceCard({ service, index }: ServiceCardProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.7, ease: "easeOut" }}
       className={`group relative h-full w-full rounded-[2.5rem] md:rounded-[3.5rem] border border-white/10 bg-gradient-to-br from-white/[0.07] to-transparent backdrop-blur-none md:backdrop-blur-2xl overflow-hidden shadow-none md:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.9),inset_0_1px_0_0_rgba(255,255,255,0.1)] transition-all duration-500`}
       onMouseMove={onMouseMove}
       onMouseLeave={onMouseLeave}
