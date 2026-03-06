@@ -97,10 +97,10 @@ export function StickyServiceStack() {
       style={{ height: `${services.length * 40}vh` }}
     >
       <div className="sticky top-0 w-full min-h-screen flex flex-col md:flex-row items-center justify-center overflow-hidden py-10 px-4 md:px-12">
-        {/* Background Ambient Lights */}
+        {/* Background Ambient Lights - Hidden on mobile */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-[#6BC323]/10 rounded-full blur-[120px] mix-blend-screen opacity-50" />
-          <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-[#8B5CF6]/10 rounded-full blur-[150px] mix-blend-screen opacity-50" />
+          <div className="hidden md:block absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-[#6BC323]/10 rounded-full blur-[120px] mix-blend-screen opacity-50" />
+          <div className="hidden md:block absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-[#8B5CF6]/10 rounded-full blur-[150px] mix-blend-screen opacity-50" />
         </div>
 
         <div className="relative z-10 w-full max-w-[95rem] mx-auto flex flex-col items-center xl:flex-row xl:items-start xl:justify-between gap-8 mt-12">
@@ -187,7 +187,7 @@ const ScrollCard = ({ i, total, service, progress }: any) => {
         rotateZ,
         skewY: 6, // Match the CardSwap elastic lean
         zIndex,
-        boxShadow: "0 30px 60px -15px rgba(0,0,0,0.8)",
+        boxShadow: "0 15px 30px -10px rgba(0,0,0,0.8)",
       }}
     >
       <ServiceCard

@@ -49,13 +49,7 @@ export function ServiceCard({ service, index }: ServiceCardProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.7, ease: "easeOut" }}
-      className={`group relative h-full w-full rounded-[2.5rem] md:rounded-[3.5rem] border border-white/10 bg-gradient-to-br from-white/[0.07] to-transparent backdrop-blur-2xl overflow-hidden shadow-2xl transition-all duration-500`}
-      style={{
-        boxShadow: `0 30px 60px -15px rgba(0,0,0,0.9), inset 0 1px 0 0 rgba(255,255,255,0.1)`,
-      }}
+      className={`group relative h-full w-full rounded-[2.5rem] md:rounded-[3.5rem] border border-white/10 bg-gradient-to-br from-white/[0.07] to-transparent backdrop-blur-none md:backdrop-blur-2xl overflow-hidden shadow-none md:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.9),inset_0_1px_0_0_rgba(255,255,255,0.1)] transition-all duration-500`}
       onMouseMove={onMouseMove}
       onMouseLeave={onMouseLeave}
     >
@@ -68,9 +62,9 @@ export function ServiceCard({ service, index }: ServiceCardProps) {
         }}
       />
 
-      {/* Interactive Cursor Glow */}
+      {/* Interactive Cursor Glow - Hidden on mobile */}
       <motion.div
-        className="pointer-events-none absolute -inset-px rounded-[3.5rem] opacity-0 transition duration-300 group-hover:opacity-100 z-10"
+        className="hidden md:block pointer-events-none absolute -inset-px rounded-[3.5rem] opacity-0 transition duration-300 group-hover:opacity-100 z-10"
         style={{ maskImage, WebkitMaskImage: maskImage }}
       >
         <div
@@ -142,9 +136,9 @@ export function ServiceCard({ service, index }: ServiceCardProps) {
             {service.deliverables.map((item, i) => (
               <span
                 key={i}
-                className="group/tag relative flex items-center gap-2 px-4 py-1.5 md:py-2 rounded-full border border-white/5 text-xs md:text-sm font-bold tracking-wider uppercase text-white/90 bg-white/[0.03] backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:bg-white/[0.08] hover:border-white/20"
+                className="group/tag relative flex items-center gap-2 px-4 py-1.5 md:py-2 rounded-full border border-white/5 text-xs md:text-sm font-bold tracking-wider uppercase text-white/90 bg-white/[0.03] backdrop-blur-none md:backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:bg-white/[0.08] hover:border-white/20"
                 style={{
-                  boxShadow: `0 4px 12px -5px rgba(0,0,0,0.5)`,
+                  boxShadow: `0 2px 6px -2px rgba(0,0,0,0.2), md:0 4px 12px -5px rgba(0,0,0,0.5)`,
                 }}
               >
                 <span
@@ -187,7 +181,7 @@ export function ServiceCard({ service, index }: ServiceCardProps) {
             <Button
               variant="outline"
               size="lg"
-              className="w-full sm:w-auto border border-white/10 hover:border-white/30 text-white hover:text-white rounded-full bg-white/[0.02] hover:bg-white/[0.08] backdrop-blur-md px-6 py-4 md:py-6 text-sm md:text-base transition-all duration-300 shadow-[0_4px_20px_-10px_rgba(0,0,0,0.5)]"
+              className="w-full sm:w-auto border border-white/10 hover:border-white/30 text-white hover:text-white rounded-full bg-white/[0.02] hover:bg-white/[0.08] backdrop-blur-none md:backdrop-blur-md px-6 py-4 md:py-6 text-sm md:text-base transition-all duration-300 shadow-none md:shadow-[0_4px_20px_-10px_rgba(0,0,0,0.5)]"
             >
               View Our Work
             </Button>

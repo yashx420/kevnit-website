@@ -26,7 +26,7 @@ export default function ServicesPage() {
 
       {/* Footer Call to Action Area */}
       <section className="py-10 md:py-0 md:h-[80vh] bg-black flex items-center justify-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,#6BC323_0%,transparent_70%)] opacity-10 blur-[100px]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(107,195,35,0.1)_0%,transparent_70%)]" />
         <Container className="text-center relative z-10">
           <h2 className="text-5xl md:text-8xl font-bold mb-8 tracking-tight">
             Ready to <span className="text-[#6BC323]">Scale?</span>
