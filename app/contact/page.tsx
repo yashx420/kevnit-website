@@ -15,8 +15,9 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
+    const form = e.currentTarget;
 
-    const formData = new FormData(e.currentTarget);
+    const formData = new FormData(form);
     formData.append("access_key", "927ec7aa-3d76-4be7-9c80-c639b6b40e36");
     formData.append("to", "info@kevnit.com");
 
@@ -31,7 +32,7 @@ export default function ContactPage() {
 
       if (data.success || response.ok) {
         setShowSuccess(true);
-        e.currentTarget.reset();
+        form.reset();
       } else {
         alert(
           data.message ||
@@ -168,8 +169,8 @@ export default function ContactPage() {
                       Message Sent!
                     </h3>
                     <p className="text-gray-400">
-                      Thank you for your enquiry. We'll get back to you at
-                      info@kevnit.com shortly.
+                      Thank you for your enquiry. We've received your message
+                      and will get back to you at info@kevnit.com shortly.
                     </p>
                     <Button
                       variant="outline"
