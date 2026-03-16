@@ -178,7 +178,7 @@ const ScrollCard = ({ i, total, service, progress }: any) => {
 
   return (
     <motion.div
-      className="absolute inset-0 origin-center overflow-hidden border border-white/20 rounded-[3rem] bg-[#0A0A0A] [transform-style:preserve-3d]"
+      className="absolute inset-0 origin-center overflow-hidden border border-white/20 rounded-[3rem] bg-[#0A0A0A] [transform-style:preserve-3d] will-change-transform"
       style={{
         x,
         y,
@@ -188,6 +188,7 @@ const ScrollCard = ({ i, total, service, progress }: any) => {
         skewY: 6, // Match the CardSwap elastic lean
         zIndex,
         boxShadow: "0 15px 30px -10px rgba(0,0,0,0.8)",
+        willChange: "transform, opacity",
       }}
     >
       <ServiceCard

@@ -24,7 +24,7 @@ import { Container } from "@/components/ui/Container";
 const services = [
   {
     icon: Globe,
-    title: "Web UI Design",
+    title: "Website Development",
     desc: (
       <>
         Stunning, conversion-focused websites built with pixel-perfect
@@ -39,7 +39,7 @@ const services = [
   },
   {
     icon: Smartphone,
-    title: "App UI Design",
+    title: "App Development",
     desc: (
       <>
         Sleek native and cross-platform mobile experiences.{" "}
