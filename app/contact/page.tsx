@@ -18,8 +18,7 @@ export default function ContactPage() {
     const form = e.currentTarget;
 
     const formData = new FormData(form);
-    formData.append("access_key", "927ec7aa-3d76-4be7-9c80-c639b6b40e36");
-    formData.append("to", "info@kevnit.com");
+    formData.append("access_key", "909fb601-fc19-4880-b93c-74480b521af7");
 
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
