@@ -15,6 +15,7 @@ import {
   Terminal,
   MousePointer2,
   TrendingUp,
+  Workflow,
 } from "lucide-react";
 import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
 import Link from "next/link";
@@ -80,6 +81,13 @@ const services = [
     desc: "Dominate search rankings. Our expert SEO team drives organic traffic to your site with proven techniques.",
     color: "from-yellow-400 to-orange-400",
     bg: "bg-[#1a180b]",
+  },
+  {
+    icon: Workflow,
+    title: "Automation Pipelines",
+    desc: "Streamline your business operations with custom automated workflows, seamless API integrations, and intelligent bots. Reduce manual effort and maximize operational efficiency.",
+    color: "from-teal-400 to-emerald-500",
+    bg: "bg-[#0b1a13]/40",
   },
 ];
 
@@ -342,6 +350,31 @@ const SecurityVisual = ({ color }: { color: string }) => (
   </div>
 );
 
+const AutomationVisual = ({ color }: { color: string }) => (
+  <div className="relative w-full h-full flex items-center justify-center [perspective:1000px] z-10">
+    <motion.div
+      animate={{ rotateZ: 360 }}
+      transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+      className="relative w-56 h-56 flex items-center justify-center"
+    >
+      <div
+        className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-2xl bg-gradient-to-br ${color} flex items-center justify-center z-20 shadow-[0_0_30px_rgba(20,184,166,0.3)]`}
+      >
+        <Workflow size={28} className="text-white drop-shadow-md" />
+      </div>
+      {[0, 120, 240].map((deg, i) => (
+        <motion.div
+          key={i}
+          style={{ rotateZ: deg }}
+          className="absolute inset-0 rounded-full border-2 border-white/10 border-dashed"
+        >
+          <motion.div className="absolute -top-3 left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-gradient-to-br from-white/40 to-white/10 backdrop-blur-md border border-white/30" />
+        </motion.div>
+      ))}
+    </motion.div>
+  </div>
+);
+
 const VisualSwitch = ({ title, color }: { title: string; color: string }) => {
   switch (title) {
     case "Website Development":
@@ -354,6 +387,8 @@ const VisualSwitch = ({ title, color }: { title: string; color: string }) => {
       return <SoftwareVisual color={color} />;
     case "SEO Optimization":
       return <SEOVisual color={color} />;
+    case "Automation Pipelines":
+      return <AutomationVisual color={color} />;
     case "Cybersecurity":
       return <SecurityVisual color={color} />;
     default:

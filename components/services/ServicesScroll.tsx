@@ -13,6 +13,7 @@ import {
   Megaphone,
   PenTool,
   Server,
+  Workflow,
 } from "lucide-react";
 
 const services = [
@@ -117,6 +118,19 @@ const services = [
       "Content Updates",
     ],
     color: "#14B8A6",
+  },
+  {
+    title: "Automation Pipelines",
+    icon: Workflow,
+    description:
+      "Streamline operations with custom automated workflows, saving time and resources.",
+    deliverables: [
+      "Process Automation",
+      "API Integrations",
+      "Custom Bots",
+      "Workflow Ops",
+    ],
+    color: "#059669",
   },
 ];
 

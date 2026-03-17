@@ -12,6 +12,7 @@ import {
   Megaphone,
   PenTool,
   Server,
+  Workflow,
 } from "lucide-react";
 import { ServiceCard } from "./ServiceCard";
 
@@ -79,6 +80,14 @@ const services = [
     tags: ["Security", "Backups", "Updates"],
     color: "#14B8A6",
     portfolioUrl: "/portfolio?tab=web",
+  },
+  {
+    title: "Automation Pipelines",
+    icon: Workflow,
+    desc: "Streamline your business operations with custom automated workflows.",
+    tags: ["No-Code", "API", "Bots"],
+    color: "#059669",
+    portfolioUrl: "/portfolio",
   },
 ];
 
