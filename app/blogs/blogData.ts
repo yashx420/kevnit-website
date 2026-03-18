@@ -34,7 +34,7 @@ export const blogPosts: BlogPost[] = [
     date: "2024-03-05",
     readTime: "3 min read",
     category: "Artificial Intelligence",
-    coverImage: "/blogs/ai-technology.png",
+    coverImage: "/blogs/deep-learning.png",
     tags: ["Artificial Intelligence", "Technology"],
   },
   {
@@ -49,7 +49,7 @@ export const blogPosts: BlogPost[] = [
     date: "2024-03-03",
     readTime: "3 min read",
     category: "Artificial Intelligence",
-    coverImage: "/blogs/ai-technology.png",
+    coverImage: "/blogs/ai-impact.png",
     tags: ["Artificial Intelligence", "Technology"],
   },
   {
@@ -63,7 +63,7 @@ export const blogPosts: BlogPost[] = [
     date: "2024-03-02",
     readTime: "4 min read",
     category: "Artificial Intelligence",
-    coverImage: "/blogs/ai-technology.png",
+    coverImage: "/blogs/ai-evolution.png",
     tags: ["Artificial Intelligence", "Technology"],
   },
   {
@@ -78,7 +78,7 @@ export const blogPosts: BlogPost[] = [
     date: "2024-02-27",
     readTime: "4 min read",
     category: "Artificial Intelligence",
-    coverImage: "/blogs/ai-technology.png",
+    coverImage: "/blogs/ai-wisdom.png",
     tags: ["Artificial Intelligence", "Technology"],
   },
   {
@@ -92,7 +92,7 @@ export const blogPosts: BlogPost[] = [
     date: "2024-02-20",
     readTime: "3 min read",
     category: "Artificial Intelligence",
-    coverImage: "/blogs/ai-technology.png",
+    coverImage: "/blogs/ai-future.png",
     tags: ["Artificial Intelligence", "Technology"],
   },
   {
@@ -106,7 +106,7 @@ export const blogPosts: BlogPost[] = [
     date: "2024-02-15",
     readTime: "3 min read",
     category: "Artificial Intelligence",
-    coverImage: "/blogs/ai-technology.png",
+    coverImage: "/blogs/ai-ethics.png",
     tags: ["Artificial Intelligence", "Technology"],
   },
   {
@@ -120,7 +120,7 @@ export const blogPosts: BlogPost[] = [
     date: "2024-02-08",
     readTime: "4 min read",
     category: "Artificial Intelligence",
-    coverImage: "/blogs/ai-technology.png",
+    coverImage: "/blogs/ai-healthcare.png",
     tags: ["Artificial Intelligence", "Technology"],
   },
   {
@@ -135,7 +135,7 @@ export const blogPosts: BlogPost[] = [
     date: "2024-02-05",
     readTime: "5 min read",
     category: "Artificial Intelligence",
-    coverImage: "/blogs/ai-technology.png",
+    coverImage: "/blogs/robotics.png",
     tags: ["Artificial Intelligence", "Technology"],
   },
   {
@@ -149,7 +149,7 @@ export const blogPosts: BlogPost[] = [
     date: "2024-02-04",
     readTime: "5 min read",
     category: "Artificial Intelligence",
-    coverImage: "/blogs/ai-technology.png",
+    coverImage: "/blogs/ai-creativity.png",
     tags: ["Artificial Intelligence", "Technology"],
   },
   {
@@ -163,7 +163,7 @@ export const blogPosts: BlogPost[] = [
     date: "2024-02-02",
     readTime: "5 min read",
     category: "Artificial Intelligence",
-    coverImage: "/blogs/ai-technology.png",
+    coverImage: "/blogs/ai-assistants.png",
     tags: ["Artificial Intelligence", "Technology"],
   },
   {
@@ -200,7 +200,7 @@ The most successful organizations treat AI as a partner, not a replacement. By c
     date: "2026-02-25",
     readTime: "6 min read",
     category: "Technology",
-    coverImage: "/blogs/ai-technology.png",
+    coverImage: "/blogs/ai-business.png",
     tags: ["AI", "Machine Learning", "Automation", "Innovation"],
   },
   {
