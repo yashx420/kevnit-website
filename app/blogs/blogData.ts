@@ -34,8 +34,7 @@ export const blogPosts: BlogPost[] = [
     date: "2024-03-05",
     readTime: "3 min read",
     category: "Artificial Intelligence",
-    coverImage:
-      "https://kevnit.com/wp-content/uploads/2024/02/Demystifying-Deep-Learning.jpg",
+    coverImage: "/blogs/ai-technology.png",
     tags: ["Artificial Intelligence", "Technology"],
   },
   {
@@ -50,7 +49,7 @@ export const blogPosts: BlogPost[] = [
     date: "2024-03-03",
     readTime: "3 min read",
     category: "Artificial Intelligence",
-    coverImage: "https://kevnit.com/wp-content/uploads/2024/02/AI-for-Good.jpg",
+    coverImage: "/blogs/ai-technology.png",
     tags: ["Artificial Intelligence", "Technology"],
   },
   {
@@ -64,8 +63,7 @@ export const blogPosts: BlogPost[] = [
     date: "2024-03-02",
     readTime: "4 min read",
     category: "Artificial Intelligence",
-    coverImage:
-      "https://kevnit.com/wp-content/uploads/2024/02/Science-Fiction.jpg",
+    coverImage: "/blogs/ai-technology.png",
     tags: ["Artificial Intelligence", "Technology"],
   },
   {
@@ -80,8 +78,7 @@ export const blogPosts: BlogPost[] = [
     date: "2024-02-27",
     readTime: "4 min read",
     category: "Artificial Intelligence",
-    coverImage:
-      "https://kevnit.com/wp-content/uploads/2024/02/From-Data-to-Wisdom.jpg",
+    coverImage: "/blogs/ai-technology.png",
     tags: ["Artificial Intelligence", "Technology"],
   },
   {
@@ -95,8 +92,7 @@ export const blogPosts: BlogPost[] = [
     date: "2024-02-20",
     readTime: "3 min read",
     category: "Artificial Intelligence",
-    coverImage:
-      "https://kevnit.com/wp-content/uploads/2024/02/The-Future-of-AI.jpg",
+    coverImage: "/blogs/ai-technology.png",
     tags: ["Artificial Intelligence", "Technology"],
   },
   {
@@ -110,8 +106,7 @@ export const blogPosts: BlogPost[] = [
     date: "2024-02-15",
     readTime: "3 min read",
     category: "Artificial Intelligence",
-    coverImage:
-      "https://kevnit.com/wp-content/uploads/2024/02/Decoding-Dilemmas.png",
+    coverImage: "/blogs/ai-technology.png",
     tags: ["Artificial Intelligence", "Technology"],
   },
   {
@@ -125,8 +120,7 @@ export const blogPosts: BlogPost[] = [
     date: "2024-02-08",
     readTime: "4 min read",
     category: "Artificial Intelligence",
-    coverImage:
-      "https://kevnit.com/wp-content/uploads/2024/02/AI-in-Healthcare.jpg",
+    coverImage: "/blogs/ai-technology.png",
     tags: ["Artificial Intelligence", "Technology"],
   },
   {
@@ -141,8 +135,7 @@ export const blogPosts: BlogPost[] = [
     date: "2024-02-05",
     readTime: "5 min read",
     category: "Artificial Intelligence",
-    coverImage:
-      "https://kevnit.com/wp-content/uploads/2024/02/The-Rise-of-Autonomous-Machines.jpg",
+    coverImage: "/blogs/ai-technology.png",
     tags: ["Artificial Intelligence", "Technology"],
   },
   {
@@ -156,8 +149,7 @@ export const blogPosts: BlogPost[] = [
     date: "2024-02-04",
     readTime: "5 min read",
     category: "Artificial Intelligence",
-    coverImage:
-      "https://kevnit.com/wp-content/uploads/2024/02/AI-and-Creativity.jpg",
+    coverImage: "/blogs/ai-technology.png",
     tags: ["Artificial Intelligence", "Technology"],
   },
   {
@@ -171,8 +163,7 @@ export const blogPosts: BlogPost[] = [
     date: "2024-02-02",
     readTime: "5 min read",
     category: "Artificial Intelligence",
-    coverImage:
-      "https://kevnit.com/wp-content/uploads/2024/02/The-Evolution-of-AI.jpg",
+    coverImage: "/blogs/ai-technology.png",
     tags: ["Artificial Intelligence", "Technology"],
   },
   {
@@ -209,8 +200,7 @@ The most successful organizations treat AI as a partner, not a replacement. By c
     date: "2026-02-25",
     readTime: "6 min read",
     category: "Technology",
-    coverImage:
-      "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80",
+    coverImage: "/blogs/ai-technology.png",
     tags: ["AI", "Machine Learning", "Automation", "Innovation"],
   },
   {
@@ -247,8 +237,7 @@ Core Web Vitals and page speed directly impact search rankings and user engageme
     date: "2026-02-20",
     readTime: "7 min read",
     category: "Web Development",
-    coverImage:
-      "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&q=80",
+    coverImage: "/blogs/web-development.png",
     tags: ["Next.js", "React", "TypeScript", "Performance"],
   },
   {
@@ -285,8 +274,7 @@ Markets change, trends shift, and audiences evolve. Enduring brands adapt their 
     date: "2026-02-18",
     readTime: "6 min read",
     category: "Branding",
-    coverImage:
-      "https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=800&q=80",
+    coverImage: "/blogs/branding.png",
     tags: ["Branding", "Design", "Strategy", "Identity"],
   },
   {
@@ -323,8 +311,7 @@ The brands that will thrive in 2026 are those that embrace technology while main
     date: "2026-02-12",
     readTime: "6 min read",
     category: "Digital Marketing",
-    coverImage:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
+    coverImage: "/blogs/digital-marketing.png",
     tags: ["Marketing", "AI", "Trends", "Strategy"],
   },
   {
@@ -361,8 +348,7 @@ Search engines favor content that stays current. Regularly updating existing hig
     date: "2026-02-05",
     readTime: "5 min read",
     category: "SEO",
-    coverImage:
-      "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=800&q=80",
+    coverImage: "/blogs/seo-strategy.png",
     tags: ["SEO", "Google", "Organic Traffic", "Content Strategy"],
   },
   {
@@ -399,8 +385,7 @@ Continuous testing is the backbone of conversion optimization. From button color
     date: "2026-01-28",
     readTime: "7 min read",
     category: "E-Commerce",
-    coverImage:
-      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80",
+    coverImage: "/blogs/ecommerce.png",
     tags: ["E-Commerce", "Conversion", "UX", "Optimization"],
   },
 ];

@@ -41,7 +41,7 @@ export function Footer() {
             >
               <div className="relative h-16 w-52 transition-transform duration-300 group-hover:scale-105">
                 <Image
-                  src="/logo.png"
+                  src="logo.png"
                   alt="Kevnit Digital Solutions"
                   fill
                   className="object-contain object-center md:object-left"

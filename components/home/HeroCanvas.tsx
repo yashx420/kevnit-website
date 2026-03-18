@@ -230,7 +230,7 @@ export function HeroCanvas() {
                 className="relative h-20 w-48 md:h-28 md:w-64 lg:h-32 lg:w-72 xl:w-80 transform-style-3d cursor-default z-20"
               >
                 <Image
-                  src="/logo.png"
+                  src="logo.png"
                   alt="Kevnit Digital Solutions"
                   fill
                   className="object-contain drop-shadow-[0_0_30px_rgba(107,195,35,0.4)]"

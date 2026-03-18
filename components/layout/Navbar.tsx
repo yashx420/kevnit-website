@@ -152,7 +152,7 @@ function NavContent({
           )}
         >
           <Image
-            src="/logo.png"
+            src="logo.png"
             alt="Kevnit Digital Solutions"
             fill
             className="object-contain object-left"
